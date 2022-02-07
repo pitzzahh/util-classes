@@ -4,7 +4,7 @@ import lib.utilities.inputChecker.InputChecker;
 import java.util.concurrent.*;
 import java.util.Scanner;
 
-public class Methods {
+class Methods {
     // cannot instantiate this class
     protected Methods() {}
     static final String correctAnswer = " CORRECT ANSWER!";

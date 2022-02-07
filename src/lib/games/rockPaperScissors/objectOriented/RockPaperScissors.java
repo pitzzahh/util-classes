@@ -15,7 +15,7 @@ final class Computer extends Player {
 
     private final Random computerChoice;
 
-    public Computer() {
+    Computer() {
         setPlayerName("COMPUTER");
         computerChoice = new Random();
     }
@@ -29,9 +29,9 @@ final class Computer extends Player {
         }
     }
 }
-class Human extends Player{
+final class Human extends Player{
     private final Scanner humanInput;
-    public Human() {
+    Human() {
         humanInput = new Scanner(System.in);
     }
     @Override

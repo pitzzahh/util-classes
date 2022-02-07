@@ -1,8 +1,8 @@
 package lib.games.ticTacToe.ticTacToeWithMiniMaxAlgorithm;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import java.util.List;
 
 final class Game {
     private Game() {}

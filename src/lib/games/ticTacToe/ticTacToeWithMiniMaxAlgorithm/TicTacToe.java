@@ -2,8 +2,8 @@ package lib.games.ticTacToe.ticTacToeWithMiniMaxAlgorithm;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import java.util.Scanner;
 
 public final class TicTacToe {
     static boolean humanNameInput = true;

@@ -5,6 +5,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public final class PinGenerator {
     // Cannot instantiate this class
     private PinGenerator() {}
