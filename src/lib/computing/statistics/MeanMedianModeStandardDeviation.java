@@ -82,24 +82,29 @@ public final class MeanMedianModeStandardDeviation {
      * @param numberArray the array needed to proceed to computation.
      */
     public static void computeMeanMedianModeStandardDeviation(double[] numberArray) {
-        if (calculateMean(numberArray) % 2 == 0) {
-            System.out.println("MEAN              : " + (int)calculateMean(numberArray));
+        if (numberArray.length != 0) {
+            if (calculateMean(numberArray) % 2 == 0) {
+                System.out.println("MEAN              : " + (int)calculateMean(numberArray));
+            }
+            else {
+                System.out.printf("MEAN              : %.6f\n", calculateMean(numberArray));
+            }
+            if (calculateMedian(numberArray) % 2 == 0) {
+                System.out.println("MEDIAN            : " + (int)calculateMedian(numberArray));
+            }
+            else {
+                System.out.printf("MEDIAN              : %.6f\n", calculateMean(numberArray));
+            }
+            if (calculateMode(numberArray) % 2 == 0) {
+                System.out.println("MODE              : " + (int)calculateMode(numberArray));
+            }
+            else {
+                System.out.printf("MODE                : %.6f\n", calculateMode(numberArray));
+            }
+            System.out.printf("STANDARD DEVIATION: %.6f", calculateStandardDeviation(numberArray));
         }
         else {
-            System.out.printf("MEAN              : %.6f\n", calculateMean(numberArray));
+            System.out.println("THE ARRAY IS EMPTY (!)");
         }
-        if (calculateMedian(numberArray) % 2 == 0) {
-            System.out.println("MEDIAN            : " + (int)calculateMedian(numberArray));
-        }
-        else {
-            System.out.printf("MEDIAN              : %.6f\n", calculateMean(numberArray));
-        }
-        if (calculateMode(numberArray) % 2 == 0) {
-            System.out.println("MODE              : " + (int)calculateMode(numberArray));
-        }
-        else {
-            System.out.printf("MODE                : %.6f\n", calculateMode(numberArray));
-        }
-        System.out.printf("STANDARD DEVIATION: %.6f", calculateStandardDeviation(numberArray));
     }
 }
