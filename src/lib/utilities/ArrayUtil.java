@@ -4,8 +4,11 @@ import java.util.stream.Collectors;
 import java.util.List;
 
 public class ArrayUtil {
-    private static boolean[] check;
-    // Cannot instantiate this class
+    private static boolean[] check; // stores true boolean values
+
+    /**
+     * Cannot instantiate this class.
+     */
     protected ArrayUtil() {}
 
     /**
