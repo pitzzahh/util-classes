@@ -1,9 +1,8 @@
 package lib.computing.collatzConjecture;
 
-import lib.utilities.InputChecker;
-
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import lib.utilities.InputChecker;
+import java.util.Scanner;
 
 public final class Collatz {
     // Cannot instantiate this class

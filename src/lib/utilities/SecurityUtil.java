@@ -23,7 +23,6 @@ public final class SecurityUtil extends ArrayUtil {
      */
     private SecurityUtil() {
     }
-
     /**
      * Encrypts the user's username and password.
      * @param usernameFile the file of where the username contains
@@ -145,7 +144,6 @@ public final class SecurityUtil extends ArrayUtil {
         }
         return u.equals(uCache) && p.equals(pCache);
     }
-
     /**
      * Method that used by an admin to view users credentials by decrypting all users credentials.
      * @param userName the username file to be decrypted.
@@ -178,7 +176,7 @@ public final class SecurityUtil extends ArrayUtil {
             EP.clear();
         }
         else {
-            return "youAreNotAnAdministrator  getBackToWork";
+            return "you'reNotAllowedToAccessThis  you're'NotAnAdministrator";
         }
         return u.concat(" " + p).strip();
     }
