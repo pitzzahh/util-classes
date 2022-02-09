@@ -1,6 +1,7 @@
 package lib.utilities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.List;
 import java.io.*;
@@ -33,15 +34,16 @@ public final class SecurityUtil {
             uScanner = new Scanner(usernameFile);
             u = uScanner.nextLine();
             uChar = u.toCharArray();
-            uScanner.close();
             for (char element : uChar) {
                 element += (KEY * (-10));
                 EU.add(element);
             }
+            writeUserNameToBin(usernameFile, user);
             u = ArrayUtil.getCharacters(EU);
             FileUtil.writeToATextFile(u, usernameFile);
-            EP.clear();
-            writeUserNameToBin(usernameFile, user);
+            EU.clear();
+            uScanner.close();
+            resetUChar(uChar);
         }
         else {
             System.out.println("SOMETHING WENT WRONG");
@@ -57,15 +59,16 @@ public final class SecurityUtil {
             pScanner = new Scanner(pinFile);
             p = pScanner.nextLine();
             pChar = p.toCharArray();
-            pScanner.close();
             for (char element : pChar) {
                 element += (KEY * (-10) + 4);
                 EP.add(element);
             }
+            writePinToBin(pinFile, user);
             p = ArrayUtil.getCharacters(EP);
             FileUtil.writeToATextFile(p, pinFile);
             EP.clear();
-            writePinToBin(pinFile, user);
+            pScanner.close();
+            resetPChar(pChar);
         }
         else {
             System.out.println("SOMETHING WENT WRONG");
@@ -85,8 +88,6 @@ public final class SecurityUtil {
             p = pScanner.nextLine();
             uChar = u.toCharArray();
             pChar = p.toCharArray();
-            uScanner.close();
-            pScanner.close();
             for (char bit : uChar) {
                 bit -= (KEY * (-10));
                 EU.add(bit);
@@ -99,8 +100,12 @@ public final class SecurityUtil {
             p = ArrayUtil.getCharacters(EP);
             EU.clear();
             EP.clear();
+            uScanner.close();
+            pScanner.close();
+            resetUChar(uChar);
+            resetPChar(pChar);
         } catch (FileNotFoundException ignored) {}
-        return username.equals(u) && pin.equals(p) && readFromBin(usernameFile, pinFile, username, isAdmin);
+        return username.equals(u) && pin.equals(p) && readFromBin(username, isAdmin);
     }
 
     /**
@@ -116,6 +121,7 @@ public final class SecurityUtil {
             dataOutputStreamForUserName.writeUTF(u);
             dataOutputStreamForUserName.flush();
             dataOutputStreamForUserName.close();
+            uScanner.close();
         } catch (FileNotFoundException ignored) {}
     }
     /**
@@ -131,22 +137,19 @@ public final class SecurityUtil {
             dataOutputStreamForPin.writeUTF(p);
             dataOutputStreamForPin.flush();
             dataOutputStreamForPin.close();
+            pScanner.close();
         } catch (FileNotFoundException ignored) {}
     }
     /**
      * Method that rechecks the user's credentials.
      * <p>Even though the user copied and pasted the username and password from the txt file, it still won't logged in
      * unless the user really know his/her credentials.</p>
-     * @param usernameFile the file of where the username contained.
-     * @param pinFile the file where the password contained.
+     * @param user the username of the user.
+     * @param isAdmin checks if the person who wants to log in is as admin.
      * @throws IOException if the file does not exist.
      */
-    private static boolean readFromBin(File usernameFile, File pinFile, String user, boolean isAdmin) throws IOException {
+    private static boolean readFromBin(String user, boolean isAdmin) throws IOException {
         try {
-            uScanner = new Scanner(usernameFile);
-            pScanner = new Scanner(pinFile);
-            u = uScanner.nextLine();
-            p = pScanner.nextLine();
             DataInputStream dataInputStreamForUserName;
             DataInputStream dataInputStreamForPin;
             if (isAdmin) {
@@ -159,7 +162,8 @@ public final class SecurityUtil {
             }
             uCache = dataInputStreamForUserName.readUTF();
             pCache = dataInputStreamForPin.readUTF();
-
+            dataInputStreamForUserName.close();
+            dataInputStreamForPin.close();
         } catch (FileNotFoundException ignored) {
         }
         return u.equals(uCache) && p.equals(pCache);
@@ -180,8 +184,6 @@ public final class SecurityUtil {
             p = pScanner.nextLine();
             uChar = u.toCharArray();
             pChar = p.toCharArray();
-            uScanner.close();
-            pScanner.close();
             for (char bit : uChar) {
                 bit -= (KEY * (-10));
                 EU.add(bit);
@@ -194,10 +196,26 @@ public final class SecurityUtil {
             p = ArrayUtil.getCharacters(EP);
             EU.clear();
             EP.clear();
+            uScanner.close();
+            pScanner.close();
         }
         else {
             return "you'reNotAllowedToAccessThis  you're'NotAnAdministrator";
         }
         return u.concat(" " + p).strip();
+    }
+    /**
+     * Resets the username char array.
+     * @param uChar the username char to be refilled with empty space.
+     */
+    private static void resetUChar(char[] uChar) {
+        Arrays.fill(uChar, ' ');
+    }
+    /**
+     * Resets the pin char array.
+     * @param pChar the pin char to be refilled with empty space.
+     */
+    private static void resetPChar(char[] pChar) {
+        Arrays.fill(pChar, ' ');
     }
 }
