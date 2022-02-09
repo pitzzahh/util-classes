@@ -76,6 +76,11 @@ public final class MeanMedianModeStandardDeviation {
         }
         return Math.sqrt(standardDeviation / length);
     }
+
+    /**
+     * Outputs the computed mean median mode and standard deviation of the array
+     * @param numberArray the array needed to proceed to computation.
+     */
     public static void computeMeanMedianModeStandardDeviation(double[] numberArray) {
         if (calculateMean(numberArray) % 2 == 0) {
             System.out.println("MEAN              : " + (int)calculateMean(numberArray));
