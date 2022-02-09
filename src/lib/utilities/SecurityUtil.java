@@ -7,7 +7,7 @@ import java.io.*;
 
 public final class SecurityUtil {
 
-    private static final byte KEY = -10;
+    private static final byte KEY = ((((10 * 3) + 4 ) / 4) * 2) - 26;
     private static final List<Character> EU = new ArrayList<>();
     private static final List<Character> EP = new ArrayList<>();
     private static Scanner uScanner;
