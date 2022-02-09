@@ -1,4 +1,4 @@
-package lib.systems.studentManagementSystem.latest.studentConstruct;
+package lib.systems.studentManagementSystem.studentConstruct;
 
 public final class Student {
 
@@ -73,7 +73,7 @@ public final class Student {
      */
     @Override
     public String toString() {
-        return ":---------------------------------------------:" +
+        return ":----------------------------------------------------------------------:" +
                 "\n" +
                 "     Student ID   : " +  id +
                 "\n" +
@@ -89,6 +89,6 @@ public final class Student {
                 "\n" +
                 "     Course       : " + course +
                 "\n" +
-                ":---------------------------------------------:";
+                ":----------------------------------------------------------------------:";
 	}
 }

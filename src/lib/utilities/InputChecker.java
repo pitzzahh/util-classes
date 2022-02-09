@@ -1,4 +1,4 @@
-package lib.utilities.inputChecker;
+package lib.utilities;
 
 public class InputChecker {
     // cannot instantiate this class

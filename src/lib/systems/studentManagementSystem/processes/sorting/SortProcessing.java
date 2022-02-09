@@ -1,6 +1,6 @@
-package lib.systems.studentManagementSystem.latest.processes.sorting;
+package lib.systems.studentManagementSystem.processes.sorting;
 
-import lib.systems.studentManagementSystem.latest.studentConstruct.Student;
+import lib.systems.studentManagementSystem.studentConstruct.Student;
 import java.util.ArrayList;
 import java.util.Comparator;
 

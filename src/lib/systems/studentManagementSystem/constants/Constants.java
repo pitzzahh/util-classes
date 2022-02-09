@@ -1,4 +1,4 @@
-package lib.systems.studentManagementSystem.latest.constants;
+package lib.systems.studentManagementSystem.constants;
 
 /**
  * @author Peter John Arao

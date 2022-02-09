@@ -1,10 +1,8 @@
-package lib.utilities.pinGenarator;
+package lib.utilities;
 
-import lib.utilities.inputChecker.InputChecker;
 import java.util.concurrent.TimeUnit;
 import java.util.Random;
 import java.util.Scanner;
-
 /**
  *
  */

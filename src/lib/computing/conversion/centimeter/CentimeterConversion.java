@@ -1,8 +1,8 @@
 package lib.computing.conversion.centimeter;
 
 import lib.computing.conversion.Conversions;
-import lib.utilities.delay.Loading;
-import lib.utilities.inputChecker.InputChecker;
+import lib.utilities.Loading;
+import lib.utilities.InputChecker;
 
 import java.util.Scanner;
 

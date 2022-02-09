@@ -1,9 +1,12 @@
-package lib.utilities.decor;
+package lib.utilities;
 
-import lib.systems.studentManagementSystem.latest.processes.framework.Process;
-import lib.systems.studentManagementSystem.latest.main.MainActivity;
+import lib.systems.studentManagementSystem.processes.framework.Process;
+import lib.systems.studentManagementSystem.main.MainActivity;
 
 public final class Decorations extends Process {
+    /**
+     * Cannot instantiate this class
+     */
     private Decorations() {
         super();
     }

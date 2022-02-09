@@ -1,7 +1,6 @@
-package lib.utilities.delay;
+package lib.utilities;
 
-import lib.systems.studentManagementSystem.latest.processes.framework.Process;
-
+import lib.systems.studentManagementSystem.processes.framework.Process;
 import java.util.concurrent.TimeUnit;
 
 public final class Loading extends Process {

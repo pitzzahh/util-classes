@@ -1,6 +1,6 @@
 package lib.games.mathProblemGenerator;
 
-import lib.utilities.inputChecker.InputChecker;
+import lib.utilities.InputChecker;
 import java.util.concurrent.*;
 import java.util.Scanner;
 

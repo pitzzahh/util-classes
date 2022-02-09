@@ -1,4 +1,4 @@
-package lib.utilities.quadrantAnalyzer;
+package lib.computing.quadrantAnalyzer;
 
 import java.util.Scanner;
 

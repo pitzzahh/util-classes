@@ -1,14 +1,13 @@
-package lib.systems.studentManagementSystem.latest.processes.framework;
+package lib.systems.studentManagementSystem.processes.framework;
 
-import lib.systems.studentManagementSystem.latest.processes.importingAndExporting.FileProcessing;
-import lib.systems.studentManagementSystem.latest.processes.sorting.SortProcessing;
-import lib.systems.studentManagementSystem.latest.studentConstruct.Student;
-import lib.systems.studentManagementSystem.latest.constants.Constants;
-import lib.systems.studentManagementSystem.latest.main.MainActivity;
-import static lib.utilities.delay.Loading.dotLoading;
-import static lib.utilities.delay.Loading.infoPause;
-import static lib.utilities.decor.Decorations.line;
-import lib.utilities.inputChecker.InputChecker;
+import lib.systems.studentManagementSystem.processes.sorting.SortProcessing;
+import lib.systems.studentManagementSystem.studentConstruct.Student;
+import lib.systems.studentManagementSystem.constants.Constants;
+import lib.systems.studentManagementSystem.main.MainActivity;
+import lib.utilities.InputChecker;
+import lib.utilities.Decorations;
+import lib.utilities.Loading;
+import lib.utilities.FileUtil;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -308,14 +307,14 @@ public class Process {
 			if (temporaryString.length() != 0) {
 				if (InputChecker.isInteger(temporaryString)) {
 					System.out.println();
-					line();
+					Decorations.line();
 					System.out.println("        : A FIRST NAME IS NOT A NUMBER :       ");
-					line();
+					Decorations.line();
 				}
 				else if(temporaryString.matches("[!@#$%^&*()]+")) {
-					line();
+					Decorations.line();
 					System.out.println("   : PLEASE ENTER YOUR FIRST NAME PROPERLY :   ");
-					line();
+					Decorations.line();
 				}
 				else {
 					student.setFirstName(temporaryString);
@@ -323,9 +322,9 @@ public class Process {
 				}
 			}
 			else {
-				line();
+				Decorations.line();
 				System.out.println("        : PLEASE DO NOT LEAVE IT BLANK (!) :   ");
-				line();
+				Decorations.line();
 			}
 		}
 		// LastName
@@ -340,14 +339,14 @@ public class Process {
 			if (temporaryString.length() != 0) {
 				if (InputChecker.isInteger(temporaryString)) {
 					System.out.println();
-					line();
+					Decorations.line();
 					System.out.println("        : A LAST NAME IS NOT A NUMBER :        ");
-					line();
+					Decorations.line();
 				}
 				else if(temporaryString.matches("[!@#$%^&*()]+")) {
-					line();
+					Decorations.line();
 					System.out.println("   : PLEASE ENTER YOUR LAST NAME PROPERLY :    ");
-					line();
+					Decorations.line();
 				}
 				else {
 					student.setLastName(temporaryString);
@@ -355,9 +354,9 @@ public class Process {
 				}
 			}
 			else {
-				line();
+				Decorations.line();
 				System.out.println("        : PLEASE DO NOT LEAVE IT BLANK (!) :   ");
-				line();
+				Decorations.line();
 			}
 		}
 		// Age
@@ -378,32 +377,32 @@ public class Process {
 							addAge = false;
 						}
 						else {
-							line();
+							Decorations.line();
 							System.out.println("       : A STUDENT AGE IS NOT BELOW ZERO :     ");
-							line();
+							Decorations.line();
 						}
 					}
 				}
 				else if (InputChecker.isInteger(temporaryString)) {
-					line();
+					Decorations.line();
 					System.out.println("        : A STUDENT CANNOT BE THAT OLD :       ");
-					line();
+					Decorations.line();
 				}
 				else if (!InputChecker.isByte(temporaryString)) {
-					line();
+					Decorations.line();
 					System.out.println("             : AN AGE IS A NUMBER :            ");
-					line();
+					Decorations.line();
 				}
 				else {
-					line();
+					Decorations.line();
 					System.out.println("        : PLEASE DO NOT LEAVE IT BLANK (!) :   ");
-					line();
+					Decorations.line();
 				}
 			}
 			catch (NumberFormatException n_f_e) {
-				line();
+				Decorations.line();
 				System.out.println("             : AN AGE IS A NUMBER :            ");
-				line();
+				Decorations.line();
 			}
 			// here
 		}
@@ -419,14 +418,14 @@ public class Process {
 			if (temporaryString.length() != 0) {
 				if (InputChecker.isInteger(temporaryString)) {
 					System.out.println();
-					line();
+					Decorations.line();
 					System.out.println("          : A GENDER IS NOT A NUMBER :         ");
-					line();
+					Decorations.line();
 				}
 				else if(temporaryString.matches("[!@#$%^&*()]+") || temporaryString.length() <= 3) {
-					line();
+					Decorations.line();
 					System.out.println("     : PLEASE ENTER YOUR GENDER PROPERLY :     ");
-					line();
+					Decorations.line();
 				}
 				else {
 					student.setGender(temporaryString);
@@ -434,9 +433,9 @@ public class Process {
 				}
 			}
 			else {
-				line();
+				Decorations.line();
 				System.out.println("        : PLEASE DO NOT LEAVE IT BLANK (!) :   ");
-				line();
+				Decorations.line();
 			}
 		}
 		// School
@@ -451,14 +450,14 @@ public class Process {
 			if (temporaryString.length() != 0) {
 				if (InputChecker.isInteger(temporaryString)) {
 					System.out.println();
-					line();
+					Decorations.line();
 					System.out.println("   : PLEASE ENTER YOUR SCHOOL NAME PROPERLY :  ");
-					line();
+					Decorations.line();
 				}
 				else if(temporaryString.matches("[!@#$%^&*()]+")) {
-					line();
+					Decorations.line();
 					System.out.println("   : PLEASE ENTER YOUR SCHOOL NAME PROPERLY :  ");
-					line();
+					Decorations.line();
 				}
 				else {
 					student.setSchool(temporaryString);
@@ -466,9 +465,9 @@ public class Process {
 				}
 			}
 			else {
-				line();
+				Decorations.line();
 				System.out.println("        : PLEASE DO NOT LEAVE IT BLANK (!) :   ");
-				line();
+				Decorations.line();
 			}
 		}
 		// Course
@@ -483,14 +482,14 @@ public class Process {
 			if (temporaryString.length() != 0) {
 				if (InputChecker.isInteger(temporaryString)) {
 					System.out.println();
-					line();
+					Decorations.line();
 					System.out.println("  : PLEASE ENTER YOUR COURSE NAME PROPERLY :   ");
-					line();
+					Decorations.line();
 				}
 				else if(temporaryString.matches("[!@#$%^&*()]+")) {
-					line();
+					Decorations.line();
 					System.out.println("  : PLEASE ENTER YOUR COURSE NAME PROPERLY :   ");
-					line();
+					Decorations.line();
 				}
 				else {
 					student.setCourse(temporaryString);
@@ -499,15 +498,15 @@ public class Process {
 				}
 			}
 			else {
-				line();
+				Decorations.line();
 				System.out.println("        : PLEASE DO NOT LEAVE IT BLANK (!) :   ");
-				line();
+				Decorations.line();
 			}
 		}
 
 		if(lrnResponse.equals("YES") && !invalidId) {
 			System.out.print("                  : ADDING :");
-			dotLoading();
+			Loading.dotLoading();
 		}
 		else if (lrnResponse.equals("NO")) {
 			System.out.print(' ');
@@ -518,7 +517,7 @@ public class Process {
 			}
 			else {
 				System.out.print("                  : ADDING :");
-				dotLoading();
+				Loading.dotLoading();
 			}
 		}
 		return student;
@@ -534,18 +533,18 @@ public class Process {
 		lrnResponse = userInput.nextLine().toUpperCase().trim();
 		if (lrnResponse.equals("YES")) {
 			System.out.print("\t\t : PROCEEDING :");
-			dotLoading();
+			Loading.dotLoading();
 		}
 		else if (lrnResponse.equals("NO")) {
 			System.out.print(": REDIRECTING TO MAIN MENU :");
-			dotLoading();
+			Loading.dotLoading();
 			negateCreateStudentFunction();
 			removeLrn = false;
 		}
 		else {
-			line();
+			Decorations.line();
 			System.out.println("              : INVALID INPUT (!) :            ");
-			line();
+			Decorations.line();
 			negateCreateStudentFunction();
 			invalidId = true;
 		}
@@ -590,14 +589,14 @@ public class Process {
 						exportErrorResponse = userInput.nextLine().toUpperCase().charAt(0);
 						if (exportErrorResponse == ('Y')) {
 							System.out.print("\t\t : PROCEEDING :");
-							dotLoading();
+							Loading.dotLoading();
 						}
 						else if (exportErrorResponse == 'N') {
 							exporting = false;
 						}
 						else {
 							System.out.print(": REDIRECTING TO MAIN MENU :");
-							dotLoading();
+							Loading.dotLoading();
 							exporting = false;
 						}
 					}
@@ -615,16 +614,16 @@ public class Process {
 						resetExportInputs();
 						resetConditions();
 						System.out.print("\t\t : PROCEEDING :");
-						dotLoading();
+						Loading.dotLoading();
 					}
 					else if (exportErrorResponse == 'N') {
 						System.out.print(": REDIRECTING TO MAIN MENU :");
-						dotLoading();
+						Loading.dotLoading();
 						exporting = false;
 					}
 					else {
 						System.out.print(": REDIRECTING TO MAIN MENU :");
-						dotLoading();
+						Loading.dotLoading();
 						exporting = false;
 					}
 				}
@@ -635,10 +634,10 @@ public class Process {
 				if (fileName != null) {
 					if (!fileName.exists()) {
 						if(fileType.equals("text") || fileType.equals("bin")) {
-							FileProcessing.writeFileBinary(studentsList, exportPath + exportFileName);
-							FileProcessing.writeFile(studentsList, exportPath + exportFileName);
+							FileUtil.writeFileBinary(studentsList, exportPath + exportFileName);
+							FileUtil.writeFile(studentsList, exportPath + exportFileName);
 							System.out.print("                   : SAVING :");
-							dotLoading();
+							Loading.dotLoading();
 							System.out.println("            : SAVED SUCCESSFULLY (!) :        ");
 						}
 					}
@@ -702,14 +701,14 @@ public class Process {
 					importErrorResponse = userInput.nextLine().toUpperCase().charAt(0);
 					if (importErrorResponse == ('Y')) {
 						System.out.print("\t\t : PROCEEDING :");
-						dotLoading();
+						Loading.dotLoading();
 					}
 					else if (importErrorResponse == 'N') {
 						importing = false;
 					}
 					else {
 						System.out.print(": REDIRECTING TO MAIN MENU :");
-						dotLoading();
+						Loading.dotLoading();
 						importing = false;
 					}
 				}
@@ -727,16 +726,16 @@ public class Process {
 					resetImportInputs();
 					resetConditions();
 					System.out.print("\t\t : PROCEEDING :");
-					dotLoading();
+					Loading.dotLoading();
 				}
 				else if (importErrorResponse == 'N') {
 					System.out.print(": REDIRECTING TO MAIN MENU :");
-					dotLoading();
+					Loading.dotLoading();
 					importing = false;
 				}
 				else {
 					System.out.print(": REDIRECTING TO MAIN MENU :");
-					dotLoading();
+					Loading.dotLoading();
 					break;
 				}
 			}
@@ -746,7 +745,7 @@ public class Process {
 			if(Objects.equals(fileType, "bin")) {
 				assert file != null;
 				if (file.exists()) {
-					Process.studentsList = FileProcessing.readFileBinary(importPath, importFileName);
+					Process.studentsList = FileUtil.readFileBinary(importPath, importFileName);
 					setImportingText();
 					resetImportInputs();
 					resetConditions();
@@ -776,11 +775,11 @@ public class Process {
 			System.out.println("              : THE LIST IS EMPTY :            ");
 		else {
 			for (byte id = 0; id < studentsList.size(); id++) {
-				line();
+				Decorations.line();
 				System.out.println("Student No: " + (id + 1));
 				System.out.println(studentsList.get(id).toString());
 				if (studentsList.size() > 1)
-					infoPause();
+					Loading.infoPause();
 			}
 		}
 	}
@@ -825,7 +824,7 @@ public class Process {
 					final String finalId = id;
 					studentsList.removeIf(obj -> obj.getId().equals(finalId)); // ito
 					System.out.print("          : REMOVING FROM THE LIST :");
-					dotLoading();
+					Loading.dotLoading();
 					System.out.println("\n    SUCCESSFULLY REMOVED FROM THE LIST (!)");
 					invalidIdDeletion = false;
 				}
@@ -849,7 +848,7 @@ public class Process {
 		while (sorting) {
 			while (empty) {
 				if (isEmptyList() || studentsList.size() == 1) {
-					line();
+					Decorations.line();
 					if (studentsList.size() == 1) {
 						emptySortingLoopChoice = true;
 						System.out.println(lessStudent);
@@ -862,12 +861,12 @@ public class Process {
 					}
 					else {
 						System.out.println(emptySize);
-						line();
+						Decorations.line();
 						sorting = false;
 						empty = false;
 						nextStep = false;
 						System.out.print("    : REDIRECTING TO MAIN MENU :");
-						dotLoading();
+						Loading.dotLoading();
 					}
 					while(emptySortingLoopChoice){
 						switch (choice2) {
@@ -876,11 +875,11 @@ public class Process {
 								sorting = false;
 								emptySortingLoopChoice = false;
 								System.out.print(": REDIRECTING TO MAIN MENU :");
-								dotLoading();
+								Loading.dotLoading();
 							}
 							case FIRST_RESPONSE -> {
 								System.out.print("\t\t : PROCEEDING :");
-								dotLoading();
+								Loading.dotLoading();
 								emptySortingLoopChoice = false;
 								empty = false;
 							}
@@ -888,7 +887,7 @@ public class Process {
 								if(!choice2.contains("YES") || !choice2.contains("NO")) {
 									System.out.println("\t\t   :Invalid Input (!):");
 									System.out.print(": REDIRECTING TO MAIN MENU :");
-									dotLoading();
+									Loading.dotLoading();
 									emptySortingLoopChoice = false;
 									empty = false;
 									nextStep = false;
@@ -939,85 +938,85 @@ public class Process {
 				switch (sortingChoice) {
 					case Constants.SORT_IN_ID_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortIdAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_ID__DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortIdDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_LAST_NAME_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortLastNameAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_LAST_NAME_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortLastNameDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_FIRST_NAME_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortFirstNameAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_FIRST_NAME_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortFirstNameDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_AGE_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortAgeAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_AGE__DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortAgeDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_GENDER_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortGenderAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_GENDER_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortGenderDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_SCHOOL_NAME_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortSchoolNameAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_SCHOOL_NAME_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortSchoolNameDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_COURSE_NAME_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortCourseNameAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_COURSE_NAME_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						dotLoading();
+						Loading.dotLoading();
 						SortProcessing.sortCourseNameDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
@@ -1290,13 +1289,13 @@ public class Process {
 
 	/**
 	 * Creates a loading output when importing. This only shows the import process is a success.
-	 * It also called the {@link lib.utilities.delay.Loading#dotLoading() dotLoading()} method of the {@link Process} class.
+	 * It also called the {@link Loading#dotLoading() dotLoading()} method of the {@link Process} class.
 	 * <p> Called in: {@link Process#importList(String) importList()}, method of the {@link Process} class.
 	 * @throws InterruptedException if the thread is interrupted
 	 */
 	protected static void setImportingText() throws InterruptedException {
 		System.out.print("                : IMPORTING :");
-		dotLoading();
+		Loading.dotLoading();
 		System.out.println("\n            SUCCESSFULLY IMPORTED (!)");
 	}
 }

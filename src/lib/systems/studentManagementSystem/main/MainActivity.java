@@ -1,13 +1,15 @@
-package lib.systems.studentManagementSystem.latest.main;
+package lib.systems.studentManagementSystem.main;
 
-import lib.systems.studentManagementSystem.latest.processes.framework.Process;
-import lib.systems.studentManagementSystem.latest.constants.Constants;
-import static lib.utilities.delay.Loading.dotLoading;
-import static lib.utilities.decor.Decorations.line;
-import lib.utilities.inputChecker.InputChecker;
+import lib.systems.studentManagementSystem.constants.Constants;
+import lib.systems.studentManagementSystem.processes.framework.Process;
+
+import static lib.utilities.Loading.dotLoading;
+import static lib.utilities.Decorations.line;
+
+import lib.utilities.InputChecker;
 import java.util.Scanner;
 
-public final class MainActivity extends Process{
+public final class MainActivity extends Process {
 
 	/**
 	 * stores all the user inputs in this Class
