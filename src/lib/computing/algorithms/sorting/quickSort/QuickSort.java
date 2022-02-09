@@ -3,7 +3,7 @@ package lib.computing.algorithms.sorting.quickSort;
 import java.util.Random;
 /**
  * The {@code QuickSort} class contains overloaded methods that can sort
- * primitive byte, short, and int arrays.
+ * primitive byte, short, int, and double array.
  */
 public final class QuickSort {
 
