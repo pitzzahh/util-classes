@@ -1,4 +1,4 @@
-package lib.recursion.factorial;
+package lib.computing.algorithms.recursion.factorial;
 
 import java.text.NumberFormat;
 

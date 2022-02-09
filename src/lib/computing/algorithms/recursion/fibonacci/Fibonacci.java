@@ -1,4 +1,4 @@
-package lib.recursion.fibonacci;
+package lib.computing.algorithms.recursion.fibonacci;
 
 import java.text.NumberFormat;
 

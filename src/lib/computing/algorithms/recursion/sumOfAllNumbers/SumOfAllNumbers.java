@@ -1,4 +1,4 @@
-package lib.recursion.sumOfAllNumbers;
+package lib.computing.algorithms.recursion.sumOfAllNumbers;
 
 import java.text.NumberFormat;
 
