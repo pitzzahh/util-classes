@@ -1,7 +1,9 @@
 package lib.utilities;
 
-public class InputChecker {
-    // cannot instantiate this class
+public final class InputChecker {
+    /**
+     * Cannot instantiate this class.
+     */
     private InputChecker() {}
     /**
      * Checks if user input is a valid byte number parameter is a String called input.

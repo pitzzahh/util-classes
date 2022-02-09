@@ -3,20 +3,20 @@ package lib.utilities;
 import java.util.stream.Collectors;
 import java.util.List;
 
-public class ArrayUtil {
+public final class ArrayUtil {
     private static boolean[] check; // stores true boolean values
 
     /**
      * Cannot instantiate this class.
      */
-    protected ArrayUtil() {}
+    private ArrayUtil() {}
 
     /**
      * Method that checks if the elements in the array are all the same
      * @param array the {@code byte} array to be checked if all elements are the same
      * @return {@code true} if all elements are the same in the {@code byte} array
      */
-    protected static boolean checkIfAllNumbersAreTheSame(byte[] array) {
+    public static boolean checkIfAllNumbersAreTheSame(byte[] array) {
         byte trueCount = 0;
         if (array.length != 0) {
             byte firstElement = array[0];
@@ -40,7 +40,7 @@ public class ArrayUtil {
      * @param array the {@code short} array to be checked if all elements are the same
      * @return {@code true} if all elements are the same in the {@code short} array
      */
-    protected static boolean checkIfAllNumbersAreTheSame(short[] array) {
+    public static boolean checkIfAllNumbersAreTheSame(short[] array) {
         byte trueCount = 0;
         if (array.length != 0) {
             short firstElement = array[0];
@@ -64,7 +64,7 @@ public class ArrayUtil {
      * @param array the {@code int} array to be checked if all elements are the same
      * @return {@code true} if all elements are the same in the {@code int} array
      */
-    protected static boolean checkIfAllNumbersAreTheSame(int[] array) {
+    public static boolean checkIfAllNumbersAreTheSame(int[] array) {
         byte trueCount = 0;
         if (array.length != 0) {
             int firstElement = array[0];
@@ -90,7 +90,7 @@ public class ArrayUtil {
      * @param list the {@code List<Integers>} that has numbers to be scanned for integers.
      * @return the sum of the total of even numbers
      */
-    protected static int doubleTheSumOfTheEvenNumbers(List<Integer> list) {
+    public static int doubleTheSumOfTheEvenNumbers(List<Integer> list) {
         return list.stream()
                    .filter(e -> e % 2 == 0)
                    .mapToInt(e -> e * 2)
@@ -102,7 +102,7 @@ public class ArrayUtil {
      * @param list the {@code List<Integers>} of {@code Integers}.
      * @return the {@code String} representation of the (sorted) list without the brackets
      */
-    protected static String getIntegers(List<Integer> list) {
+    public static String getIntegers(List<Integer> list) {
         return list.stream()
                    .map(String::valueOf)
                    .sorted()
@@ -113,7 +113,7 @@ public class ArrayUtil {
      * @param list the {@code List<Characters>} of {@code Characters}.
      * @return the {@code String} representation of the (sorted) list without the brackets
      */
-    protected static String getCharacters(List<Character> list) {
+    public static String getCharacters(List<Character> list) {
         return list.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining());

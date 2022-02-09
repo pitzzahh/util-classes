@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.io.*;
 
-public final class SecurityUtil extends ArrayUtil {
+public final class SecurityUtil {
 
     private static final byte KEY = -10;
     private static final List<Character> EU = new ArrayList<>();
@@ -47,8 +47,8 @@ public final class SecurityUtil extends ArrayUtil {
                 elements += (KEY * (-10) + 4);
                 EP.add(elements);
             }
-            u = getCharacters(EU);
-            p = getCharacters(EP);
+            u = ArrayUtil.getCharacters(EU);
+            p = ArrayUtil.getCharacters(EP);
             FileUtil.writeToATextFile(u, usernameFile);
             FileUtil.writeToATextFile(p, pinFile);
             EU.clear();
@@ -83,8 +83,8 @@ public final class SecurityUtil extends ArrayUtil {
                 bit -= (KEY * (-10) + 4);
                 EP.add(bit);
             }
-            u = getCharacters(EU);
-            p = getCharacters(EP);
+            u = ArrayUtil.getCharacters(EU);
+            p = ArrayUtil.getCharacters(EP);
             EU.clear();
             EP.clear();
         } catch (FileNotFoundException ignored) {}
@@ -170,8 +170,8 @@ public final class SecurityUtil extends ArrayUtil {
                 bit -= (KEY * (-10) + 4);
                 EP.add(bit);
             }
-            u = getCharacters(EU);
-            p = getCharacters(EP);
+            u = ArrayUtil.getCharacters(EU);
+            p = ArrayUtil.getCharacters(EP);
             EU.clear();
             EP.clear();
         }
