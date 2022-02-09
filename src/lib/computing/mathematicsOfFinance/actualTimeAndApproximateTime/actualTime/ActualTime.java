@@ -3,6 +3,7 @@ package lib.computing.mathematicsOfFinance.actualTimeAndApproximateTime.actualTi
 import lib.computing.mathematicsOfFinance.actualTimeAndApproximateTime.ComputeActualTimeAndApproximateTime;
 import lib.computing.mathematicsOfFinance.variables.Fields;
 
+@Deprecated
 public final class ActualTime extends Fields {
 
     /**

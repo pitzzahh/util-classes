@@ -1,7 +1,7 @@
 package lib.computing.mathematicsOfFinance.actualTimeAndApproximateTime.approximateTime;
 
 import lib.computing.mathematicsOfFinance.variables.Fields;
-
+@Deprecated
 public final class ApproximateTime extends Fields {
 
     public ApproximateTime() { }
