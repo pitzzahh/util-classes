@@ -360,55 +360,59 @@ final class Game {
      *  IF THERE IS A POSSIBLE WINNING CONDITION, THE COMPUTER CHOOSES THAT POSITION
      */
     static void medium() throws InterruptedException {
-        List<Point> emptyPlaces = choices(); // gets the empty positions
-        boolean isPossibleToWin = false;
-        System.out.print("PICKING");
-        TicTacToe.loading();
-        // checks which board the user chose, and copy that board.
-        if ("3x3".equals(TicTacToe.whichBoard)) {
-            Boards.boardCopy = TicTacToe.copy(Boards.threeByThreeBoard);
-        } else if ("4x4".equals(TicTacToe.whichBoard)) {
-            Boards.boardCopy = TicTacToe.copy(Boards.fourByFourBoard);
-        }
-        for (Point emptyPlace : emptyPlaces) {
-            Boards.boardCopy[emptyPlace.x][emptyPlace.y] = Boards.COMPUTER;
-            isPossibleToWin = isThereAWinner(Boards.COMPUTER, "copy");
-            if (isPossibleToWin) {
-                choicesLogs.add(emptyPlace);
+        if (!isGameOver()) {
+            List<Point> emptyPlaces = choices(); // gets the empty positions
+            boolean isPossibleToWin = false;
+            System.out.print("PICKING");
+            TicTacToe.loading();
+            // checks which board the user chose, and copy that board.
+            if ("3x3".equals(TicTacToe.whichBoard)) {
+                Boards.boardCopy = TicTacToe.copy(Boards.threeByThreeBoard);
+            } else if ("4x4".equals(TicTacToe.whichBoard)) {
+                Boards.boardCopy = TicTacToe.copy(Boards.fourByFourBoard);
             }
-        }
-        if (isPossibleToWin) {
-            for (Point possible : choicesLogs) {
-                Boards.boardCopy[possible.x][possible.y] = Boards.COMPUTER;
+            for (Point emptyPlace : emptyPlaces) {
+                Boards.boardCopy[emptyPlace.x][emptyPlace.y] = Boards.COMPUTER;
                 isPossibleToWin = isThereAWinner(Boards.COMPUTER, "copy");
-                if(isPossibleToWin) {
-                    placeChoice(possible, Boards.COMPUTER);
-                    break;
-                }
-                else {
-                    Boards.boardCopy[possible.x][possible.y] = Boards.NO_PLAYER;
+                if (isPossibleToWin) {
+                    choicesLogs.add(emptyPlace);
                 }
             }
+            if (isPossibleToWin) {
+                for (Point possible : choicesLogs) {
+                    Boards.boardCopy[possible.x][possible.y] = Boards.COMPUTER;
+                    isPossibleToWin = isThereAWinner(Boards.COMPUTER, "copy");
+                    if(isPossibleToWin) {
+                        placeChoice(possible, Boards.COMPUTER);
+                        break;
+                    }
+                    else {
+                        Boards.boardCopy[possible.x][possible.y] = Boards.NO_PLAYER;
+                    }
+                }
+            }
+            if (!isPossibleToWin) {
+                System.out.println("OUT OF CHOICES, ATTEMPTING EASY CHOICE");
+                easy();
+            }
+            choicesLogs.clear();
+            TicTacToe.playCount++;
         }
-        if (!isPossibleToWin) {
-            System.out.println("OUT OF CHOICES, ATTEMPTING EASY CHOICE");
-            easy();
-        }
-        choicesLogs.clear();
-        TicTacToe.playCount++;
     } // end of medium method
 
     static void hard() throws InterruptedException {
-        miniMaxAlphaBeta(0, true);
-        System.out.print("PICKING");
-        TicTacToe.loading();
-        System.out.println("COMPUTER CHOICE: " + Boards.computerMove);
-        placeChoice(Boards.computerMove, Boards.COMPUTER);
-        TicTacToe.playCount++;
+        if (!isGameOver()) {
+            miniMaxAlphaBeta(0, true);
+            System.out.print("PICKING");
+            TicTacToe.loading();
+            System.out.println("COMPUTER CHOICE: " + Boards.computerMove);
+            placeChoice(Boards.computerMove, Boards.COMPUTER);
+            TicTacToe.playCount++;
+        }
     } // end of hard method
 
     static boolean isGameOver() {
-        return isThereAWinner(Boards.HUMAN, TicTacToe.whichBoard) || isThereAWinner(Boards.COMPUTER, TicTacToe.whichBoard) || choices().isEmpty();
+        return isThereAWinner(Boards.HUMAN, TicTacToe.whichBoard) || isThereAWinner(Boards.COMPUTER, TicTacToe.whichBoard) && choices().isEmpty();
     } // end of isGameOver method
     /*
      *  HAS PROBLEMS WHEN PLAYING 4x4 hard difficulty, IT TAKES SO LONG FINDING MOVE

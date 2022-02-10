@@ -9,7 +9,7 @@ public final class GuessTheWord {
 
     private static String[] wordsToGuess;
 
-    private void addGuessingWords () {
+    private static void addGuessingWords() {
         String word;
         byte numberOfWordsToGuess = 0;
         String temporaryString;
@@ -31,7 +31,7 @@ public final class GuessTheWord {
             wordsToGuess[i] = word;
         }
     }
-    public void runGuess() {
+    public static void runGuess() {
         addGuessingWords();
         System.out.println("WORDS: " + Arrays.toString(wordsToGuess));
         String choice;
@@ -60,11 +60,11 @@ public final class GuessTheWord {
             }
             switchCondition = true;
             while (switchCondition) {
-                System.out.print("Would you like to try again?(Yes) or (No): ");
+                System.out.print("Would you like to try again?(Y) or (N): ");
                 String response = userInput.next().toUpperCase().trim();
 
                 switch (response) {
-                    case "YES" -> {
+                    case "Y" -> {
                         System.out.println(":-----------------------------------:");
                         System.out.println(":            HAVE FUN!              :");
                         System.out.println(":-----------------------------------:");
@@ -72,7 +72,7 @@ public final class GuessTheWord {
                         check = true;
                         switchCondition = false;
                     }
-                    case "NO" -> {
+                    case "N" -> {
                         System.out.println(":--------------------------------:");
                         System.out.println(": THANK YOU FOR USING MY PROGRAM :");
                         System.out.println(":--------------------------------:");

@@ -33,7 +33,7 @@ public final class Fibonacci {
             System.out.println("THE NUMBER GOES BEYOND THE LIMIT, THE RESULT IS NOT SHOWN\nTHIS IS CAUSED BY THE LIMITATION OF LONG PRIMITIVE TYPE\nTHE NUMBER THAT IS PASSED IN IS GREATER THAN 93\nTHE LIMIT OF THIS METHOD IS ONLY AT 93rd SEQUENCE");
         }
         else {
-            for (int i = 0; i < this.number; i++) {
+            for (int i = 1; i < this.number; i++) {
                 System.out.println("FIBONACCI: " + NumberFormat.getInstance().format(fibonacci(i)));
             }
         }

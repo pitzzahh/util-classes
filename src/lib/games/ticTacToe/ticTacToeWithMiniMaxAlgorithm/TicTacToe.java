@@ -110,13 +110,13 @@ public final class TicTacToe {
                             System.out.println("THANK YOU ALL FOR PLAYING");
                             System.out.printf("%s WIN COUNT  : %d times", playerName, winCount);
                             System.out.printf("\n%s WIN COUNT  : %d times", playerName, winCount);
-                            System.out.printf("\nTIE COUNT: %d", tieCount);
+                            System.out.printf("\nTIE COUNT: %d\n", tieCount);
                         } else if (playTypeChoice == 2) {
                             System.out.println("THANK YOU FOR PLAYING");
                             System.out.printf("HELLO %s, YOU WON  : %d times", playerName, winCount);
                             System.out.printf("\nYOU LOSS : %d times", lossCount);
                             System.out.printf("\nTIE COUNT: %d", tieCount);
-                            System.out.printf("\nYOUR PLAY COUNT IS : %d", playCount);
+                            System.out.printf("\nYOUR PLAY COUNT IS : %d\n", playCount);
                         }
                         prompt = false;
                         isExit = true;

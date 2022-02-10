@@ -13,8 +13,8 @@ import java.io.*;
 public final class SecurityUtil {
 
     private static final byte KEY = ((((10 * 3) + 4 ) / 4) * 2) - 26;
-    private static final List<Character> EU = new ArrayList<>();
-    private static final List<Character> EP = new ArrayList<>();
+    private static List<Character> EU;
+    private static List<Character> EP;
     private static Scanner uScanner;
     private static Scanner pScanner;
     private static String u;
@@ -38,6 +38,7 @@ public final class SecurityUtil {
             uScanner = new Scanner(usernameFile);
             u = uScanner.nextLine();
             uChar = u.toCharArray();
+            EU = new ArrayList<>(uChar.length);
             for (char element : uChar) {
                 element += (KEY * (-10));
                 EU.add(element);
@@ -63,6 +64,7 @@ public final class SecurityUtil {
             pScanner = new Scanner(pinFile);
             p = pScanner.nextLine();
             pChar = p.toCharArray();
+            EP = new ArrayList<>(pChar.length);
             for (char element : pChar) {
                 element += (KEY * (-10) + 4);
                 EP.add(element);
@@ -92,6 +94,8 @@ public final class SecurityUtil {
             p = pScanner.nextLine();
             uChar = u.toCharArray();
             pChar = p.toCharArray();
+            EU = new ArrayList<>(uChar.length);
+            EP = new ArrayList<>(pChar.length);
             for (char bit : uChar) {
                 bit -= (KEY * (-10));
                 EU.add(bit);
@@ -188,6 +192,8 @@ public final class SecurityUtil {
             p = pScanner.nextLine();
             uChar = u.toCharArray();
             pChar = p.toCharArray();
+            EU = new ArrayList<>(uChar.length);
+            EP = new ArrayList<>(pChar.length);
             for (char bit : uChar) {
                 bit -= (KEY * (-10));
                 EU.add(bit);
