@@ -1,12 +1,7 @@
 package lib.utilities;
 
-import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
+import javax.crypto.*;
 import java.util.*;
 import java.io.*;
 
@@ -252,6 +247,12 @@ public final class SecurityUtil {
             generator.init(KEY_SIZE);
             key = generator.generateKey();
         }
+        /**
+         * Encrypts the message passed in.
+         * @param message the message {@code String} to be encrypted.
+         * @return the encrypted {@code String};
+         * @throws Exception if anything went wrong.
+         */
         public static String encrypt(String message) throws Exception {
             byte[] messageInBytes = message.getBytes();
             encryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
@@ -260,7 +261,7 @@ public final class SecurityUtil {
             return encode(encryptedBytes);
         }
         /**
-         * Decrypts the message passed in.
+         * Decrypts the encrypted message passed in.
          * @param encryptedMessage the encrypted {@code String} to be decrypted.
          * @return the decrypted bytes;
          * @throws Exception if anything went wrong.
