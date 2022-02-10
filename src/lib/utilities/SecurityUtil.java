@@ -1,11 +1,20 @@
 package lib.utilities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.List;
+import javax.crypto.*;
+import javax.crypto.spec.GCMParameterSpec;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
 import java.io.*;
 
+/**
+ * <p>The {@code SecurityUtil} class contains methods that encrypts and decrypts
+ * in values of text files.</p>
+ *
+ */
 public final class SecurityUtil {
 
     private static final byte KEY = ((((10 * 3) + 4 ) / 4) * 2) - 26;
@@ -217,5 +226,68 @@ public final class SecurityUtil {
      */
     private static void resetPChar(char[] pChar) {
         Arrays.fill(pChar, ' ');
+    }
+
+    /**
+     * Utility class {@code AES} advance encryption standard that encrypts a message and decrypts the message
+     */
+    public static class AES {
+
+        private static SecretKey key; // contained the key
+        private static Cipher encryptionCipher;
+        private static final int T_LEN = 128;
+        private static final int KEY_SIZE = 128;
+
+        /**
+         * Cannot instantiate this class
+         */
+        private AES() {}
+
+        /**
+         * Initialize the whole program.
+         * @throws Exception if something went wrong.
+         */
+        public static void init() throws Exception {
+            KeyGenerator generator = KeyGenerator.getInstance("AES");
+            generator.init(KEY_SIZE);
+            key = generator.generateKey();
+        }
+        public static String encrypt(String message) throws Exception {
+            byte[] messageInBytes = message.getBytes();
+            encryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
+            encryptionCipher.init(Cipher.ENCRYPT_MODE, key);
+            byte[] encryptedBytes = encryptionCipher.doFinal(messageInBytes);
+            return encode(encryptedBytes);
+        }
+        /**
+         * Decrypts the message passed in.
+         * @param encryptedMessage the encrypted {@code String} to be decrypted.
+         * @return the decrypted bytes;
+         * @throws Exception if anything went wrong.
+         */
+        public static String decrypt(String encryptedMessage) throws Exception{
+            byte[] messageInBytes = decode(encryptedMessage);
+            Cipher decryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
+            GCMParameterSpec spec = new GCMParameterSpec(T_LEN,encryptionCipher.getIV());
+            decryptionCipher.init(Cipher.DECRYPT_MODE,key,spec);
+            byte[] decryptedBytes = decryptionCipher.doFinal(messageInBytes);
+            return new String(decryptedBytes);
+        }
+        /**
+         * encode the {@code byte[] data} to a String.
+         * @param data the {@code byte[] data} to be encoded.
+         * @return the encoded String.
+         */
+        private static String encode(byte[] data) {
+            return Base64.getEncoder().encodeToString(data);
+        }
+        /**
+         * decode the {@code String data} to a byte[] array.
+         * @param data the encrypted {@code String} to be decrypted.
+         * @return the decoded String.
+         */
+        private static byte[] decode(String data) {
+            return Base64.getDecoder().decode(data);
+        }
     }
 }
