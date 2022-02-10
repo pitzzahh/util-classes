@@ -3,7 +3,7 @@ package lib.computing.mathematicsOfFinance.actualTimeAndApproximateTime;
 import lib.computing.mathematicsOfFinance.actualTimeAndApproximateTime.approximateTime.ApproximateTime;
 import lib.computing.mathematicsOfFinance.actualTimeAndApproximateTime.actualTime.ActualTime;
 import lib.computing.mathematicsOfFinance.variables.Fields;
-import lib.utilities.InputChecker;
+import lib.utilities.misc.InputChecker;
 import java.util.Scanner;
 
 public final class ComputeActualTimeAndApproximateTime extends Fields {

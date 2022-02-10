@@ -1,6 +1,6 @@
 package lib.computing.calculator.neat;
 
-import lib.utilities.InputChecker;
+import lib.utilities.misc.InputChecker;
 import java.text.NumberFormat;
 import java.util.Scanner;
 

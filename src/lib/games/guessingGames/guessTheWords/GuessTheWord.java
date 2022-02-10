@@ -1,6 +1,6 @@
 package lib.games.guessingGames.guessTheWords;
 
-import lib.utilities.InputChecker;
+import lib.utilities.misc.InputChecker;
 import java.util.Scanner;
 import java.util.Arrays;
 

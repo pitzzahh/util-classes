@@ -3,10 +3,10 @@ package lib.systems.studentManagementSystem.main;
 import lib.systems.studentManagementSystem.constants.Constants;
 import lib.systems.studentManagementSystem.processes.framework.Process;
 
-import static lib.utilities.Loading.dotLoading;
-import static lib.utilities.Decorations.line;
+import static lib.utilities.misc.Loading.dotLoading;
+import static lib.utilities.misc.Decorations.line;
 
-import lib.utilities.InputChecker;
+import lib.utilities.misc.InputChecker;
 import java.util.Scanner;
 
 public final class MainActivity extends Process {

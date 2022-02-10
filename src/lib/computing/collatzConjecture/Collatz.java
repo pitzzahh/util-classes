@@ -1,7 +1,7 @@
 package lib.computing.collatzConjecture;
 
 import java.util.concurrent.TimeUnit;
-import lib.utilities.InputChecker;
+import lib.utilities.misc.InputChecker;
 import java.util.Scanner;
 
 public final class Collatz {
