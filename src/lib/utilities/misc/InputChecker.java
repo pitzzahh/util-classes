@@ -1,4 +1,4 @@
-package lib.utilities;
+package lib.utilities.misc;
 
 public final class InputChecker {
     /**

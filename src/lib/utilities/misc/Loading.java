@@ -1,4 +1,4 @@
-package lib.utilities;
+package lib.utilities.misc;
 
 import lib.systems.studentManagementSystem.processes.framework.Process;
 import java.util.concurrent.TimeUnit;

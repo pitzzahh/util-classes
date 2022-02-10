@@ -1,4 +1,4 @@
-package lib.utilities;
+package lib.utilities.misc;
 
 import java.util.concurrent.TimeUnit;
 import java.util.Random;
