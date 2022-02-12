@@ -3,7 +3,6 @@ package lib.utilities.misc;
 import java.util.Scanner;
 
 public final class Prompt {
-
     /**
      * Outputs Press Enter To Continue in green color, and blue text color.
      */
