@@ -6,7 +6,7 @@ import lib.systems.studentManagementSystem.constants.Constants;
 import lib.systems.studentManagementSystem.main.MainActivity;
 import lib.utilities.misc.InputChecker;
 import lib.utilities.misc.Decorations;
-import lib.utilities.misc.Loading;
+import lib.utilities.misc.Delay;
 import lib.utilities.FileUtil;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -506,7 +506,7 @@ public class Process {
 
 		if(lrnResponse.equals("YES") && !invalidId) {
 			System.out.print("                  : ADDING :");
-			Loading.dotLoading();
+			Delay.dotLoading("long");
 		}
 		else if (lrnResponse.equals("NO")) {
 			System.out.print(' ');
@@ -517,7 +517,7 @@ public class Process {
 			}
 			else {
 				System.out.print("                  : ADDING :");
-				Loading.dotLoading();
+				Delay.dotLoading("long");
 			}
 		}
 		return student;
@@ -533,11 +533,11 @@ public class Process {
 		lrnResponse = userInput.nextLine().toUpperCase().trim();
 		if (lrnResponse.equals("YES")) {
 			System.out.print("\t\t : PROCEEDING :");
-			Loading.dotLoading();
+			Delay.dotLoading("short");
 		}
 		else if (lrnResponse.equals("NO")) {
 			System.out.print(": REDIRECTING TO MAIN MENU :");
-			Loading.dotLoading();
+			Delay.dotLoading("short");
 			negateCreateStudentFunction();
 			removeLrn = false;
 		}
@@ -589,14 +589,14 @@ public class Process {
 						exportErrorResponse = userInput.nextLine().toUpperCase().charAt(0);
 						if (exportErrorResponse == ('Y')) {
 							System.out.print("\t\t : PROCEEDING :");
-							Loading.dotLoading();
+							Delay.dotLoading("short");
 						}
 						else if (exportErrorResponse == 'N') {
 							exporting = false;
 						}
 						else {
 							System.out.print(": REDIRECTING TO MAIN MENU :");
-							Loading.dotLoading();
+							Delay.dotLoading("short");
 							exporting = false;
 						}
 					}
@@ -614,16 +614,16 @@ public class Process {
 						resetExportInputs();
 						resetConditions();
 						System.out.print("\t\t : PROCEEDING :");
-						Loading.dotLoading();
+						Delay.dotLoading("short");
 					}
 					else if (exportErrorResponse == 'N') {
 						System.out.print(": REDIRECTING TO MAIN MENU :");
-						Loading.dotLoading();
+						Delay.dotLoading("short");
 						exporting = false;
 					}
 					else {
 						System.out.print(": REDIRECTING TO MAIN MENU :");
-						Loading.dotLoading();
+						Delay.dotLoading("short");
 						exporting = false;
 					}
 				}
@@ -637,7 +637,7 @@ public class Process {
 							FileUtil.writeFileBinary(studentsList, exportPath + exportFileName);
 							FileUtil.writeFile(studentsList, exportPath + exportFileName);
 							System.out.print("                   : SAVING :");
-							Loading.dotLoading();
+							Delay.dotLoading("long");
 							System.out.println("            : SAVED SUCCESSFULLY (!) :        ");
 						}
 					}
@@ -701,14 +701,14 @@ public class Process {
 					importErrorResponse = userInput.nextLine().toUpperCase().charAt(0);
 					if (importErrorResponse == ('Y')) {
 						System.out.print("\t\t : PROCEEDING :");
-						Loading.dotLoading();
+						Delay.dotLoading("short");
 					}
 					else if (importErrorResponse == 'N') {
 						importing = false;
 					}
 					else {
 						System.out.print(": REDIRECTING TO MAIN MENU :");
-						Loading.dotLoading();
+						Delay.dotLoading("short");
 						importing = false;
 					}
 				}
@@ -726,16 +726,16 @@ public class Process {
 					resetImportInputs();
 					resetConditions();
 					System.out.print("\t\t : PROCEEDING :");
-					Loading.dotLoading();
+					Delay.dotLoading("short");
 				}
 				else if (importErrorResponse == 'N') {
 					System.out.print(": REDIRECTING TO MAIN MENU :");
-					Loading.dotLoading();
+					Delay.dotLoading("short");
 					importing = false;
 				}
 				else {
 					System.out.print(": REDIRECTING TO MAIN MENU :");
-					Loading.dotLoading();
+					Delay.dotLoading("short");
 					break;
 				}
 			}
@@ -779,7 +779,7 @@ public class Process {
 				System.out.println("Student No: " + (id + 1));
 				System.out.println(studentsList.get(id).toString());
 				if (studentsList.size() > 1)
-					Loading.infoPause();
+					Delay.pause();
 			}
 		}
 	}
@@ -824,7 +824,7 @@ public class Process {
 					final String finalId = id;
 					studentsList.removeIf(obj -> obj.getId().equals(finalId)); // ito
 					System.out.print("          : REMOVING FROM THE LIST :");
-					Loading.dotLoading();
+					Delay.dotLoading("long");
 					System.out.println("\n    SUCCESSFULLY REMOVED FROM THE LIST (!)");
 					invalidIdDeletion = false;
 				}
@@ -866,7 +866,7 @@ public class Process {
 						empty = false;
 						nextStep = false;
 						System.out.print("    : REDIRECTING TO MAIN MENU :");
-						Loading.dotLoading();
+						Delay.dotLoading("short");
 					}
 					while(emptySortingLoopChoice){
 						switch (choice2) {
@@ -875,11 +875,11 @@ public class Process {
 								sorting = false;
 								emptySortingLoopChoice = false;
 								System.out.print(": REDIRECTING TO MAIN MENU :");
-								Loading.dotLoading();
+								Delay.dotLoading("short");
 							}
 							case FIRST_RESPONSE -> {
 								System.out.print("\t\t : PROCEEDING :");
-								Loading.dotLoading();
+								Delay.dotLoading("short");
 								emptySortingLoopChoice = false;
 								empty = false;
 							}
@@ -887,7 +887,7 @@ public class Process {
 								if(!choice2.contains("YES") || !choice2.contains("NO")) {
 									System.out.println("\t\t   :Invalid Input (!):");
 									System.out.print(": REDIRECTING TO MAIN MENU :");
-									Loading.dotLoading();
+									Delay.dotLoading("short");
 									emptySortingLoopChoice = false;
 									empty = false;
 									nextStep = false;
@@ -938,85 +938,85 @@ public class Process {
 				switch (sortingChoice) {
 					case Constants.SORT_IN_ID_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortIdAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_ID__DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortIdDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_LAST_NAME_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortLastNameAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_LAST_NAME_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortLastNameDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_FIRST_NAME_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortFirstNameAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_FIRST_NAME_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortFirstNameDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_AGE_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortAgeAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_AGE__DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortAgeDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_GENDER_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortGenderAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_GENDER_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortGenderDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_SCHOOL_NAME_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortSchoolNameAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_SCHOOL_NAME_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortSchoolNameDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_COURSE_NAME_ASCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortCourseNameAscending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
 					case Constants.SORT_IN_COURSE_NAME_DESCENDING -> {
 						System.out.print("\t\t\t :SORTING:");
-						Loading.dotLoading();
+						Delay.dotLoading("long");
 						SortProcessing.sortCourseNameDescending(studentsList);
 						System.out.println("\n\t      SUCCESSFULLY SORTED (!)");
 					}
@@ -1289,14 +1289,14 @@ public class Process {
 
 	/**
 	 * Creates a loading output when importing. This only shows the import process is a success.
-	 * It also called the {@link Loading#dotLoading() dotLoading()} method of the {@link Process} class.
+	 * It also called the {@link Delay#dotLoading(String) dotLoading()} method of the {@link Delay} class.
 	 * <p> Called in: {@link Process#importList(String) importList()}, method of the {@link Process} class.
 	 * @throws InterruptedException if the thread is interrupted
 	 */
 	protected static void setImportingText() throws InterruptedException {
 		System.out.print("                : IMPORTING :");
-		Loading.dotLoading();
-		System.out.println("\n            SUCCESSFULLY IMPORTED (!)");
+		Delay.dotLoading("long");
+		System.out.println("            SUCCESSFULLY IMPORTED (!)");
 	}
 }
 	

@@ -8,7 +8,6 @@ final class Game {
     private static byte HumanLossCount;
     private static byte ComputerLossCount;
     private static byte tieCount;
-    private static boolean IsStillPlaying = false;
     static Scanner scanner;
     static Human human;
     static Computer computer;
@@ -18,7 +17,6 @@ final class Game {
     }
 
     static void startTheGameFellas() {
-        IsStillPlaying = true;
         System.out.println("==================================");
         System.out.println("      #####################       ");
 	    System.out.println("       ROCK PAPER SCISSORS        ");
@@ -26,25 +24,22 @@ final class Game {
         System.out.println("==================================");
         System.out.print("PLEASE ENTER YOUR NAME: ");
         String humanName = scanner.nextLine().trim();
-        while(IsStillPlaying) {
-            whoReallyWon = 0;
-            human.setPlayerName(humanName);
-            human.selectChoice();
-            computer.selectChoice();
-            whoWon();
-            displayPlayerChoices();
-            displayWinner(whoReallyWon);
-            updatePlayerScores(whoReallyWon);
-            switch (whoReallyWon) {
-                case 1 -> displayPlayerOneScore();
-                case 2 -> displayComputerScore();
-                case 3 -> {
-                    System.out.println("TIE COUNT: " + tieCount);
-                    displayPlayerOneScore();
-                    displayComputerScore();
-                }
+        whoReallyWon = 0;
+        human.setPlayerName(humanName);
+        human.selectChoice();
+        computer.selectChoice();
+        whoWon();
+        displayPlayerChoices();
+        displayWinner(whoReallyWon);
+        updatePlayerScores(whoReallyWon);
+        switch (whoReallyWon) {
+            case 1 -> displayPlayerOneScore();
+            case 2 -> displayComputerScore();
+            case 3 -> {
+                System.out.println("TIE COUNT: " + tieCount);
+                displayPlayerOneScore();
+                displayComputerScore();
             }
-            doYouWantToPlayAgain();
         }
     }
     // displays the human player score
@@ -106,36 +101,6 @@ final class Game {
                 case "SCISSORS" -> whoReallyWon = 3;
             }
 		}
-    }
-    private static void doYouWantToPlayAgain() {
-        char humanChoice;
-        boolean letMeOutOfHere = true;
-
-        while (letMeOutOfHere) {
-            System.out.println("==================================");
-            System.out.println("Do you want to play again?");
-            System.out.print("Y for YES, N for NO : ");
-            humanChoice = scanner.next().toUpperCase().charAt(0);
-            if (humanChoice == 'Y') {
-                System.out.println(":-----------------------------------:");
-                System.out.println(":            HAVE FUN!              :");
-                System.out.println(":-----------------------------------:");
-                letMeOutOfHere = false;
-            } 
-            else if(humanChoice == 'N') {
-                IsStillPlaying = false;
-                letMeOutOfHere = false;
-                System.out.println(":--------------------------------:");
-                System.out.println(": THANK YOU FOR USING MY PROGRAM :");
-                System.out.println(":--------------------------------:");
-            }
-            else {
-                System.out.println(":-------------------------:");
-                System.out.println("   : INVALID CHOICE! :  ");
-                System.out.println(" : CHOOSE ONLY Y or N : ");
-                System.out.println(":-------------------------:");
-            }
-        }
     }
     public static void updatePlayerScores(byte whoIsTheWinner) {
         /*

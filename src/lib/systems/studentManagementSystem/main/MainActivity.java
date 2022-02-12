@@ -3,7 +3,7 @@ package lib.systems.studentManagementSystem.main;
 import lib.systems.studentManagementSystem.constants.Constants;
 import lib.systems.studentManagementSystem.processes.framework.Process;
 
-import static lib.utilities.misc.Loading.dotLoading;
+import static lib.utilities.misc.Delay.dotLoading;
 import static lib.utilities.misc.Decorations.line;
 
 import lib.utilities.misc.InputChecker;
@@ -92,7 +92,7 @@ public final class MainActivity extends Process {
 										else {
 											System.out.println("     : INVALID CHOICE (!) :      ");
 											System.out.print(": REDIRECTING TO MAIN MENU :");
-											dotLoading();
+											dotLoading("short");
 											Process.importChoiceLoop = false;
 										}
 									}
@@ -121,7 +121,7 @@ public final class MainActivity extends Process {
 									else {
 										System.out.println("     : INVALID CHOICE (!) :      ");
 										System.out.print(": REDIRECTING TO MAIN MENU :");
-										dotLoading();
+										dotLoading("short");
 										Process.importChoiceLoop = false;
 									}
 								}
@@ -173,7 +173,7 @@ public final class MainActivity extends Process {
 											else {
 												System.out.println("     : INVALID CHOICE (!) :      ");
 												System.out.print(": REDIRECTING TO MAIN MENU :");
-												dotLoading();
+												dotLoading("short");
 												Process.exportChoiceLoop = false;
 											}
 										}
@@ -202,7 +202,7 @@ public final class MainActivity extends Process {
 										else {
 											System.out.println("     : INVALID CHOICE (!) :      ");
 											System.out.print(": REDIRECTING TO MAIN MENU :");
-											dotLoading();
+											dotLoading("short");
 											Process.exportChoiceLoop = false;
 										}
 									}
@@ -248,7 +248,7 @@ public final class MainActivity extends Process {
 			Process.resetMain();
         }
 		System.out.print("            : EXITING THE PROGRAM :");
-		dotLoading();
+		dotLoading("short");
 		line();
 		System.out.println("        THANK YOU FOR USING MY PROGRAM");
 		line();

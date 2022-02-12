@@ -114,8 +114,10 @@ public final class ArrayUtil {
      * @return the {@code String} representation of the (sorted) list without the brackets
      */
     public static String getCharacters(List<Character> list) {
-        return list.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining());
+        char[] values = new char[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            values[i] = list.get(i);
+        }
+        return String.valueOf(values);
     }
 }

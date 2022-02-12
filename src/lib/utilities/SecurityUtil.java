@@ -2,6 +2,8 @@ package lib.utilities;
 
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.*;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
 import java.util.*;
 import java.io.*;
 
@@ -19,8 +21,6 @@ public final class SecurityUtil {
     private static Scanner pScanner;
     private static String u;
     private static String p;
-    private static String uCache;
-    private static String pCache;
     private static char[] uChar;
     private static char[] pChar;
     /**
@@ -35,6 +35,7 @@ public final class SecurityUtil {
      */
     public static void encryptUserName(File usernameFile, String user) throws IOException {
         if (usernameFile.isFile()) {
+            u = "";
             uScanner = new Scanner(usernameFile);
             u = uScanner.nextLine();
             uChar = u.toCharArray();
@@ -43,9 +44,9 @@ public final class SecurityUtil {
                 element += (KEY * (-10));
                 EU.add(element);
             }
-            writeUserNameToBin(usernameFile, user);
             u = ArrayUtil.getCharacters(EU);
             FileUtil.writeToATextFile(u, usernameFile);
+            writeUserNameToBin(usernameFile, user);
             EU.clear();
             uScanner.close();
             resetUChar(uChar);
@@ -61,6 +62,7 @@ public final class SecurityUtil {
      */
     public static void encryptPin(File pinFile, String user) throws IOException {
         if (pinFile.isFile()) {
+            p = "";
             pScanner = new Scanner(pinFile);
             p = pScanner.nextLine();
             pChar = p.toCharArray();
@@ -69,9 +71,9 @@ public final class SecurityUtil {
                 element += (KEY * (-10) + 4);
                 EP.add(element);
             }
-            writePinToBin(pinFile, user);
             p = ArrayUtil.getCharacters(EP);
             FileUtil.writeToATextFile(p, pinFile);
+            writePinToBin(pinFile, user);
             EP.clear();
             pScanner.close();
             resetPChar(pChar);
@@ -79,6 +81,28 @@ public final class SecurityUtil {
         else {
             System.out.println("SOMETHING WENT WRONG");
         }
+    }
+    private static String decryptUserName(String encryptedUsername) {
+        uChar = encryptedUsername.toCharArray();
+        EU.clear();
+        EU = new ArrayList<>(uChar.length);
+        for (char bit : uChar) {
+            bit -= (KEY * (-10));
+            EU.add(bit);
+        }
+        resetUChar(uChar);
+        return u = ArrayUtil.getCharacters(EU);
+    }
+    private static String decryptPin(String encryptedPin) {
+        pChar = encryptedPin.toCharArray();
+        EP.clear();
+        EP = new ArrayList<>(pChar.length);
+        for (char bit : pChar) {
+            bit -= (KEY * (-10) + 4);
+            EP.add(bit);
+        }
+        resetPChar(pChar);
+        return p = ArrayUtil.getCharacters(EP);
     }
     /**
      * Checks if the username and password matched the user's credentials.
@@ -113,7 +137,7 @@ public final class SecurityUtil {
             resetUChar(uChar);
             resetPChar(pChar);
         } catch (FileNotFoundException ignored) {}
-        return username.equals(u) && pin.equals(p) && readFromBin(username, isAdmin);
+        return username.equals(u) && pin.equals(p) && readFromBin(username, isAdmin, username, pin);
     }
 
     /**
@@ -139,6 +163,7 @@ public final class SecurityUtil {
      */
     private static void writePinToBin(File pinFile, String user) throws IOException {
         try {
+            p = "";
             pScanner = new Scanner(pinFile);
             p = pScanner.nextLine();
             DataOutputStream dataOutputStreamForPin = new DataOutputStream(new FileOutputStream("C:\\Users\\Public\\Cache\\" + user + "'s Folder\\pCache.bin"));
@@ -156,8 +181,10 @@ public final class SecurityUtil {
      * @param isAdmin checks if the person who wants to log in is as admin.
      * @throws IOException if the file does not exist.
      */
-    private static boolean readFromBin(String user, boolean isAdmin) throws IOException {
+    private static boolean readFromBin(String user, boolean isAdmin, String username, String pin) throws IOException {
         try {
+            u = "";
+            p = "";
             DataInputStream dataInputStreamForUserName;
             DataInputStream dataInputStreamForPin;
             if (isAdmin) {
@@ -168,13 +195,15 @@ public final class SecurityUtil {
                 dataInputStreamForUserName = new DataInputStream(new FileInputStream("C:\\Users\\Public\\Cache\\" + user + "'s Folder\\uCache.bin"));
                 dataInputStreamForPin = new DataInputStream(new FileInputStream("C:\\Users\\Public\\Cache\\" + user + "'s Folder\\pCache.bin"));
             }
-            uCache = dataInputStreamForUserName.readUTF();
-            pCache = dataInputStreamForPin.readUTF();
+            String uCache = dataInputStreamForUserName.readUTF();
+            String pCache = dataInputStreamForPin.readUTF();
+            u = decryptUserName(uCache);
+            p = decryptPin(pCache);
             dataInputStreamForUserName.close();
             dataInputStreamForPin.close();
         } catch (FileNotFoundException ignored) {
         }
-        return u.equals(uCache) && p.equals(pCache);
+        return u.equals(username) && p.equals(pin);
     }
     /**
      * Method that used by an admin to view users credentials by decrypting all users credentials.
@@ -186,6 +215,8 @@ public final class SecurityUtil {
      */
     public static String viewCredentials(File userName, File pin, boolean isAdmin) throws FileNotFoundException {
         if (isAdmin) {
+            u = "";
+            p = "";
             uScanner = new Scanner(userName);
             pScanner = new Scanner(pin);
             u = uScanner.nextLine();
@@ -230,9 +261,9 @@ public final class SecurityUtil {
     }
 
     /**
-     * Utility class {@code AES} advance encryption standard that encrypts a message and decrypts the message
+     * Utility class {@code OLD_AES} advance encryption standard that encrypts a message and decrypts the message
      */
-    public static class AES {
+    public static final class OLD_AES {
 
         private static SecretKey key; // contained the key
         private static Cipher encryptionCipher;
@@ -242,7 +273,7 @@ public final class SecurityUtil {
         /**
          * Cannot instantiate this class
          */
-        private AES() {}
+        private OLD_AES() {}
 
         /**
          * Initialize the whole program.
@@ -275,26 +306,169 @@ public final class SecurityUtil {
         public static String decrypt(String encryptedMessage) throws Exception{
             byte[] messageInBytes = decode(encryptedMessage);
             Cipher decryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
-            GCMParameterSpec spec = new GCMParameterSpec(T_LEN,encryptionCipher.getIV());
-            decryptionCipher.init(Cipher.DECRYPT_MODE,key,spec);
+            GCMParameterSpec spec = new GCMParameterSpec(T_LEN, encryptionCipher.getIV());
+            decryptionCipher.init(Cipher.DECRYPT_MODE, key, spec);
             byte[] decryptedBytes = decryptionCipher.doFinal(messageInBytes);
             return new String(decryptedBytes);
         }
+    }
+
+    public static final class RSA {
+        private static PrivateKey privateKey;
+        private static PublicKey publicKey;
+
         /**
-         * encode the {@code byte[] data} to a String.
-         * @param data the {@code byte[] data} to be encoded.
-         * @return the encoded String.
+         * Cannot instantiate this class.
          */
-        private static String encode(byte[] data) {
-            return Base64.getEncoder().encodeToString(data);
+        private RSA(){}
+        /**
+         * Initialize the whole program.
+         * @throws Exception if something went wrong.
+         */
+        public static void init() throws Exception {
+            KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+            generator.initialize(1024);
+            KeyPair pair = generator.generateKeyPair();
+            privateKey = pair.getPrivate();
+            publicKey = pair.getPublic();
         }
         /**
-         * decode the {@code String data} to a byte[] array.
-         * @param data the encrypted {@code String} to be decrypted.
-         * @return the decoded String.
+         * Encrypts the message passed in.
+         * @param message the message {@code String} to be encrypted.
+         * @return the encrypted {@code String};
+         * @throws Exception if anything went wrong.
          */
-        private static byte[] decode(String data) {
-            return Base64.getDecoder().decode(data);
+        public String encrypt(String message) throws Exception{
+            byte[] messageToBytes = message.getBytes();
+            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.ENCRYPT_MODE,publicKey);
+            byte[] encryptedBytes = cipher.doFinal(messageToBytes);
+            return encode(encryptedBytes);
         }
+        /**
+         * Decrypts the encrypted message passed in.
+         * @param encryptedMessage the encrypted {@code String} to be decrypted.
+         * @return the decrypted bytes;
+         * @throws Exception if anything went wrong.
+         */
+        public String decrypt(String encryptedMessage) throws Exception{
+            byte[] encryptedBytes = decode(encryptedMessage);
+            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.DECRYPT_MODE,privateKey);
+            byte[] decryptedMessage = cipher.doFinal(encryptedBytes);
+            return new String(decryptedMessage, StandardCharsets.UTF_8);
+        }
+    }
+
+    /**
+     * Utility class {@code AES} advance encryption standard that encrypts a message and decrypts the message.
+     */
+    public static final class AES {
+
+        /**
+         * Cannot instantiate this class.
+         */
+        private AES() {}
+        /**
+         * Generates a secret key that is needed in order to access the encrypted file.
+         * @return {@code secretKey} containing secret key.
+         */
+        public static SecretKey generateKey() {
+            try {
+                KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+                SecretKey secretKey;
+                secretKey = keyGenerator.generateKey();
+                return secretKey;
+            } catch (Exception error) {
+                return null;
+            }
+        }
+        /**
+         * Encrypts the given {@code String}.
+         * @param dataToEncrypt the {@code dataToEncrypt} to encrypt.
+         * @param myKey the {@code SecretKey myKey} that is needed to access the encrypted file.
+         * @param cipher cipher to cipher the text.
+         * @return encryptedText in {@code byte} array.
+         */
+        public static byte[] encrypt(String dataToEncrypt, SecretKey myKey, Cipher cipher) {
+            try {
+                byte[] text = dataToEncrypt.getBytes(StandardCharsets.UTF_8);
+                cipher.init(Cipher.ENCRYPT_MODE, myKey);
+                byte[] encryptedText;
+                encryptedText = cipher.doFinal(text);
+                return encryptedText;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        /**
+         * Encrypts the given {@code String}.
+         * @param encryptedData the {@code dataToEncrypt} to decrypt.
+         * @param myKey the {@code SecretKey myKey} that is needed to access the encrypted file.
+         * @param cipher cipher to cipher the text.
+         * @return result in {@code String}, the decrypted text.
+         */
+        public static String decrypt(byte[] encryptedData, SecretKey myKey, Cipher cipher) {
+            try {
+                cipher.init(Cipher.DECRYPT_MODE, myKey);
+                byte[] decryptedText = cipher.doFinal(encryptedData);
+                String result;
+                result = new String(decryptedText);
+                return result;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        /**
+         * Stores the key to a file.
+         * @param keyToStore the {@code SecretKey keyToStore} that is going to be stored in the file, needed to access the encrypted file.
+         * @param credential credential to protect the ke.
+         * @param filePath filePath is the path where the file will be written or saved.
+         * @throws Exception if something went wrong.
+         */
+        public static void storeToKeyStore(SecretKey keyToStore, String credential, String filePath) throws Exception {
+            File file = new File(filePath);
+            KeyStore javaKeyStore = KeyStore.getInstance("JCEKS");
+            if (!file.exists()) {
+                javaKeyStore.load(null, null);
+            }
+            javaKeyStore.setKeyEntry("keyAlias", keyToStore, credential.toCharArray(), null);
+            OutputStream outputStream = new FileOutputStream(filePath);
+            javaKeyStore.store(outputStream, credential.toCharArray());
+            outputStream.close();
+        }
+        /**
+         * Loads the key from the keyStore.
+         * @param credential credential to protect the ke.
+         * @param filePath filePath is the path where the file is created / saved.
+         * @return key, the key stored in the file.
+         */
+        public static SecretKey loadFromKeyStore(String credential, String filePath) throws Exception {
+            KeyStore keyStore = KeyStore.getInstance("JCEKS");
+            InputStream inputStream = new FileInputStream(filePath);
+            keyStore.load(inputStream, credential.toCharArray());
+            SecretKey key;
+            key = (SecretKey) keyStore.getKey("keyAlias", credential.toCharArray());
+            inputStream.close();
+            return key;
+        }
+    }
+    /**
+     * encode the {@code byte[] data} to a String.
+     * @param data the {@code byte[] data} to be encoded.
+     * @return the encoded String.
+     */
+    private static String encode(byte[] data) {
+        return Base64.getEncoder().encodeToString(data);
+    }
+    /**
+     * decode the {@code String data} to a byte[] array.
+     * @param data the encrypted {@code String} to be decrypted.
+     * @return the decoded String.
+     */
+    private static byte[] decode(String data) {
+        return Base64.getDecoder().decode(data);
     }
 }

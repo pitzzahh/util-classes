@@ -100,7 +100,7 @@ public final class MeanMedianModeStandardDeviation {
             else {
                 System.out.printf("MODE              : %.6f\n", calculateMode(numberArray));
             }
-            System.out.printf("STANDARD DEVIATION: %.6f", calculateStandardDeviation(numberArray));
+            System.out.printf("\nSTANDARD DEVIATION: %.6f", calculateStandardDeviation(numberArray));
         }
         else {
             System.out.println("THE ARRAY IS EMPTY (!)");

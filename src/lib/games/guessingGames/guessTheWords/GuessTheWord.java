@@ -2,7 +2,6 @@ package lib.games.guessingGames.guessTheWords;
 
 import lib.utilities.misc.InputChecker;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public final class GuessTheWord {
     private GuessTheWord() {}
@@ -33,57 +32,28 @@ public final class GuessTheWord {
     }
     public static void runGuess() {
         addGuessingWords();
-        System.out.println("WORDS: " + Arrays.toString(wordsToGuess));
         String choice;
         boolean userRecognized = false;
-        boolean wholeCondition = true;
-        boolean switchCondition;
-        boolean check = true;
-        while (wholeCondition) {
-            Scanner userInput = new Scanner(System.in);
-            System.out.println("GUESS SOME OF THE SECRET WORDS");
-            System.out.print("ENTER HERE: ");
-            choice = userInput.nextLine().trim();
-            while(check) {
-                for(String i : wordsToGuess) {
-                    if (choice.equals(i)) {
-                        userRecognized = true;
-                    }
-                    check = false;
-                }
-            }
-            if (userRecognized) {
-                System.out.println("I LOVE THAT WORD!");
-            } 
-            else {
-                System.out.println("THAT IS NOT THE WORD!");
-            }
-            switchCondition = true;
-            while (switchCondition) {
-                System.out.print("Would you like to try again?(Y) or (N): ");
-                String response = userInput.next().toUpperCase().trim();
-
-                switch (response) {
-                    case "Y" -> {
-                        System.out.println(":-----------------------------------:");
-                        System.out.println(":            HAVE FUN!              :");
-                        System.out.println(":-----------------------------------:");
-                        userRecognized = false;
-                        check = true;
-                        switchCondition = false;
-                    }
-                    case "N" -> {
-                        System.out.println(":--------------------------------:");
-                        System.out.println(": THANK YOU FOR USING MY PROGRAM :");
-                        System.out.println(":--------------------------------:");
-                        wholeCondition = false;
-                        switchCondition = false;
-                        userInput.close();
-                    }
-                    default -> System.out.println("Invalid Choice!\n");
-                }
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("GUESS SOME OF THE SECRET WORDS");
+        System.out.print("ENTER HERE: ");
+        choice = userInput.nextLine().trim();
+        for(String i : wordsToGuess) {
+            if (choice.equals(i)) {
+                userRecognized = true;
+                break;
             }
         }
+        if (userRecognized) {
+            System.out.println("CORRECT WORD!");
+        }
+        else {
+            System.out.println("THAT IS NOT THE WORD!");
+        }
+        System.out.println(":--------------------------------:");
+        System.out.println(": THANK YOU FOR USING MY PROGRAM :");
+        System.out.println(":--------------------------------:");
+
     }
 }
 

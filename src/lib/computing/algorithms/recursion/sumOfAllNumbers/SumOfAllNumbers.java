@@ -14,11 +14,11 @@ public final class SumOfAllNumbers {
         }
     }
     public void getSumOfAllNumbers() {
-        int result = sumOfALlNumbers(number);
-        if (number == 0) {
+        if (this.number == 0) {
             System.out.println("The Sum from 1 to " + this.number + " is: " + 0);
         }
         else {
+            int result = sumOfALlNumbers(number);
             System.out.println("The Sum from 1 to " + this.number + " is: " + NumberFormat.getInstance().format(result));
         }
     }
