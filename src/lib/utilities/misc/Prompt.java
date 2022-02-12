@@ -33,7 +33,6 @@ public final class Prompt {
                 " ╚═╝╩╚═╩╚═╚═╝╩╚═"   +
                 Decorations.TEXT_RESET);
     }
-
     /**
      * Simple prompt to ask the user to try again or not.
      * @throws InterruptedException if something went wrong.
