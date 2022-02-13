@@ -57,4 +57,14 @@ public final class Prompt {
             }
         }
     }
+
+    /**
+     * Outputs that is not a number if the user inputted Strings or characters instead numbers.
+     */
+    public void notANumber() {
+        System.out.println(Decorations.TEXT_RED +
+                " ┌┬┐┬ ┬┌─┐┌┬┐  ┬┌─┐  ┌┐┌┌─┐┌┬┐  ┌─┐  ┌┐┌┬ ┬┌┬┐┌┐ ┌─┐┬─┐\n" +
+                "  │ ├─┤├─┤ │   │└─┐  ││││ │ │   ├─┤  ││││ ││││├┴┐├┤ ├┬┘\n" +
+                "  ┴ ┴ ┴┴ ┴ ┴   ┴└─┘  ┘└┘└─┘ ┴   ┴ ┴  ┘└┘└─┘┴ ┴└─┘└─┘┴└─");
+    }
 }

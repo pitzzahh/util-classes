@@ -431,9 +431,10 @@ public final class SecurityUtil {
         public static void storeToKeyStore(SecretKey keyToStore, String credential, String filePath) throws Exception {
             File file = new File(filePath);
             KeyStore javaKeyStore = KeyStore.getInstance("JCEKS");
-            if (!file.exists()) {
-                javaKeyStore.load(null, null);
-            }
+//            if (!file.exists()) {
+//                javaKeyStore.load(null, null);
+//            }
+            javaKeyStore.load(null, null);
             javaKeyStore.setKeyEntry("keyAlias", keyToStore, credential.toCharArray(), null);
             OutputStream outputStream = new FileOutputStream(filePath);
             javaKeyStore.store(outputStream, credential.toCharArray());
