@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 
 public final class TicTacToe {
+
     static boolean humanNameInput = true;
     static boolean isExit = false;
     static boolean mainChoices = true;

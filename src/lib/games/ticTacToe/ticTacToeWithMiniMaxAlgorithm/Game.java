@@ -5,26 +5,41 @@ import java.util.Random;
 import java.util.List;
 
 final class Game {
-    private Game() {}
+
+    /*
+     * Cannot instantiate this class
+     */
+    private Game() {
+    }
     static final ArrayList<Point> choicesLogs = new ArrayList<>(16);
     static class Boards {
+        // TODO change the board array from 2d array boards to 1d array boards
+
+        /*
+         * Cannot instantiate this class
+         */
         private Boards() {}
         static final char HUMAN = 'X';
         static final char COMPUTER = 'O';
         static final char NO_PLAYER = ' ';
         static Point computerMove;
-        static final char[][] threeByThreeBoard = {{' ', ' ', ' '},
-                {' ', ' ', ' '},
-                {' ', ' ', ' '}};
-        static final char[][] fourByFourBoard = {{' ', ' ', ' ', ' '},
-                {' ', ' ', ' ', ' '},
-                {' ', ' ', ' ', ' '},
-                {' ', ' ', ' ', ' '}};
+        static final char[][] threeByThreeBoard = {
+                                                    {' ', ' ', ' '},
+                                                    {' ', ' ', ' '},
+                                                    {' ', ' ', ' '}
+                                                  };
+        static final char[][] fourByFourBoard = {
+                                                    {' ', ' ', ' ', ' '},
+                                                    {' ', ' ', ' ', ' '},
+                                                    {' ', ' ', ' ', ' '},
+                                                    {' ', ' ', ' ', ' '}
+                                                };
         protected static char[][] boardCopy;
 
     } // end of Boards class
 
     public static class Point {
+
         public final byte x;
         public final byte y;
         protected Point(byte row, byte column) {
@@ -254,7 +269,7 @@ final class Game {
                     return true;
                 }
             }
-        } else if ("4x4".equals(whatBoard)) {// slanting winning conditions
+        } else if ("4x4".equals(whatBoard)) { // slanting winning conditions
             if ((Boards.fourByFourBoard[0][0] == Boards.fourByFourBoard[1][1] && Boards.fourByFourBoard[1][1] == Boards.fourByFourBoard[2][2] &&
                     Boards.fourByFourBoard[2][2] == Boards.fourByFourBoard[3][3] && Boards.fourByFourBoard[3][3] == player) ||
                     (Boards.fourByFourBoard[0][1] == Boards.fourByFourBoard[1][2] && Boards.fourByFourBoard[1][2] == Boards.fourByFourBoard[2][3] &&
@@ -308,17 +323,17 @@ final class Game {
             if (Boards.boardCopy.length == 4) {
                 // slanting winning conditions
                 if ((Boards.boardCopy[0][0] == Boards.boardCopy[1][1] && Boards.boardCopy[1][1] == Boards.boardCopy[2][2] &&
-                        Boards.boardCopy[2][2] == Boards.boardCopy[3][3] && Boards.boardCopy[3][3] == player) ||
-                        (Boards.boardCopy[0][1] == Boards.boardCopy[1][2] && Boards.boardCopy[1][2] == Boards.boardCopy[2][3] &&
-                                Boards.boardCopy[2][3] == player) ||
-                        (Boards.boardCopy[1][0] == Boards.boardCopy[2][1] && Boards.boardCopy[2][1] == Boards.boardCopy[3][2] &&
-                                Boards.boardCopy[3][2] == player) ||
-                        (Boards.boardCopy[0][3] == Boards.boardCopy[1][2] && Boards.boardCopy[1][2] == Boards.boardCopy[2][1] &&
-                                Boards.boardCopy[2][1] == Boards.boardCopy[3][0] && Boards.boardCopy[3][0] == player) ||
-                        (Boards.boardCopy[0][2] == Boards.boardCopy[1][1] && Boards.boardCopy[1][1] == Boards.boardCopy[2][0] &&
-                                Boards.boardCopy[2][0] == player) ||
-                        (Boards.boardCopy[1][3] == Boards.boardCopy[2][2] && Boards.boardCopy[2][2] == Boards.boardCopy[3][1] &&
-                                Boards.boardCopy[3][1] == player)) {
+                     Boards.boardCopy[2][2] == Boards.boardCopy[3][3] && Boards.boardCopy[3][3] == player) ||
+                    (Boards.boardCopy[0][1] == Boards.boardCopy[1][2] && Boards.boardCopy[1][2] == Boards.boardCopy[2][3] &&
+                     Boards.boardCopy[2][3] == player) ||
+                    (Boards.boardCopy[1][0] == Boards.boardCopy[2][1] && Boards.boardCopy[2][1] == Boards.boardCopy[3][2] &&
+                     Boards.boardCopy[3][2] == player) ||
+                    (Boards.boardCopy[0][3] == Boards.boardCopy[1][2] && Boards.boardCopy[1][2] == Boards.boardCopy[2][1] &&
+                     Boards.boardCopy[2][1] == Boards.boardCopy[3][0] && Boards.boardCopy[3][0] == player) ||
+                    (Boards.boardCopy[0][2] == Boards.boardCopy[1][1] && Boards.boardCopy[1][1] == Boards.boardCopy[2][0] &&
+                     Boards.boardCopy[2][0] == player) ||
+                    (Boards.boardCopy[1][3] == Boards.boardCopy[2][2] && Boards.boardCopy[2][2] == Boards.boardCopy[3][1] &&
+                    Boards.boardCopy[3][1] == player)) {
                     return true;
                 }
                 // horizontal and vertical winning conditions
