@@ -4,16 +4,19 @@ import java.util.concurrent.TimeUnit;
 import java.util.Random;
 import java.util.Scanner;
 /**
- *
+ * Utility class used in making pins or passwords.
+ * Available choices:
+ * <p>1. Random Numbers
+ * <p>2. Random Letters
+ * <p>3. User defined
  */
 public final class PinGenerator {
     // Cannot instantiate this class
     private PinGenerator() {}
-    // field on how long the pin is
-    static byte lengthOfPin;
+
     // Random class object
-    static final Random random = new Random();
-    static char[] pin;
+    private static final Random random = new Random();
+    private static char[] pin;
 
     /**
      * Method that generates a pin.
@@ -32,14 +35,16 @@ public final class PinGenerator {
         Scanner scanner = new Scanner(System.in);
         String response;
         String pinType = "";
-        System.out.println(Decorations.TEXT_YELLOW + "WHAT TYPE OF PIN YOU WANT TO USE?");
-        System.out.println(Decorations.TEXT_GREEN + ": 1 : random numbers");
-        System.out.println(Decorations.TEXT_GREEN + ": 2 : random letters");
-        System.out.println(Decorations.TEXT_GREEN + ": 3 : choose your own pin");
-        System.out.print(Decorations.TEXT_YELLOW + ">>>: ");
+        System.out.println(Decorations.Color.YELLOW.getColor() + "WHAT TYPE OF PIN YOU WANT TO USE?");
+        System.out.println(Decorations.Color.GREEN.getColor() + ": 1 : random numbers");
+        System.out.println(Decorations.Color.GREEN.getColor() + ": 2 : random letters");
+        System.out.println(Decorations.Color.GREEN.getColor() + ": 3 : choose your own pin");
+        System.out.print(Decorations.Color.YELLOW.getColor() + ">>>: ");
         response = scanner.nextLine().trim();
         // dito i check if yung laman ng inputs it nandun sa char array na oneTimePin
 
+        // field on how long the pin is
+        byte lengthOfPin;
         if (response.equals("1") || response.equals("2")) {
             switch (response) {
                 case "1" -> pinType = "NUMBERS";
@@ -47,33 +52,33 @@ public final class PinGenerator {
                 default -> {
                     lengthOfPin = 6;
                     Decorations.show.invalidChoice();
-                    System.out.println(Decorations.TEXT_YELLOW + "THE TYPE OF PIN WILL BE A MIXED OF LETTERS AND NUMBERS");
-                    System.out.printf(Decorations.TEXT_YELLOW + "YOUR PIN LENGTH WILL BE %d characters long\n", lengthOfPin);
+                    System.out.println(Decorations.Color.YELLOW.getColor() + "THE TYPE OF PIN WILL BE A MIXED OF LETTERS AND NUMBERS");
+                    System.out.printf(Decorations.Color.YELLOW.getColor() + "YOUR PIN LENGTH WILL BE %d characters long\n", lengthOfPin);
                 }
             }
             while (true) {
-                System.out.println(Decorations.TEXT_GREEN + "HOW LONG YOU WANT YOUR PIN TO BE?");
-                System.out.print(Decorations.TEXT_YELLOW + ">>>: ");
+                System.out.println(Decorations.Color.GREEN.getColor() + "HOW LONG YOU WANT YOUR PIN TO BE?");
+                System.out.print(Decorations.Color.YELLOW.getColor() + ">>>: ");
                 response = scanner.nextLine().trim();
                 if (InputChecker.isByte(response)) {
                     lengthOfPin = Byte.parseByte(response);
                     if (lengthOfPin >= 1 && lengthOfPin <= 3) {
-                        System.out.println(Decorations.TEXT_YELLOW + "PIN LENGTH IS TOO SHORT\nPLEASE TRY LONGER PIN LENGTH");
+                        System.out.println(Decorations.Color.YELLOW.getColor() + "PIN LENGTH IS TOO SHORT\nPLEASE TRY LONGER PIN LENGTH");
                     } else if (lengthOfPin >= 4 && lengthOfPin <= 6) {
                         break;
                     } else {
                         if (lengthOfPin >= 7) {
-                            System.out.println(Decorations.TEXT_YELLOW + "PIN LENGTH IS TOO LONG");
+                            System.out.println(Decorations.Color.YELLOW.getColor() + "PIN LENGTH IS TOO LONG");
                         }
                         if (lengthOfPin == 0) {
-                            System.out.println(Decorations.TEXT_YELLOW + "PIN LENGTH CANNOT BE 0");
+                            System.out.println(Decorations.Color.YELLOW.getColor() + "PIN LENGTH CANNOT BE 0");
                         }
                     }
                 } else {
                     lengthOfPin = 6;
                     Decorations.show.invalidChoice();
-                    System.out.println(Decorations.TEXT_RED + "YOUR PIN LENGTH SHOULD BE A NUMBER");
-                    System.out.printf(Decorations.TEXT_RESET + "YOUR PIN LENGTH WILL BE %d characters long\n", lengthOfPin);
+                    System.out.println(Decorations.Color.RED.getColor() + "YOUR PIN LENGTH SHOULD BE A NUMBER");
+                    System.out.printf(Decorations.Color.RESET.getColor() + "YOUR PIN LENGTH WILL BE %d characters long\n", lengthOfPin);
                     pin = new char[lengthOfPin];
                     for (int index = 0; index < lengthOfPin; index++) {
                         // dito i store niya lang sa listahan yung 10 numbers na generated
@@ -108,7 +113,7 @@ public final class PinGenerator {
             }
         }
         else if (response.equals("3")) {
-            System.out.print(Decorations.TEXT_GREEN + "ENTER YOUR OWN PIN: ");
+            System.out.print(Decorations.Color.GREEN.getColor() + "ENTER YOUR OWN PIN: ");
             String pin = scanner.nextLine();
             PinGenerator.pin = pin.toCharArray();
             TimeUnit.MILLISECONDS.sleep(400);
@@ -116,8 +121,8 @@ public final class PinGenerator {
         else {
             lengthOfPin = 6;
             Decorations.show.invalidChoice();
-            System.out.println(Decorations.TEXT_RED + "THE TYPE OF PIN WILL BE A MIXED OF LETTERS AND NUMBERS");
-            System.out.printf(Decorations.TEXT_RESET + "YOUR PIN LENGTH WILL BE %d characters long\n", lengthOfPin);
+            System.out.println(Decorations.Color.RED.getColor() + "THE TYPE OF PIN WILL BE A MIXED OF LETTERS AND NUMBERS");
+            System.out.printf(Decorations.Color.RESET.getColor() + "YOUR PIN LENGTH WILL BE %d characters long\n", lengthOfPin);
             pin = new char[lengthOfPin];
             for (int index = 0; index < lengthOfPin; index++) {
                 // dito i store niya lang sa listahan yung 10 numbers na generated
@@ -132,11 +137,11 @@ public final class PinGenerator {
      * @param pin the {@code char[]} array containing the pin.
      */
     public static void printPin(char[] pin) {
-        System.out.println(Decorations.TEXT_GREEN + "=========================");
-        System.out.print(Decorations.TEXT_YELLOW + "YOUR PIN: ");
+        System.out.println(Decorations.Color.GREEN.getColor() + "=========================");
+        System.out.print(Decorations.Color.YELLOW.getColor() + "YOUR PIN: ");
         for (char c : pin) {
-            System.out.print(Decorations.TEXT_PURPLE + c);
+            System.out.print(Decorations.Color.PURPLE.getColor() + c);
         }
-        System.out.println(Decorations.TEXT_GREEN + "\n=========================");
+        System.out.println(Decorations.Color.GREEN.getColor() + "\n=========================");
     }
 }
