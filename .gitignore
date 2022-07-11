@@ -1,1 +1,4 @@
 /out/production/
+/src/eljen/
+/src/main/java/lib/
+*.class
