@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.pitzzahh</groupId>
-    <artifactId>lib</artifactId>
+    <artifactId>util-classes</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <dependencies>
 
         <dependency>

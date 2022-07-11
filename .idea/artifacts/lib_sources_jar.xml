@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="lib-sources:jar">
-    <output-path>D:/JAVA_LIBRARIES</output-path>
+    <output-path>$PROJECT_DIR$/../../../JAVA_LIBRARIES</output-path>
     <root id="archive" name="lib-sources.jar">
-      <element id="module-source" name="lib" />
+      <element id="module-source" name="util-classes" />
     </root>
   </artifact>
 </component>
