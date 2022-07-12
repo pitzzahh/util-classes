@@ -1,25 +1,31 @@
 package com.github.pitzzahh.computing;
 
+import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
-    private final Calculator CALCULATOR = new Calculator();
+
     @Test
     void multiply() {
         // given
-        var result = CALCULATOR.op(2, 4, Calculator.MULTIPLY);
+        var calculator = new Calculator<>(4, 2);
         // when
-        Number expected = 8;
+        var result = calculator.calculate(Operation.MULTIPLY);
+        var expected = BigDecimal.valueOf(8);
+        // then
         assertEquals(expected, result);
     }
 
     @Test
     void divide() {
         // given
-        var result = CALCULATOR.op(706, 20, Calculator.DIVIDE);
+        var calculator = new Calculator<>();
+        calculator.setNumbers(706, 20);
+        calculator.setNumbers(5, 5);
         // when
-        Number expected = 35.3;
+        var result = calculator.calculate(Operation.DIVIDE);
+        var expected = BigDecimal.valueOf(1);
         // then
         assertEquals(expected, result);
     }
@@ -27,9 +33,10 @@ class CalculatorTest {
     @Test
     void add() {
         // given
-        var result = CALCULATOR.op(4.2, 2,Calculator.ADD);
+        var calculator = new Calculator<>(4.2, 2);
         // when
-        Number expected = 6.2;
+        var result = calculator.calculate(Operation.ADD);
+        var expected = BigDecimal.valueOf(6.2);
         // then
         assertEquals(expected, result);
     }
@@ -37,9 +44,10 @@ class CalculatorTest {
     @Test
     void subtract() {
         // given
-        var result = CALCULATOR.op(4, 2, Calculator.SUBTRACT);
+        var calculator = new Calculator<>(4, 2);
         // when
-        Number expected = 2;
+        var result = calculator.calculate(Operation.SUBTRACT);
+        var expected = BigDecimal.valueOf(2);
         // then
         assertEquals(expected, result);
     }
@@ -47,9 +55,10 @@ class CalculatorTest {
     @Test
     void mod() {
         // given
-        var result = CALCULATOR.op(4, 2, Calculator.MOD);
+        var calculator = new Calculator<>(4, 2);
         // when
-        Number expected = 0;
+        var result = calculator.calculate(Operation.MOD);
+        Number expected = BigDecimal.ZERO;
         // then
         assertEquals(expected, result);
     }
