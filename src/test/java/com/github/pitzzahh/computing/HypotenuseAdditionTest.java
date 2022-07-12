@@ -3,7 +3,7 @@ package com.github.pitzzahh.computing;
 import com.github.pitzzahh.computing.HypotenuseCalculator;
 import org.junit.jupiter.api.Test;
 
-class HypotenuseCalculatorTest {
+class HypotenuseAdditionTest {
 
     @Test
     void runComputeHypotenuse() {

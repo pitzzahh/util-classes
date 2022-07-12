@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="lib:jar">
+  <artifact type="jar" name="util-classes.kar">
     <output-path>$PROJECT_DIR$/../../../JAVA_LIBRARIES</output-path>
     <root id="archive" name="lib.jar">
       <element id="module-output" name="util-classes" />

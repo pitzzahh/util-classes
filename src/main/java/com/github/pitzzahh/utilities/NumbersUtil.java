@@ -92,10 +92,9 @@ public final class NumbersUtil {
      * @param list the {@code List<Integers>} of {@code Integers}.
      * @return the {@code String} representation of the (sorted) list without the brackets
      */
-    public static String getIntegers(List<Integer> list) {
+    public static String convertToString(List<?> list) {
         return list.stream()
                    .map(String::valueOf)
-                   .sorted()
                    .collect(Collectors.joining());
     }
 

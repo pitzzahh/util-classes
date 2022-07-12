@@ -1,25 +1,22 @@
 package com.github.pitzzahh.computing.algorithms.recursion.sumOfAllNumbers;
 
-import java.text.NumberFormat;
+import java.math.BigInteger;
 
-public final class SumOfAllNumbers {
-    private int number;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import java.util.stream.IntStream;
 
-    private int sumOfALlNumbers(int number) {
-        if (number != 1) return number + sumOfALlNumbers(number - 1);
-        else return 1;
+@NoArgsConstructor
+@AllArgsConstructor
+public final class SumOfAllNumbers <T extends Number> {
+    private T number;
+
+    private <S extends Number> Number sumOfALlNumbers(S number) {
+        return IntStream.range(1, number.intValue() + 1).reduce(0, Integer::sum);
     }
 
-    public void getSumOfAllNumbers() {
-        if (this.number == 0) System.out.println("The Sum from 1 to " + this.number + " is: " + 0);
-        else {
-            int result = sumOfALlNumbers(number);
-            System.out.println("The Sum from 1 to " + this.number + " is: " + NumberFormat.getInstance().format(result));
-        }
+    public Number getSumOfAllNumbers() {
+        return this.number.intValue() != 0 ? sumOfALlNumbers(number) : BigInteger.ZERO;
     }
 
-    public SumOfAllNumbers setNumber(int number) {
-        this.number = number;
-        return this;
-    }
 }

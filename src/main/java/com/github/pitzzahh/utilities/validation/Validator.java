@@ -49,7 +49,7 @@ public interface Validator extends Function<String, Boolean> {
             if (day <= 0 || day > 30) throw new IllegalStateException("Invalid day: " + day);
             if (month <= 0 || month > 12) throw new IllegalStateException("Invalid month: " + month);
 
-            return Pattern.compile("^\\d{4}-\\d{1,2}-\\d{2}$").matcher(input).matches();
+            return Pattern.compile("^\\d{4}-\\d{1,2}-\\d{1,2}$").matcher(input).matches();
         };
     }
 
