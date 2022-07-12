@@ -57,7 +57,7 @@ class CalculatorTest {
         // given
         var calculator = new Calculator<>(4, 2);
         // when
-        var result = calculator.calculate(Operation.MOD);
+        var result = calculator.calculate(Operation.MODULO);
         Number expected = BigDecimal.ZERO;
         // then
         assertEquals(expected, result);
