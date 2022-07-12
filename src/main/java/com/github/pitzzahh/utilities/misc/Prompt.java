@@ -40,21 +40,17 @@ public final class Prompt {
     public boolean tryAgain() throws InterruptedException {
         boolean check = true;
         while (check) {
-            System.out.println(Decorations.Color.YELLOW.getColor() +
+            System.out.println(Decorations.Color.RED.getColor() +
                     " ┌┬┐┌─┐  ┬ ┬┌─┐┬ ┬  ┬ ┬┌─┐┌┐┌┌┬┐  ┌┬┐┌─┐  ┌┬┐┬─┐┬ ┬  ┌─┐┌─┐┌─┐┬┌┐┌┌─┐\n" +
                     "  │││ │  └┬┘│ ││ │  │││├─┤│││ │    │ │ │   │ ├┬┘└┬┘  ├─┤│ ┬├─┤││││ ┌┘\n" +
                     " ─┴┘└─┘   ┴ └─┘└─┘  └┴┘┴ ┴┘└┘ ┴    ┴ └─┘   ┴ ┴└─ ┴   ┴ ┴└─┘┴ ┴┴┘└┘ o ");
             System.out.println(Decorations.Color.GREEN.getColor() + ": Y : Yes");
             System.out.println(Decorations.Color.RED.getColor()   + ": N : No");
-            System.out.println(Decorations.Color.PURPLE.getColor() + ">>>: ");
+            System.out.print(Decorations.Color.PURPLE.getColor() + ">>>: ");
             String choice = new Scanner(System.in).nextLine().trim();
-            if (Validator.isLetter().apply(choice)) {
-                if (Validator.isYes().apply(choice)) return true;
-                if (Validator.isNo().apply(choice)) return false;
-            }
-            else System.out.println("Y or N only");
+            if (!Validator.isYes().or(Validator.isNo()).apply(choice)) System.out.println("Y or N only");
+            return Validator.isLetter().apply(choice) ? Validator.isYes().apply(choice) : Validator.isNo().apply(choice);
         }
         return false;
     }
-
 }

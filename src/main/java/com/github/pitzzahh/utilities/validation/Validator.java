@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 import java.util.function.Function;
-import com.github.pitzzahh.utilities.classes.Gender;
+import com.github.pitzzahh.utilities.classes.enums.Gender;
 
 public interface Validator extends Function<String, Boolean> {
 

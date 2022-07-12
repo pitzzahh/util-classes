@@ -18,7 +18,7 @@ public final class Decorations {
      * Prints a loading text in color green.
      */
     public static void printLoading() {
-        System.out.print(Color.GREEN.getColor() + "LOADING" + Color.RESET);
+        System.out.print(Color.GREEN.getColor() + "LOADING" + Color.RESET.getColor());
     }
 
     /**

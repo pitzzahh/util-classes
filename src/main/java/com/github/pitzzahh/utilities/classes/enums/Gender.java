@@ -1,4 +1,4 @@
-package com.github.pitzzahh.utilities.classes;
+package com.github.pitzzahh.utilities.classes.enums;
 
 public enum Gender {
     MALE,
