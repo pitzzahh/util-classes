@@ -24,6 +24,7 @@ public final class NumbersUtil {
      * @param array the {@code byte} array to be checked if all elements are the same
      * @return {@code true} if all elements are the same in the {@code byte} array
      */
+    // TODO: refactor to generics.
     public static boolean checkIfAllNumbersAreTheSame(byte[] array) {
         byte trueCount = 0;
         if (array.length != 0) {
@@ -47,6 +48,7 @@ public final class NumbersUtil {
      * @param array the {@code short} array to be checked if all elements are the same
      * @return {@code true} if all elements are the same in the {@code short} array
      */
+    // TODO: refactor to generics.
     public static boolean checkIfAllNumbersAreTheSame(short[] array) {
         byte trueCount = 0;
         if (array.length != 0) {
@@ -69,6 +71,7 @@ public final class NumbersUtil {
      * @param array the {@code int} array to be checked if all elements are the same
      * @return {@code true} if all elements are the same in the {@code int} array
      */
+    // TODO: refactor to generics.
     public static boolean checkIfAllNumbersAreTheSame(int[] array) {
         byte trueCount = 0;
         if (array.length != 0) {
@@ -96,15 +99,6 @@ public final class NumbersUtil {
         return list.stream()
                    .map(String::valueOf)
                    .collect(Collectors.joining());
-    }
-
-    /**
-     * Prints the {@code List} of {@code Characters} as a {@code String} representation
-     * @param list the {@code List<Characters>} of {@code Characters}.
-     * @return the {@code String} representation of the (sorted) list without the brackets
-     */
-    public static String getString(List<Character> list) {
-        return list.stream().map(Object::toString).reduce("", String::concat);
     }
 
     /**
