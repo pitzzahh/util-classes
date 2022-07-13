@@ -45,7 +45,7 @@ public final class SecurityUtil {
                 element += (KEY * (-10));
                 EU.add(element);
             }
-            u = NumbersUtil.getString(EU);
+            u = NumbersUtil.convertToString(EU);
             FileUtil.writeToATextFile(u, usernameFile);
             writeUserNameToBin(usernameFile, user);
             EU.clear();
@@ -72,7 +72,7 @@ public final class SecurityUtil {
                 element += (KEY * (-10) + 4);
                 EP.add(element);
             }
-            p = NumbersUtil.getString(EP);
+            p = NumbersUtil.convertToString(EP);
             FileUtil.writeToATextFile(p, pinFile);
             writePinToBin(pinFile, user);
             EP.clear();
@@ -92,7 +92,7 @@ public final class SecurityUtil {
             EU.add(bit);
         }
         resetUChar(uChar);
-        return u = NumbersUtil.getString(EU);
+        return u = NumbersUtil.convertToString(EU);
     }
     private static String decryptPin(String encryptedPin) {
         pChar = encryptedPin.toCharArray();
@@ -103,7 +103,7 @@ public final class SecurityUtil {
             EP.add(bit);
         }
         resetPChar(pChar);
-        return p = NumbersUtil.getString(EP);
+        return p = NumbersUtil.convertToString(EP);
     }
     /**
      * Checks if the username and password matched the user's credentials.
@@ -129,8 +129,8 @@ public final class SecurityUtil {
                 bit -= (KEY * (-10) + 4);
                 EP.add(bit);
             }
-            u = NumbersUtil.getString(EU);
-            p = NumbersUtil.getString(EP);
+            u = NumbersUtil.convertToString(EU);
+            p = NumbersUtil.convertToString(EP);
             EU.clear();
             EP.clear();
             uScanner.close();
@@ -234,8 +234,8 @@ public final class SecurityUtil {
                 bit -= (KEY * (-10) + 4);
                 EP.add(bit);
             }
-            u = NumbersUtil.getString(EU);
-            p = NumbersUtil.getString(EP);
+            u = NumbersUtil.convertToString(EU);
+            p = NumbersUtil.convertToString(EP);
             EU.clear();
             EP.clear();
             uScanner.close();
