@@ -132,7 +132,7 @@ public final class NumbersUtil {
      * @return {@code true} if {@code whatToFind} is present in the array.
      * @param <T> the type that the {@code arr} and {@code whatToFind}
      */
-    private static <T extends Number> boolean isPresent(T[] arr, T whatToFind) {
+    public static <T extends Number> boolean isPresent(T[] arr, T whatToFind) {
         return IntStream.range(0, arr.length)
                 .anyMatch(i -> arr[i].hashCode() == whatToFind.hashCode());
     }
