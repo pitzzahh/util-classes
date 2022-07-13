@@ -159,7 +159,7 @@ public final class NumbersUtil {
      * Method that accepts anything.
      * @return always {@code true}
      */
-    public static <T extends Number> Predicate<T> sumAll() {
+    public static <T extends Number> Predicate<T> allowAll() {
         return e -> true;
     }
 }
