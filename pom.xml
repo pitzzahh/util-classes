@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.pitzzahh</groupId>
+    <groupId>io.github.pitzzahh</groupId>
     <artifactId>util-classes</artifactId>
     <version>1.0.0</version>
 
@@ -52,13 +52,29 @@
     <packaging>jar</packaging>
 
     <name>util-classes</name>
-    <url>http://maven.apache.org</url>
+    <description>This is a Java library that contains some utility classes that people can use on their project.</description>
+    <url>https://github.com/pitzzahh/util-classes</url>
 
-    <repositories>
-        <repository>
-            <id>spring-repo</id>
-            <url>https://repo.spring.io/release</url>
-        </repository>
-    </repositories>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Peter John Arao</name>
+            <email>araopj2191@gmail.com</email>
+            <organization>com.github.pitzzahh</organization>
+            <organizationUrl>https://github.com/pitzzahh/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/pitzzahh/util-classes.git</connection>
+        <developerConnection>scm:git:ssh://github.com:pitzzahh/util-classes.git</developerConnection>
+        <url>http://github.com/pitzzahh/util-classes</url>
+    </scm>
 
 </project>
