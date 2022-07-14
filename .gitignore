@@ -3,6 +3,3 @@
 /src/main/java/lib/
 *.class
 /target/
-# IntelliJ IDEA
-.idea/
-*.iml
