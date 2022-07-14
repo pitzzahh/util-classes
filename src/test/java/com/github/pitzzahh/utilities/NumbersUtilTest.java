@@ -61,7 +61,7 @@ class NumbersUtilTest {
 
     @Test
     void getStringFromList() {
-        String s = NumbersUtil.getString(List.of('P', 'E', 'T', 'E', 'R'));
-        assertEquals("PETER",s);
+        String s = NumbersUtil.convertToString(List.of('P', 'E', 'T', 'E', 'R'));
+        assertEquals("PETER", s);
     }
 }
