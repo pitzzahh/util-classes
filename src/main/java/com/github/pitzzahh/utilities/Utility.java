@@ -10,12 +10,12 @@ import java.util.function.Predicate;
 /**
  * Utility class for working with numbers and arrays.
  */
-public final class NumbersUtil {
+public final class Utility {
 
     /**
      * Cannot instantiate this class.
      */
-    private NumbersUtil() {}
+    private Utility() {}
 
     /**
      * Method that checks if the elements in the array are all the same.
