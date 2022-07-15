@@ -5,13 +5,13 @@ import java.time.Period;
 import java.time.LocalDate;
 import com.github.pitzzahh.utilities.classes.enums.Gender;
 
+/**
+ * Template class used to create a person object.
+ */
 @Data
 @Getter
 @Builder
 @ToString
-/**
- * Template class used to create a person object.
- */
 @NoArgsConstructor
 @AllArgsConstructor
 public class Person {
