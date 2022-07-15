@@ -23,6 +23,10 @@ public class Person {
     private String address;
     private LocalDate birthDate;
 
+    /**
+     * Gets the exact age of the person/
+     * @return the calculated age based on the current year.
+     */
     public int getAge() {
         return this.age != 0 ? Period.between(birthDate, LocalDate.now()).getYears() : this.age;
     }
