@@ -9,17 +9,22 @@ import com.github.pitzzahh.utilities.classes.enums.Gender;
 @Getter
 @Builder
 @ToString
+/**
+ * Template class used to create a person object.
+ */
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
 
     private String firstName;
     private String lastName;
-    private byte age;
+    private int age;
     private Gender gender;
     private String address;
     private LocalDate birthDate;
 
-    public byte getAge() {
-        return (byte) Period.between(birthDate, LocalDate.now()).getYears();
+    public int getAge() {
+        return this.age != 0 ? Period.between(birthDate, LocalDate.now()).getYears() : this.age;
     }
 
 }
