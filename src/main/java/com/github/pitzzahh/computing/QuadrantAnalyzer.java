@@ -5,6 +5,11 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import static com.github.pitzzahh.computing.QuadrantAnalyzer.Quadrant.*;
 
+/**
+ * Class used in performing quadrant analyzing.
+ * @param <T> the x coordinate.
+ * @param <S> the y coordinate.
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,9 +18,15 @@ public final class QuadrantAnalyzer <T extends Number, S extends Number> {
 	private T x;
 	private S y;
 
+	/**
+	 * Gets the quadrant position of the coordinates.
+	 * @return {@code Quadrant}
+	 * @see Quadrant
+	 */
 	public Quadrant getQuadrant() {
 		return whichQuadrant(this.x.byteValue(), this.y.byteValue());
 	}
+
 	/**
 	 * Method that identifies which quadrant the point is.
 	 * @param x the x position on the board
@@ -30,6 +41,9 @@ public final class QuadrantAnalyzer <T extends Number, S extends Number> {
 	    else return ORIGIN;
 	}
 
+	/**
+	 * Specifies which quadrant the coordinate will be using.
+	 */
 	enum Quadrant {
 		FIRST_QUADRANT,
 		SECOND_QUADRANT,

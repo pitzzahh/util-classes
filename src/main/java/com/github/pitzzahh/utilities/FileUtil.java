@@ -6,6 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
 
+/**
+ * Class used to some file operations.
+ */
 public final class FileUtil {
 
     /**

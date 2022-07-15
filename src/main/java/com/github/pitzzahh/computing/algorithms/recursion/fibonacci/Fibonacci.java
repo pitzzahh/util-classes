@@ -3,11 +3,15 @@ package com.github.pitzzahh.computing.algorithms.recursion.fibonacci;
 import java.math.BigInteger;
 import java.text.NumberFormat;
 
+/**
+ * Class used for doing some fibonacci operations.
+ */
 public final class Fibonacci {
 
     private int number;
     private static final int GET_AT_NTH = 1;
     private static final int GET_UNTIL_N = 2;
+
     /**
      * Sets the number to be used in finding the fibonacci result.
      * @return the number.

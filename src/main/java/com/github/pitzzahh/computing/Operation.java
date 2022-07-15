@@ -1,9 +1,18 @@
 package com.github.pitzzahh.computing;
 
+/**
+ * Interface used for managing calculations.
+ */
 @FunctionalInterface
 public interface Operation {
 
-    Number calculate(int operation) throws IllegalArgumentException;
+    /**
+     * Abstract method used for calculation.
+     * @param operation the type of operation to be used.
+     * @return the calculated number based from the operations.
+     * @throws IllegalArgumentException if the operation is invalid.
+     */
+     Number calculate(int operation) throws IllegalArgumentException;
 
      int MULTIPLY = 1;
      int DIVIDE = 2;

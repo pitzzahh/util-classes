@@ -2,6 +2,9 @@ package com.github.pitzzahh.computing.algorithms.recursion.factorial;
 
 import java.text.NumberFormat;
 
+/**
+ * Class used for doing some factorial operations.
+ */
 public final class Factorial {
 
     private byte number;

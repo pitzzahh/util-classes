@@ -2,7 +2,10 @@ package com.github.pitzzahh.computing.algorithms;
 
 import java.util.stream.IntStream;
 
-public final class LinearSearch implements SearchinAlgorithm {
+/**
+ * Class used for doing linear searching in an array.
+ */
+public final class LinearSearch implements SearchingAlgorithm {
 
     /**
      * Method that searches an array, returns the position of that number in the array.
