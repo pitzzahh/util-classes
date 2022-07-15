@@ -1,66 +1,82 @@
 package com.github.pitzzahh.utilities;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class NumbersUtilTest {
 
     @Test
     void shouldPassIfByteArrayAreAllTheSameNumber1() {
-        byte[] arr = {1, 1, 1, 1};
-        assertTrue(NumbersUtil.checkIfAllNumbersAreTheSame(arr));
+        var arr = new Byte[] {1, 1, 1, 1};
+        assertTrue(NumbersUtil.areAllTheSame(arr));
     }
     @Test
     void shouldPassIfByteArrayAreAllTheSameNumber2() {
-        byte[] arr = {2, 2, 2, 2};
-        assertTrue(NumbersUtil.checkIfAllNumbersAreTheSame(arr));
+        var arr = new Byte[] {2, 2, 2, 2};
+        assertTrue(NumbersUtil.areAllTheSame(arr));
     }
 
     @Test
     void shouldPassIfByteArrayElementsAreNotTheSame() {
-        byte[] arr = {1, 2, 3, 1};
-        assertFalse(NumbersUtil.checkIfAllNumbersAreTheSame(arr));
+        var arr = new Byte[] {1, 2, 3, 1};
+        assertFalse(NumbersUtil.areAllTheSame(arr));
     }
 
     @Test
     void shouldPassIfShortArrayAreAllTheSameNumber1() {
-        short[] arr = {1, 1, 1, 1};
-        assertTrue(NumbersUtil.checkIfAllNumbersAreTheSame(arr));
+        var arr = new Short[] {1, 1, 1, 1};
+        assertTrue(NumbersUtil.areAllTheSame(arr));
     }
     @Test
     void shouldPassIfShortArrayAreAllTheSameNumber2() {
-        short[] arr = {2, 2, 2, 2};
-        assertTrue(NumbersUtil.checkIfAllNumbersAreTheSame(arr));
+        var arr = new Short[] {2, 2, 2, 2};
+        assertTrue(NumbersUtil.areAllTheSame(arr));
     }
 
     @Test
     void shouldPassIfShortArrayElementsAreNotTheSame() {
-        short[] arr = {1, 2, 3, 1};
-        assertFalse(NumbersUtil.checkIfAllNumbersAreTheSame(arr));
+        var arr = new Short[] {1, 2, 3, 1};
+        assertFalse(NumbersUtil.areAllTheSame(arr));
     }
 
     @Test
     void shouldPassIfIntArrayAreAllTheSameNumber1() {
-        int[] arr = {1, 1, 1, 1};
-        assertTrue(NumbersUtil.checkIfAllNumbersAreTheSame(arr));
+        var arr = new Integer[] {1, 1, 1, 1};
+        assertTrue(NumbersUtil.areAllTheSame(arr));
     }
     @Test
     void shouldPassIfIntArrayAreAllTheSameNumber2() {
-        int[] arr = {2, 2, 2, 2};
-        assertTrue(NumbersUtil.checkIfAllNumbersAreTheSame(arr));
+        var arr = new Integer[] {2, 2, 2, 2};
+        assertTrue(NumbersUtil.areAllTheSame(arr));
     }
 
     @Test
     void shouldPassIfIntArrayElementsAreNotTheSame() {
-        int[] arr = {1, 2, 3, 1};
-        assertFalse(NumbersUtil.checkIfAllNumbersAreTheSame(arr));
+        var arr = new Integer[] {1, 2, 3, 1};
+        assertFalse(NumbersUtil.areAllTheSame(arr));
     }
 
     @Test
-    void getStringFromList() {
+    void shouldPassIfBooleanArrayElementsAreAllTheSame1() {
+        var arr = new Boolean[] { true, true, true, true };
+        assertTrue(NumbersUtil.areAllTheSame(arr));
+    }
+
+    @Test
+    void shouldPassIfBooleanArrayElementsAreAllTheSame2() {
+        var arr = new Boolean[] { false, false, false, false };
+        assertTrue(NumbersUtil.areAllTheSame(arr));
+    }
+
+    @Test
+    void shouldPassIfBooleanArrayElementsAreNotTheSame() {
+        var arr = new Boolean[] { true, false, true, false };
+        assertFalse(NumbersUtil.areAllTheSame(arr));
+    }
+
+    @Test
+    void convertListToString() {
         String s = NumbersUtil.convertToString(List.of('P', 'E', 'T', 'E', 'R'));
         assertEquals("PETER", s);
     }
