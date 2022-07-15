@@ -1,16 +1,14 @@
 package com.github.pitzzahh.utilities.classes;
 
-import com.github.pitzzahh.utilities.classes.enums.Gender;
 import lombok.*;
 import java.time.Period;
 import java.time.LocalDate;
+import com.github.pitzzahh.utilities.classes.enums.Gender;
 
 @Data
 @Getter
 @Builder
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
 public class Person {
 
     private String firstName;
