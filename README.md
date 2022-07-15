@@ -11,7 +11,7 @@ If you use Maven, add the following configuration to your project's `pom.xml`
     <dependency>
         <groupId>io.github.pitzzahh</groupId>
         <artifactId>util-classes</artifactId>
-        <version>1</version>
+        <version>1.0.0</version>
     </dependency>
     <!-- other dependencies are there -->
 
