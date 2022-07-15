@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.function.Predicate;
 
 /**
- * Utility class for checking
+ * Utility class for working with numbers and arrays.
  */
 public final class NumbersUtil {
 
