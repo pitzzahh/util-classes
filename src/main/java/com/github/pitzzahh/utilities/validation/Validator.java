@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import java.util.function.Function;
 import com.github.pitzzahh.utilities.classes.enums.Gender;
 
+// TODO: add comments.
 public interface Validator extends Function<String, Boolean> {
 
     static Validator isIdValid() {
