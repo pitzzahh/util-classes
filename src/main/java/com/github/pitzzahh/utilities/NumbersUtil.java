@@ -12,82 +12,18 @@ import java.util.function.Predicate;
  */
 public final class NumbersUtil {
 
-    private static boolean[] booleans; // stores true boolean values
-
     /**
      * Cannot instantiate this class.
      */
     private NumbersUtil() {}
 
     /**
-     * Method that checks if the elements in the array are all the same
-     * @param array the {@code byte} array to be checked if all elements are the same
-     * @return {@code true} if all elements are the same in the {@code byte} array
+     * Method that checks if the elements in the array are all the same.
+     * @param array the {@code Object[]} array to be checked if all elements are the same.
+     * @return {@code true} if all elements are the same in the {@code Object[]} array.
      */
-    // TODO: refactor to generics.
-    public static boolean checkIfAllNumbersAreTheSame(byte[] array) {
-        byte trueCount = 0;
-        if (array.length != 0) {
-            byte firstElement = array[0];
-            booleans = new boolean[array.length];
-
-            IntStream.range(0, array.length).filter(i -> array[i] == firstElement).forEach(i -> booleans[i] = true);
-
-            for (boolean e : booleans) {
-                if (e) {
-                    trueCount++;
-                }
-            }
-        }
-        else return false;
-        return trueCount == array.length;
-    }
-
-    /**
-     * Method that checks if the elements in the array are all the same
-     * @param array the {@code short} array to be checked if all elements are the same
-     * @return {@code true} if all elements are the same in the {@code short} array
-     */
-    // TODO: refactor to generics.
-    public static boolean checkIfAllNumbersAreTheSame(short[] array) {
-        byte trueCount = 0;
-        if (array.length != 0) {
-            short firstElement = array[0];
-            booleans = new boolean[array.length];
-
-            IntStream.range(0, array.length).filter(i -> array[i] == firstElement).forEach(i -> booleans[i] = true);
-
-            for (boolean e : booleans) {
-                if (e) {
-                    trueCount++;
-                }
-            }
-        }
-        else return false;
-        return trueCount == array.length;
-    }
-    /**
-     * Method that checks if the elements in the array are all the same
-     * @param array the {@code int} array to be checked if all elements are the same
-     * @return {@code true} if all elements are the same in the {@code int} array
-     */
-    // TODO: refactor to generics.
-    public static boolean checkIfAllNumbersAreTheSame(int[] array) {
-        byte trueCount = 0;
-        if (array.length != 0) {
-            int firstElement = array[0];
-            booleans = new boolean[array.length];
-
-            IntStream.range(0, array.length).filter(i -> array[i] == firstElement).forEach(i -> booleans[i] = true);
-
-            for (boolean e : booleans) {
-                if (e) {
-                    trueCount++;
-                }
-            }
-        }
-        else return false;
-        return trueCount == array.length;
+    public static boolean areAllTheSame(Object[] array) {
+        return IntStream.range(0, array.length).allMatch(e -> array[e].hashCode() == array[0].hashCode());
     }
 
     /**
