@@ -19,7 +19,7 @@ public final class LinearSearch implements SearchingAlgorithm {
         return IntStream.range(0, arr.length)
                 .parallel()
                 .filter(i -> arr[i].hashCode() == whatToFind.hashCode())
-                .map(i -> i++)
+                .map(i -> i)
                 .findFirst()
                 .orElse(-1);
     }
