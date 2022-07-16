@@ -1,8 +1,8 @@
 package com.github.pitzzahh.computing.algorithms.recursion.sumOfAllNumbers;
 
 import java.math.BigInteger;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import java.util.stream.IntStream;
 
 /**
