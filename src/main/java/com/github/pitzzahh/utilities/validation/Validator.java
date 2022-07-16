@@ -6,49 +6,97 @@ import java.util.regex.Pattern;
 import java.util.function.Function;
 import com.github.pitzzahh.utilities.classes.enums.Gender;
 
-// TODO: add comments.
+/**
+ * Interface used for various input validation.
+ * It extends the {@code Function<T, R>} interface.
+ * <p>T - the String to be tested for validation.</p>
+ * <p>R - the result of the validation, either true or false.</p>
+ */
 public interface Validator extends Function<String, Boolean> {
 
+    /**
+     * Checks if an ID is valid.
+     * Minimum of 6 characters, maximum of 11 characters
+     * @return a {@code Validator} object.
+     */
     static Validator isIdValid() {
-        return id -> Pattern.compile("^\\d{6}$").matcher(String.valueOf(id)).matches();
+        return id -> Pattern.compile("^\\d{6,11}$").matcher(String.valueOf(id)).matches();
     }
 
-    static Validator isAgeValid() {
-        return age -> (Integer.parseInt(age) > 0 && Integer.parseInt(age) < 128);
+    /**
+     * Checks if age is valid.
+     * @throws NumberFormatException if the {@code String} representation of age is not an {@code Integer}.
+     * @return a {@code Validator} object.
+     */
+    static Validator isAgeValid() throws NumberFormatException {
+        return age -> (Integer.parseInt(age) > 0 && Integer.parseInt(age) <= 130);
     }
 
+    /**
+     * Checks if a gender is valid.
+     * There is an enum called {@code Gender} that contains the list of genders.
+     * @see Gender
+     * @return a {@code Validator} object.
+     */
     static Validator isGenderValid() {
-        return gender -> Arrays.stream(Gender.values()).anyMatch(e -> e.toString().equals(gender));
+        return gender -> Arrays.stream(Gender.values()).anyMatch(e -> e.toString().equals(gender.toUpperCase()));
     }
 
+    /**
+     * Checks if an input is a letter, or a character. Uppercase or Lowercase.
+     * @return a {@code Validator} object.
+     */
     static Validator isLetter() {
         return input -> Pattern.compile("^[a-z|A-Z]$").matcher(input).matches();
     }
 
+    /**
+     * Checks if an input is yes, Uppercase Y or Lowercase y.
+     * @return a {@code Validator} object.
+     */
     static Validator isYes() {
         return input -> Pattern.compile("^[Y|y]$").matcher(input).matches();
     }
 
+    /**
+     * Checks if an input is no, Uppercase N or Lowercase n.
+     * @return a {@code Validator} object.
+     */
     static Validator isNo() {
         return input -> Pattern.compile("^[N|n]$").matcher(input).matches();
     }
 
+    /**
+     * Checks if an input is a whole number.
+     * @return a {@code Validator} object.
+     */
     static Validator isWholeNumber() {
-        return input -> Pattern.compile("^*\\d$").matcher(input).find();
+        return input -> Pattern.compile("^\\d+$").matcher(input).find();
     }
 
+    /**
+     * Checks if an input is a decimal number.
+     * @return a {@code Validator} object.
+     */
     static Validator isDecimalNumber() {
         return input -> Pattern.compile("^\\d+\\.\\d+$").matcher(input).find();
     }
 
-    static Validator isBirthDateValid() {
+    /**
+     * Checks if an input is a valid birthdate.
+     * <h3>Valid birthdate</h3>
+     * <p>YYYY-MM-dd</p>
+     * <p>example: 2002-08-24  or  20002-8-24  or  2000-1-1  or  20002-01-1</p>
+     * @throws IllegalArgumentException if a month or day is invalid.
+     * @return a {@code Validator} object.
+     */
+    static Validator isBirthDateValid() throws IllegalArgumentException {
         return input -> {
             List<String> birthDate = Arrays.stream(input.split("-")).toList();
             int day = Integer.parseInt(birthDate.get(2));
             int month = Integer.parseInt(birthDate.get(1));
-
-            if (day <= 0 || day > 30) throw new IllegalStateException("Invalid day: " + day);
-            if (month <= 0 || month > 12) throw new IllegalStateException("Invalid month: " + month);
+            if (month <= 0 || month > 12) throw new IllegalArgumentException("Invalid month: " + month);
+            if (day <= 0 || day > 30) throw new IllegalArgumentException("Invalid day: " + day);
 
             return Pattern.compile("^\\d{4}-\\d{1,2}-\\d{1,2}$").matcher(input).matches();
         };
@@ -68,10 +116,20 @@ public interface Validator extends Function<String, Boolean> {
         return input -> Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,}$").matcher(input).matches();
     }
 
+    /**
+     * Test to validation if both are valid.
+     * @param otherValidation the other {@code Validator} object.
+     * @return {@code validation.InputValidation} object.
+     */
     default Validator and(Validator otherValidation) {
         return s -> this.apply(s).equals(true) ? otherValidation.apply(s) : this.apply(s);
     }
 
+    /**
+     * Test to validation if either one of them are valid.
+     * @param otherValidation the other {@code Validator} object.
+     * @return {@code validation.InputValidation} object.
+     */
     default Validator or(Validator otherValidation) {
         return s -> this.apply(s).equals(false) ? otherValidation.apply(s) : this.apply(s);
     }
