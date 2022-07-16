@@ -1,10 +1,11 @@
 package com.github.pitzzahh.utilities;
 
+import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class NumbersUtilTest {
+class UtilityTest {
 
     @Test
     void shouldPassIfByteArrayAreAllTheSameNumber1() {
@@ -71,8 +72,23 @@ class NumbersUtilTest {
 
     @Test
     void shouldPassIfBooleanArrayElementsAreNotTheSame() {
+        // given
         var arr = new Boolean[] { true, false, true, false };
-        assertFalse(Utility.areAllTheSame(arr));
+        // when
+        var result = Utility.areAllTheSame(arr);
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    void shouldPassIfSumIsTheSame() {
+        // given
+        var list = List.of(10, 20, 30, 40);
+        // when
+        var result = Utility.sum(list, Utility.allowAll());
+        var expected = BigDecimal.valueOf(100);
+        // then
+        assertEquals(expected, result);
     }
 
     @Test
