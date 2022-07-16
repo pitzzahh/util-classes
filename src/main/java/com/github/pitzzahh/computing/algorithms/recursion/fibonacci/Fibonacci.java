@@ -14,6 +14,7 @@ public final class Fibonacci {
 
     /**
      * Sets the number to be used in finding the fibonacci result.
+     * @param number the number to used in the sequence.
      * @return the number.
      */
     public Fibonacci setNumber(int number) {

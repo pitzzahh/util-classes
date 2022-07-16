@@ -84,7 +84,7 @@ public interface Validator extends Function<String, Boolean> {
 
     /**
      * Checks if an input is a valid birthdate.
-     * <H3>Valid birthdate</H3>
+     * <p>Valid birthdate: </p>
      * <p>YYYY-MM-dd</p>
      * <p>example: 2002-08-24  or  20002-8-24  or  2000-1-1  or  20002-01-1</p>
      * @throws IllegalArgumentException if a month or day is invalid.
@@ -103,7 +103,7 @@ public interface Validator extends Function<String, Boolean> {
     }
 
     /**
-     * <H3>Password must contain:</H3>
+     * Password must contain:
      * <p> - Any number,</p>
      * <p> - lower-case letters,</p>
      * <p> - upper-case letters,</p>
