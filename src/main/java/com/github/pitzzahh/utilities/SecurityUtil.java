@@ -10,7 +10,6 @@ import javax.crypto.spec.GCMParameterSpec;
 /**
  * <p>The {@code SecurityUtil} class contains methods that encrypts and decrypts
  * in values of text files.</p>
- *
  */
 public final class SecurityUtil {
 
@@ -32,6 +31,7 @@ public final class SecurityUtil {
     /**
      * Encrypts the user's username.
      * @param usernameFile the file of where the username contained.
+     * @param user the username to encrypt.
      * @throws IOException if the file does not exist.
      */
     public static void encryptUserName(File usernameFile, String user) throws IOException {
@@ -59,9 +59,10 @@ public final class SecurityUtil {
     /**
      * Encrypts the user's pin.
      * @param pinFile the file where the pin contained.
+     * @param pin the pin to encrypt.
      * @throws IOException if the file does not exist.
      */
-    public static void encryptPin(File pinFile, String user) throws IOException {
+    public static void encryptPin(File pinFile, String pin) throws IOException {
         if (pinFile.isFile()) {
             p = "";
             pScanner = new Scanner(pinFile);
@@ -74,7 +75,7 @@ public final class SecurityUtil {
             }
             p = Utility.convertToString(EP);
             FileUtil.writeToATextFile(p, pinFile);
-            writePinToBin(pinFile, user);
+            writePinToBin(pinFile, pin);
             EP.clear();
             pScanner.close();
             resetPChar(pChar);
@@ -83,6 +84,12 @@ public final class SecurityUtil {
             System.out.println("SOMETHING WENT WRONG");
         }
     }
+
+    /**
+     * Decrypts the username from a text file.
+     * @param encryptedUsername the encrypted username file.
+     * @return the decrypted username.
+     */
     private static String decryptUserName(String encryptedUsername) {
         uChar = encryptedUsername.toCharArray();
         EU.clear();
@@ -94,6 +101,12 @@ public final class SecurityUtil {
         resetUChar(uChar);
         return u = Utility.convertToString(EU);
     }
+
+    /**
+     * Decrypts the pin from a text file.
+     * @param encryptedPin the encrypted pin file.
+     * @return the decrypted pin.
+     */
     private static String decryptPin(String encryptedPin) {
         pChar = encryptedPin.toCharArray();
         EP.clear();
@@ -105,10 +118,13 @@ public final class SecurityUtil {
         resetPChar(pChar);
         return p = Utility.convertToString(EP);
     }
+
     /**
      * Checks if the username and password matched the user's credentials.
      * @param usernameFile the file of where the username contained.
      * @param pinFile the file where the password contained.
+     * @param username the username to check
+     * @param pin the pin to check.
      * @throws IOException if the file does not exist.
      */
     public static boolean checkCredentials(File usernameFile, File pinFile, String username, String pin, boolean isAdmin) throws IOException {
@@ -157,6 +173,7 @@ public final class SecurityUtil {
             uScanner.close();
         } catch (FileNotFoundException ignored) {}
     }
+
     /**
      * Method that reWrite the user's pin to a binary file.
      * @param pinFile the file where the pin contained.
@@ -174,6 +191,7 @@ public final class SecurityUtil {
             pScanner.close();
         } catch (FileNotFoundException ignored) {}
     }
+
     /**
      * Method that rechecks the user's credentials.
      * <p>Even though the user copied and pasted the username and password from the txt file, it still won't logged in
@@ -206,6 +224,7 @@ public final class SecurityUtil {
         }
         return u.equals(username) && p.equals(pin);
     }
+
     /**
      * Method that used by an admin to view users credentials by decrypting all users credentials.
      * @param userName the username file to be decrypted.
@@ -244,6 +263,7 @@ public final class SecurityUtil {
         else return "you'reNotAllowedToAccessThis  you're'NotAnAdministrator";
         return u.concat(" " + p).strip();
     }
+
     /**
      * Resets the username char array.
      * @param uChar the username char to be refilled with empty space.
@@ -251,6 +271,7 @@ public final class SecurityUtil {
     private static void resetUChar(char[] uChar) {
         Arrays.fill(uChar, ' ');
     }
+
     /**
      * Resets the pin char array.
      * @param pChar the pin char to be refilled with empty space.
@@ -283,6 +304,7 @@ public final class SecurityUtil {
             generator.init(KEY_SIZE);
             key = generator.generateKey();
         }
+
         /**
          * Encrypts the message passed in.
          * @param message the message {@code String} to be encrypted.
@@ -296,6 +318,7 @@ public final class SecurityUtil {
             byte[] encryptedBytes = encryptionCipher.doFinal(messageInBytes);
             return encode(encryptedBytes);
         }
+
         /**
          * Decrypts the encrypted message passed in.
          * @param encryptedMessage the encrypted {@code String} to be decrypted.
@@ -312,6 +335,9 @@ public final class SecurityUtil {
         }
     }
 
+    /**
+     * Utility class {@code RSA} Rivest-Shamir-Adleman (RSA) encryption algorithm that encrypts a message and decrypts the message
+     */
     public static final class RSA {
         private static PrivateKey privateKey;
         private static PublicKey publicKey;
@@ -320,6 +346,7 @@ public final class SecurityUtil {
          * Cannot instantiate this class.
          */
         private RSA(){}
+
         /**
          * Initialize the whole program.
          * @throws Exception if something went wrong.
@@ -331,6 +358,7 @@ public final class SecurityUtil {
             privateKey = pair.getPrivate();
             publicKey = pair.getPublic();
         }
+
         /**
          * Encrypts the message passed in.
          * @param message the message {@code String} to be encrypted.
@@ -344,6 +372,7 @@ public final class SecurityUtil {
             byte[] encryptedBytes = cipher.doFinal(messageToBytes);
             return encode(encryptedBytes);
         }
+
         /**
          * Decrypts the encrypted message passed in.
          * @param encryptedMessage the encrypted {@code String} to be decrypted.
@@ -368,6 +397,7 @@ public final class SecurityUtil {
          * Cannot instantiate this class.
          */
         private AES() {}
+
         /**
          * Generates a secret key that is needed in order to access the encrypted file.
          * @return {@code secretKey} containing secret key.
@@ -402,6 +432,7 @@ public final class SecurityUtil {
                 return null;
             }
         }
+
         /**
          * Encrypts the given {@code String}.
          * @param encryptedData the {@code dataToEncrypt} to decrypt.
@@ -421,6 +452,7 @@ public final class SecurityUtil {
                 return null;
             }
         }
+
         /**
          * Stores the key to a file.
          * @param keyToStore the {@code SecretKey keyToStore} that is going to be stored in the file, needed to access the encrypted file.
@@ -440,6 +472,7 @@ public final class SecurityUtil {
             javaKeyStore.store(outputStream, credential.toCharArray());
             outputStream.close();
         }
+
         /**
          * Loads the key from the keyStore.
          * @param credential credential to protect the ke.
@@ -456,6 +489,7 @@ public final class SecurityUtil {
             return key;
         }
     }
+
     /**
      * encode the {@code byte[] data} to a String.
      * @param data the {@code byte[] data} to be encoded.
@@ -464,6 +498,7 @@ public final class SecurityUtil {
     private static String encode(byte[] data) {
         return Base64.getEncoder().encodeToString(data);
     }
+
     /**
      * decode the {@code String data} to a byte[] array.
      * @param data the encrypted {@code String} to be decrypted.
