@@ -84,7 +84,7 @@ public interface Validator extends Function<String, Boolean> {
 
     /**
      * Checks if an input is a valid birthdate.
-     * <h3>Valid birthdate</h3>
+     * <H3>Valid birthdate</H3>
      * <p>YYYY-MM-dd</p>
      * <p>example: 2002-08-24  or  20002-8-24  or  2000-1-1  or  20002-01-1</p>
      * @throws IllegalArgumentException if a month or day is invalid.
@@ -103,13 +103,13 @@ public interface Validator extends Function<String, Boolean> {
     }
 
     /**
-     * Password must contain:
-     * Any number,
-     * lower-case letters,
-     * upper-case letters,
-     * any special characters,
-     * no space,
-     * minimum of 6 characters.
+     * <H3>Password must contain:</H3>
+     * <p> - Any number,</p>
+     * <p> - lower-case letters,</p>
+     * <p> - upper-case letters,</p>
+     * <p> - any special characters,</p>
+     * <p> - no space,</p>
+     * <p> - minimum of 6 characters.</p>
      * @return {@code validation.InputValidation} object.
      */
     static Validator isPasswordValid() {

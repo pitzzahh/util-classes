@@ -87,7 +87,9 @@ public final class Utility {
 
     /**
      * Method that accepts anything.
+     * @param <T> the type used, the type should extend the {@code Number} class
      * @return always {@code true}
+     * @see Number
      */
     public static <T extends Number> Predicate<T> allowAll() {
         return e -> true;

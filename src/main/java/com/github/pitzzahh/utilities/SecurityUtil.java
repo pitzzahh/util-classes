@@ -125,6 +125,8 @@ public final class SecurityUtil {
      * @param pinFile the file where the password contained.
      * @param username the username to check
      * @param pin the pin to check.
+     * @param isAdmin if is an admin or not, admins are only capable of viewing the credentials.
+     * @return {@code true} if username and pin matches the username and pin arguments.
      * @throws IOException if the file does not exist.
      */
     public static boolean checkCredentials(File usernameFile, File pinFile, String username, String pin, boolean isAdmin) throws IOException {
@@ -478,6 +480,7 @@ public final class SecurityUtil {
          * @param credential credential to protect the ke.
          * @param filePath filePath is the path where the file is created / saved.
          * @return key, the key stored in the file.
+         * @throws Exception if exception is caught.
          */
         public static SecretKey loadFromKeyStore(String credential, String filePath) throws Exception {
             KeyStore keyStore = KeyStore.getInstance("JCEKS");

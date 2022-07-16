@@ -17,7 +17,9 @@ public final class QuickSort {
 
     /**
      * Sort the int array
-     * @param array int array that will be sorted
+     * @param <T> the type of the array, the type should extend the {@code Number} class
+     * @param array the array to sort.
+     * @see Number
      */
     public static <T extends Number> void sort(T[] array) {
         quickSort(array, 0, array.length - 1);

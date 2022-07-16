@@ -60,6 +60,9 @@ public class Person {
         return this.age != null ? Period.between(birthDate, LocalDate.now()).getYears() : 0;
     }
 
+    /**
+     * Class used for builder pattern.
+     */
     public static class PersonBuilder {
         private String firstName;
         private String lastName;

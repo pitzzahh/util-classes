@@ -5,6 +5,9 @@ import java.util.stream.IntStream;
 import java.util.concurrent.TimeUnit;
 import com.github.pitzzahh.utilities.validation.Validator;
 
+/**
+ * Class used in performing collatz conjecture calculation.
+ */
 @NoArgsConstructor
 public final class Collatz {
 
@@ -37,6 +40,7 @@ public final class Collatz {
     /**
      * Sets the number.
      * @param number the number to be set.
+     * @return {@code Collatz} object.
      */
     public Collatz setNumber(Number number) {
         if (!Validator.isWholeNumber().apply(String.valueOf(number))) throw new IllegalArgumentException(String.format("Invalid number: %f", number.doubleValue()));
