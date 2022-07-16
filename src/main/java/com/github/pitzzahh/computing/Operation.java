@@ -31,7 +31,7 @@ public interface Operation {
       */
      int SUBTRACT = 4;
      /**
-      * Choose this if you want to modulo.
+      * Choose this if you want to use modulo.
       */
      int MODULO = 5;
 }

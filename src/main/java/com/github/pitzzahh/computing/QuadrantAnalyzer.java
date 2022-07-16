@@ -24,7 +24,7 @@ public final class QuadrantAnalyzer <T extends Number, S extends Number> {
 	 * @see Quadrant
 	 */
 	public Quadrant getQuadrant() {
-		return whichQuadrant(this.x.byteValue(), this.y.byteValue());
+		return whichQuadrant(this.x, this.y);
 	}
 
 	/**
@@ -33,11 +33,11 @@ public final class QuadrantAnalyzer <T extends Number, S extends Number> {
 	 * @param y the y position on the board
 	 * @return {@code Quadrant}
 	 */
-	private static Quadrant whichQuadrant(byte x, byte y) {
-		if (x > 0 && y > 0) return FIRST_QUADRANT;
-	    else if (x < 0 && y > 0) return SECOND_QUADRANT;
-	    else if (x < 0 && y < 0) return THIRD_QUADRANT;
-	    else if (x > 0 && y < 0) return FOURTH_QUADRANT;
+	private static Quadrant whichQuadrant(Number x, Number y) {
+		if (x.intValue() > 0 && y.intValue()  > 0) return FIRST_QUADRANT;
+	    else if (x.intValue()  < 0 && y.intValue()  > 0) return SECOND_QUADRANT;
+	    else if (x.intValue()  < 0 && y.intValue()  < 0) return THIRD_QUADRANT;
+	    else if (x.intValue()  > 0 && y.intValue()  < 0) return FOURTH_QUADRANT;
 	    else return ORIGIN;
 	}
 

@@ -1,6 +1,8 @@
 package com.github.pitzzahh.computing.algorithms.sorting.quickSort;
 
 import java.util.Arrays;
+
+import com.github.pitzzahh.computing.algorithms.sorting.QuickSort;
 import org.junit.jupiter.api.Test;
 
 class QuickSortTest {

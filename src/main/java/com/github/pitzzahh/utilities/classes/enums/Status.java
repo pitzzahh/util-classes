@@ -5,15 +5,15 @@ package com.github.pitzzahh.utilities.classes.enums;
  */
 public enum Status {
     /**
-     * Denotes that an process turned out successful
+     * Denotes that a process turned out successful
      */
     SUCCESS,
     /**
-     * Denotes that an process turned out error
+     * Denotes that a process turned out error
      */
     ERROR,
     /**
-     * Denotes that an process cannot be performed.
+     * Denotes that a process cannot be performed.
      */
     CANNOT_PERFORM_OPERATION
 }

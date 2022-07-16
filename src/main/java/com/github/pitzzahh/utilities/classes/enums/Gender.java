@@ -17,7 +17,7 @@ public enum Gender {
      */
     LGBT,
     /**
-     * Select this if you are prefer not to say your gender.
+     * Select this if you are preferred not to say your gender.
      */
     PREFER_NOT_TO_SAY
 }
