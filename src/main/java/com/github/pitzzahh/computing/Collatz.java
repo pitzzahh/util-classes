@@ -1,6 +1,5 @@
 package com.github.pitzzahh.computing;
 
-import lombok.NoArgsConstructor;
 import java.util.stream.IntStream;
 import java.util.concurrent.TimeUnit;
 import com.github.pitzzahh.utilities.validation.Validator;
@@ -8,7 +7,6 @@ import com.github.pitzzahh.utilities.validation.Validator;
 /**
  * Class used in performing collatz conjecture calculation.
  */
-@NoArgsConstructor
 public final class Collatz {
 
     private static int number;
@@ -19,13 +17,14 @@ public final class Collatz {
      */
     public void runCollatzConjecture(boolean withDelay) {
         IntStream.range(1, number).forEach(i -> {
+            if (number == 1) return;
             if (number % 2 != 0) {
-                number = (number * 3) + 1;
                 System.out.printf("Number %d : %d is ODD\n", i, number);
+                number = (number * 3) + 1;
             }
             else {
-                number = number / 2;
                 System.out.printf("Number %d : %d is EVEN\n", i, number);
+                number = number / 2;
             }
             if (withDelay) {
                 try {

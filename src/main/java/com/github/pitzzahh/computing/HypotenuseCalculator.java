@@ -1,22 +1,32 @@
 package com.github.pitzzahh.computing;
 
-import lombok.Getter;
 import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 /**
  * Class used in performing hypotenuse calculations.
  * @param <T> the x coordinate.
  * @param <S> the y coordinate.
  */
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class HypotenuseCalculator<T extends Number, S extends Number> {
 
 	private T x;
 	private S y;
+
+	/**
+	 * All args constructor for {@code HypotenuseCalculator} class.
+	 * @param x the x coordinate.
+	 * @param y the y coordinate.
+	 */
+	public HypotenuseCalculator(T x, S y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	/**
+	 * No args constructor.
+	 */
+	public HypotenuseCalculator() {
+	}
 
 	/**
 	 * Computes the hypotenuse.
@@ -28,5 +38,13 @@ public class HypotenuseCalculator<T extends Number, S extends Number> {
 		var x = new BigDecimal(xValue);
 		var y = new BigDecimal(yValue);
 		return BigDecimal.valueOf(Math.sqrt((x.doubleValue() * x.doubleValue()) + (y.doubleValue() * y.doubleValue())));
+	}
+
+	public T getX() {
+		return this.x;
+	}
+
+	public S getY() {
+		return this.y;
 	}
 }

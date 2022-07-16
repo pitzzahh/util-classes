@@ -1,13 +1,11 @@
 package com.github.pitzzahh.computing.algorithms.sorting;
 
-import lombok.Data;
 import java.util.Random;
 
 /**
  * The {@code QuickSort} class contains overloaded methods that can sort
  * primitive data types are not allowed, use the wrapper class instead.
  */
-@Data
 public final class QuickSort {
 
     // cannot instantiate this class

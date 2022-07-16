@@ -1,21 +1,13 @@
 package com.github.pitzzahh.utilities.classes;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import java.time.Period;
 import java.time.LocalDate;
-import lombok.NoArgsConstructor;
 import com.github.pitzzahh.utilities.classes.enums.Gender;
 
 /**
  * Template class used to create a person object.
  * The age field is automatically calculated when an object is not null.
  */
-@Setter
-@Getter
-@ToString
-@NoArgsConstructor
 public class Person {
 
     private String firstName;
@@ -45,6 +37,12 @@ public class Person {
     }
 
     /**
+     * No args constructor.
+     */
+    public Person() {
+    }
+
+    /**
      * Person builder.
      * @return a {@code PersonBuilder} object.
      */
@@ -53,11 +51,102 @@ public class Person {
     }
 
     /**
-     * Gets the exact age of the person/
-     * @return the calculated age based on the current year.
+     * Gets the first name of the person.
+     * @return {@code String}, the firstname of the current {@code Person} object.
+     */
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    /**
+     * Gets the last name of the person.
+     * @return {@code String}, the lastname of the current {@code Person} object.
+     */
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    /**
+     * Gets the exact age of the person.
+     * @return {@code Integer}, the calculated age based on the current year.
      */
     public Integer getAge() {
         return this.age != null ? Period.between(birthDate, LocalDate.now()).getYears() : 0;
+    }
+
+    /**
+     * Gets the gender of the person.
+     * @return {@code Gender}, the gender of the current {@code Person} object.
+     */
+    public Gender getGender() {
+        return this.gender;
+    }
+
+    /**
+     * Gets the address of the person.
+     * @return {@code String}, the address of the current {@code Person} object.
+     */
+    public String getAddress() {
+        return this.address;
+    }
+
+    /**
+     * Gets the birth date of the person.
+     * @return {@code LocalDate}, the birthdate of the current {@code Person} object.
+     * @see LocalDate
+     */
+    public LocalDate getBirthDate() {
+        return this.birthDate;
+    }
+
+    /**
+     * Sets the firstName for the current {@code Person} object.
+     * @param firstName the first name to be set.
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * Sets the lastName for the current {@code Person} object.
+     * @param lastName the last name to be set.
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * Sets the gender for the current {@code Person} object.
+     * @param gender the gender to be set.
+     * @see Gender
+     */
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * Sets the address for the current {@code Person} object.
+     * @param address the address to be set.
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * Sets the birthDate for the current {@code Person} object.
+     * @param birthDate the birthDate to be set.
+     * @see LocalDate
+     */
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    /**
+     * Prints the {@code Person} object as a {@code String} representation.
+     * @return {@code String} representation of the current {@code Person} object.
+     */
+    public String toString() {
+        return "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", age=" + this.getAge() + ", gender=" + this.getGender() + ", address=" + this.getAddress() + ", birthDate=" + this.getBirthDate() + ")";
     }
 
     /**

@@ -1,8 +1,5 @@
 package com.github.pitzzahh.computing;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 import static com.github.pitzzahh.computing.QuadrantAnalyzer.Quadrant.*;
 
 /**
@@ -10,13 +7,26 @@ import static com.github.pitzzahh.computing.QuadrantAnalyzer.Quadrant.*;
  * @param <T> the x coordinate.
  * @param <S> the y coordinate.
  */
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public final class QuadrantAnalyzer <T extends Number, S extends Number> {
 
 	private T x;
 	private S y;
+
+	/**
+	 * All args constructor for {@code QuadrantAnalyzer} class.
+	 * @param x the x coordinate.
+	 * @param y the y coordinate.
+	 */
+	public QuadrantAnalyzer(T x, S y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	/**
+	 * No args constructor.
+	 */
+	public QuadrantAnalyzer() {
+	}
 
 	/**
 	 * Gets the quadrant position of the coordinates.
@@ -39,6 +49,22 @@ public final class QuadrantAnalyzer <T extends Number, S extends Number> {
 	    else if (x.intValue()  < 0 && y.intValue()  < 0) return THIRD_QUADRANT;
 	    else if (x.intValue()  > 0 && y.intValue()  < 0) return FOURTH_QUADRANT;
 	    else return ORIGIN;
+	}
+
+	/**
+	 * Gets the x coordiinate
+	 * @return {@code T}, the x coordinte
+	 */
+	public T getX() {
+		return this.x;
+	}
+
+	/**
+	 * Gets the y coordiinate
+	 * @return {@code S}, the y coordinte
+	 */
+	public S getY() {
+		return this.y;
 	}
 
 	/**

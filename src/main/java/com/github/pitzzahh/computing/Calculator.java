@@ -3,8 +3,6 @@ package com.github.pitzzahh.computing;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 /**
  * Utility Calculator class used for basic arithmetic operations.
@@ -12,12 +10,26 @@ import lombok.AllArgsConstructor;
  * @param <T> the first number(any type of number)
  * @param <S> the second number(any type of number)
  */
-@NoArgsConstructor
-@AllArgsConstructor
 public final class Calculator <T extends Number, S extends Number> implements Operation {
 
     private T firstNumber;
     private S secondNumber;
+
+    /**
+     * All args constructor for {@code Calculator} class.
+     * @param firstNumber the first number.
+     * @param secondNumber the second number.
+     */
+    public Calculator(T firstNumber, S secondNumber) {
+        this.firstNumber = firstNumber;
+        this.secondNumber = secondNumber;
+    }
+
+    /**
+     * No args Constructor.
+     */
+    public Calculator() {
+    }
 
     /**
      * The method to be invoked in order to get the result.
