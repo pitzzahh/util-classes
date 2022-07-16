@@ -12,6 +12,7 @@
 
     <properties>
         <maven.test.skip>true</maven.test.skip>
+        <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,7 +48,7 @@
                 <configuration>
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
                 </configuration>
             </plugin>
 
@@ -97,7 +98,6 @@
         </plugins>
 
     </build>
-
 
     <name>util-classes</name>
     <description>This is a Java library that contains some utility classes that people can use on their project.</description>
