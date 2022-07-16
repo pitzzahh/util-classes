@@ -1,7 +1,6 @@
-package com.github.pitzzahh.computing.algorithms.sorting.quickSort;
+package com.github.pitzzahh.computing.algorithms.sorting;
 
 import lombok.Data;
-
 import java.util.Random;
 
 /**
