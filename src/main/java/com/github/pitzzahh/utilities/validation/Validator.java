@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import com.github.pitzzahh.utilities.classes.enums.Gender;
 
 /**
@@ -12,7 +13,7 @@ import com.github.pitzzahh.utilities.classes.enums.Gender;
  * <p>T - the String to be tested for validation.</p>
  * <p>R - the result of the validation, either true or false.</p>
  */
-public interface Validator extends Function<String, Boolean> {
+public interface Validator extends Predicate<String> {
 
     /**
      * Checks if an ID is valid.
@@ -122,7 +123,7 @@ public interface Validator extends Function<String, Boolean> {
      * @return {@code validation.InputValidation} object.
      */
     default Validator and(Validator otherValidation) {
-        return s -> this.apply(s).equals(true) ? otherValidation.apply(s) : this.apply(s);
+        return s -> this.test(s) == (true) ? otherValidation.test(s) : this.test(s);
     }
 
     /**
@@ -131,6 +132,6 @@ public interface Validator extends Function<String, Boolean> {
      * @return {@code validation.InputValidation} object.
      */
     default Validator or(Validator otherValidation) {
-        return s -> this.apply(s).equals(false) ? otherValidation.apply(s) : this.apply(s);
+        return s -> this.test(s) == (false) ? otherValidation.test(s) : this.test(s);
     }
 }
