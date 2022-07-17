@@ -42,8 +42,8 @@ public final class Collatz {
      * @return {@code Collatz} object.
      */
     public Collatz setNumber(Number number) {
-        if (!Validator.isWholeNumber().apply(String.valueOf(number))) throw new IllegalArgumentException(String.format("Invalid number: %f", number.doubleValue()));
-        if (Validator.isDecimalNumber().apply(String.valueOf(number))) throw new IllegalArgumentException("Only whole numbers are accepted");
+        if (!Validator.isWholeNumber().test(String.valueOf(number))) throw new IllegalArgumentException(String.format("Invalid number: %f", number.doubleValue()));
+        if (Validator.isDecimalNumber().test(String.valueOf(number))) throw new IllegalArgumentException("Only whole numbers are accepted");
         Collatz.number = (int) number;
         return this;
     }
