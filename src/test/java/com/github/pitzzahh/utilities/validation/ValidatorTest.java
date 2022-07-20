@@ -12,7 +12,7 @@ class ValidatorTest {
         // given
         var id = "122021";
         // when
-        var result = Validator.isIdValid().apply(id);
+        var result = Validator.isIdValid().test(id);
         // then
         assertTrue(result);
     }
@@ -22,7 +22,7 @@ class ValidatorTest {
         // given
         var id = "123";
         // when
-        var result = Validator.isIdValid().apply(id);
+        var result = Validator.isIdValid().test(id);
         // then
         assertFalse(result);
     }
@@ -32,7 +32,7 @@ class ValidatorTest {
         // given
         var id = "pizza";
         // when
-        var result = Validator.isIdValid().apply(id);
+        var result = Validator.isIdValid().test(id);
         // then
         assertFalse(result);
     }
@@ -42,7 +42,7 @@ class ValidatorTest {
         // given
         var age = "12";
         // when
-        var result = Validator.isAgeValid().apply(age);
+        var result = Validator.isAgeValid().test(age);
         // then
         assertTrue(result);
     }
@@ -52,7 +52,7 @@ class ValidatorTest {
         // given
         var age = "0";
         // when
-        var result = Validator.isAgeValid().apply(age);
+        var result = Validator.isAgeValid().test(age);
         // then
         assertFalse(result);
     }
@@ -65,7 +65,7 @@ class ValidatorTest {
         assertThrows(NumberFormatException.class, new Executable() {
             @Override
             public void execute() throws NumberFormatException {
-                var result = Validator.isAgeValid().apply(age);
+                var result = Validator.isAgeValid().test(age);
                 assertFalse(result);
             }
         });
@@ -76,7 +76,7 @@ class ValidatorTest {
         // given
         var gender = Gender.MALE.toString();
         // when
-        var result = Validator.isGenderValid().apply(gender);
+        var result = Validator.isGenderValid().test(gender);
         // then
         assertTrue(result);
     }
@@ -86,7 +86,7 @@ class ValidatorTest {
         // given
         var gender = Gender.FEMALE;
         // when
-        var result = Validator.isGenderValid().apply(gender.name());
+        var result = Validator.isGenderValid().test(gender.name());
         // then
         assertTrue(result);
     }
@@ -96,7 +96,7 @@ class ValidatorTest {
         // given
         var gender = Gender.LGBT;
         // when
-        var result = Validator.isGenderValid().apply(gender.name());
+        var result = Validator.isGenderValid().test(gender.name());
         // then
         assertTrue(result);
     }
@@ -106,7 +106,7 @@ class ValidatorTest {
         // given
         var gender = Gender.PREFER_NOT_TO_SAY;
         // when
-        var result = Validator.isGenderValid().apply(gender.name());
+        var result = Validator.isGenderValid().test(gender.name());
         // then
         assertTrue(result);
     }
@@ -120,7 +120,7 @@ class ValidatorTest {
                 // given
                 var gender = Gender.valueOf("other gender");
                 // then
-                var result = Validator.isGenderValid().apply(gender.name());
+                var result = Validator.isGenderValid().test(gender.name());
                 // when
                 assertFalse(result);
             }
@@ -134,7 +134,7 @@ class ValidatorTest {
         // when
         for (int i = 0; i < letters.length(); i++) {
             // then
-            var result = Validator.isLetter().apply(String.valueOf(letters.charAt(i)));
+            var result = Validator.isLetter().test(String.valueOf(letters.charAt(i)));
             assertTrue(result);
         }
     }
@@ -146,7 +146,7 @@ class ValidatorTest {
         // when
         for (int i = 0; i < letters.length(); i++) {
             // then
-            var result = Validator.isLetter().apply(String.valueOf(letters.charAt(i)));
+            var result = Validator.isLetter().test(String.valueOf(letters.charAt(i)));
             assertTrue(result);
         }
     }
@@ -158,7 +158,7 @@ class ValidatorTest {
         // when
         for (int i = 0; i < letters.length(); i++) {
             // then
-            var result = Validator.isLetter().apply(String.valueOf(letters.charAt(i)));
+            var result = Validator.isLetter().test(String.valueOf(letters.charAt(i)));
             assertFalse(result);
         }
     }
@@ -170,7 +170,7 @@ class ValidatorTest {
         // when
         for (int i = 0; i < letters.length(); i++) {
             // then
-            var result = Validator.isYes().apply(String.valueOf(letters.charAt(i)));
+            var result = Validator.isYes().test(String.valueOf(letters.charAt(i)));
             assertTrue(result);
         }
     }
@@ -182,7 +182,7 @@ class ValidatorTest {
         // when
         for (int i = 0; i < letters.length(); i++) {
             // then
-            var result = Validator.isYes().apply(String.valueOf(letters.charAt(i)));
+            var result = Validator.isYes().test(String.valueOf(letters.charAt(i)));
             assertFalse(result);
         }
     }
@@ -194,7 +194,7 @@ class ValidatorTest {
         // when
         for (int i = 0; i < letters.length(); i++) {
             // then
-            var result = Validator.isNo().apply(String.valueOf(letters.charAt(i)));
+            var result = Validator.isNo().test(String.valueOf(letters.charAt(i)));
             assertTrue(result);
         }
     }
@@ -206,7 +206,7 @@ class ValidatorTest {
         // when
         for (int i = 0; i < letters.length(); i++) {
             // then
-            var result = Validator.isNo().apply(String.valueOf(letters.charAt(i)));
+            var result = Validator.isNo().test(String.valueOf(letters.charAt(i)));
             assertFalse(result);
         }
     }
@@ -216,7 +216,7 @@ class ValidatorTest {
         // given
         var number = "123";
         // when
-        var result = Validator.isWholeNumber().apply(number);
+        var result = Validator.isWholeNumber().test(number);
         // then
         assertTrue(result);
     }
@@ -226,7 +226,7 @@ class ValidatorTest {
         // given
         var number = "123.123";
         // when
-        var result = Validator.isWholeNumber().apply(number);
+        var result = Validator.isWholeNumber().test(number);
         // then
         assertFalse(result);
     }
@@ -236,7 +236,7 @@ class ValidatorTest {
         // given
         var number = "123.123";
         // when
-        var result = Validator.isDecimalNumber().apply(number);
+        var result = Validator.isDecimalNumber().test(number);
         // then
         assertTrue(result);
     }
@@ -246,7 +246,7 @@ class ValidatorTest {
         // given
         var number = "123";
         // when
-        var result = Validator.isDecimalNumber().apply(number);
+        var result = Validator.isDecimalNumber().test(number);
         // then
         assertFalse(result);
     }
@@ -258,7 +258,7 @@ class ValidatorTest {
         var month = "8";
         var day = "24";
         // when
-        var result = Validator.isBirthDateValid().apply(year + "-" + month + "-" + day);
+        var result = Validator.isBirthDateValid().test(year + "-" + month + "-" + day);
         // then
         assertTrue(result);
     }
@@ -270,7 +270,7 @@ class ValidatorTest {
         var month = "8";
         var day = "24";
         // when
-        var result = Validator.isBirthDateValid().apply(year + "-" + month + "-" + day);
+        var result = Validator.isBirthDateValid().test(year + "-" + month + "-" + day);
         // then
         assertFalse(result);
     }
@@ -285,7 +285,7 @@ class ValidatorTest {
             @Override
             public void execute() throws IllegalArgumentException {
                 // when
-                var result = Validator.isBirthDateValid().apply(year + "-" + month + "-" + day);
+                var result = Validator.isBirthDateValid().test(year + "-" + month + "-" + day);
                 // then
                 assertFalse(result);
             }
@@ -302,7 +302,7 @@ class ValidatorTest {
             @Override
             public void execute() throws IllegalArgumentException {
                 // when
-                var result = Validator.isBirthDateValid().apply(year + "-" + month + "-" + day);
+                var result = Validator.isBirthDateValid().test(year + "-" + month + "-" + day);
                 // then
                 assertFalse(result);
             }
@@ -314,7 +314,7 @@ class ValidatorTest {
         // given
         var password = "!Password@123";
         // when
-        var result = Validator.isPasswordValid().apply(password);
+        var result = Validator.isPasswordValid().test(password);
         // then
         assertTrue(result);
     }
@@ -324,7 +324,7 @@ class ValidatorTest {
         // given
         var password = "Password123";
         // when
-        var result = Validator.isPasswordValid().apply(password);
+        var result = Validator.isPasswordValid().test(password);
         // then
         assertFalse(result);
     }
@@ -334,7 +334,7 @@ class ValidatorTest {
         // given
         var password = "!password@123";
         // when
-        var result = Validator.isPasswordValid().apply(password);
+        var result = Validator.isPasswordValid().test(password);
         // then
         assertFalse(result);
     }
@@ -344,7 +344,7 @@ class ValidatorTest {
         // given
         var password = "!Password@";
         // when
-        var result = Validator.isPasswordValid().apply(password);
+        var result = Validator.isPasswordValid().test(password);
         // then
         assertFalse(result);
     }
@@ -354,7 +354,7 @@ class ValidatorTest {
         // given
         var yes = "Y";
         // when
-        var result = Validator.isLetter().and(Validator.isYes()).apply(yes);
+        var result = Validator.isLetter().and(Validator.isYes()).test(yes);
         // then
         assertTrue(result);
     }
@@ -364,7 +364,7 @@ class ValidatorTest {
         // given
         var yes = "K";
         // when
-        var result = Validator.isLetter().or(Validator.isNo()).apply(yes);
+        var result = Validator.isLetter().or(Validator.isNo()).test(yes);
         // then
         assertTrue(result);
     }
@@ -374,7 +374,7 @@ class ValidatorTest {
         // given
         var yes = "KN";
         // when
-        var result = Validator.isLetter().or(Validator.isNo()).apply(yes);
+        var result = Validator.isLetter().or(Validator.isNo()).test(yes);
         // then
         assertFalse(result);
     }
