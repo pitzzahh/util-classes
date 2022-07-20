@@ -12,7 +12,7 @@ public interface Operation {
      * @return the calculated number based from the operations.
      * @throws IllegalArgumentException if the operation is invalid.
      */
-     Number calculate(int operation) throws IllegalArgumentException;
+     Operation calculate(int operation) throws IllegalArgumentException;
 
      /**
       * Choose this if you want to multiply.
@@ -34,4 +34,8 @@ public interface Operation {
       * Choose this if you want to use modulo.
       */
      int MODULO = 5;
+
+     int HYPOTENUSE_CALCULATION = 6;
+
+     int ANALYZE_QUADRANT = 7;
 }
