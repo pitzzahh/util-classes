@@ -1,6 +1,5 @@
 package com.github.pitzzahh.computing;
 
-
 import java.util.Arrays;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -22,6 +21,7 @@ public final class Calculator <T extends Number, R extends Number, S extends Num
     private BigDecimal result = BigDecimal.ZERO;
 
     private boolean isQuadrant;
+
     /**
      * No args Constructor.
      */
@@ -67,7 +67,8 @@ public final class Calculator <T extends Number, R extends Number, S extends Num
      * Gets the result of the calculation/s.
      * @return {@code Number} the calculated number.
      */
-    public Number getCalculation() {
+    public Number getCalculation() throws IllegalAccessException {
+        if (isQuadrant) throw new IllegalAccessException("redundant call to getCalculation(), if op is ANALYZE_QUADRANT, no need to call getCalculation()");
         return this.result;
     }
 
