@@ -1,6 +1,7 @@
 package com.github.pitzzahh.utilities;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.stream.IntStream;
@@ -49,6 +50,24 @@ public final class Utility {
      */
     public static <T extends Number> Number[] convertToArray(Collection<T> collection) {
         return collection.toArray(new Number[collection.size()]);
+    }
+
+    /**
+     * Converts a {@code String} to a {@code String[]}
+     * @param s the {@code String}
+     * @return a {@code String[]}
+     */
+    public static String[] convertToArray(String s) {
+        List<String> strings = new ArrayList<>(s.length());
+        strings.forEach(e -> strings.add(s));
+        return strings.toArray(new String[s.length()]);
+    }
+
+
+    public static List<Character> convertToListOfCharacters(String s) {
+        List<Character> characters = new ArrayList<>(s.length());
+        characters.forEach(e -> characters.add(s.charAt(e)));
+        return characters;
     }
 
     /**
