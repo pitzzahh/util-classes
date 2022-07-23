@@ -12,7 +12,7 @@ class CalculatorTest {
     @Nested
     class Arithmetic {
         @Test
-        void multiply() {
+        void multiply() throws IllegalAccessException {
             // given
             var calculator = new Calculator<>(4, 2);
             // when
@@ -23,7 +23,7 @@ class CalculatorTest {
         }
 
         @Test
-        void divide() {
+        void divide() throws IllegalAccessException  {
             // given
             var calculator = new Calculator<>();
             calculator.setNumbers(706, 20);
@@ -36,7 +36,7 @@ class CalculatorTest {
         }
 
         @Test
-        void add() {
+        void add() throws IllegalAccessException {
             // given
             var calculator = new Calculator<>(4.2, 2);
             // when
@@ -47,7 +47,7 @@ class CalculatorTest {
         }
 
         @Test
-        void subtract() {
+        void subtract() throws IllegalAccessException {
             // given
             var calculator = new Calculator<>(4, 2);
             // when
@@ -58,7 +58,7 @@ class CalculatorTest {
         }
 
         @Test
-        void mod() {
+        void mod() throws IllegalAccessException {
             // given
             var calculator = new Calculator<>(4, 2);
             // when
@@ -102,7 +102,7 @@ class CalculatorTest {
         }
 
         @Test
-        void hypotenuse() {
+        void hypotenuse() throws IllegalAccessException {
             // given
             var calculator = new Calculator<>(2, 2);
             // when
