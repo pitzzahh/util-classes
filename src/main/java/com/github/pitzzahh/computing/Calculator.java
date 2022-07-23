@@ -193,6 +193,6 @@ public final class Calculator <T extends Number, R extends Number, S extends Num
 
     @Override
     public String toString() {
-        return isQuadrant ? Quadrant.valueOf(Arrays.stream(values()).filter(o -> o.ordinal() == result.intValue()).findAny().get().toString()).toString() : "";
+        return isQuadrant ? Quadrant.valueOf(Arrays.stream(values()).filter(o -> o.ordinal() == result.intValue()).findAny().get().toString()).toString() : "0";
     }
 }
