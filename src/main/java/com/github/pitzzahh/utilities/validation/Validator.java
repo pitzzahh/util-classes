@@ -21,7 +21,7 @@ public interface Validator extends Predicate<String> {
      * @return a {@code Validator} object.
      */
     static Validator isIdValid() {
-        return id -> Pattern.compile("^\\d{6,11}$").matcher(String.valueOf(id)).matches();
+        return id -> Pattern.compile("^\\d{6,9}$").matcher(String.valueOf(id)).matches();
     }
 
     /**
@@ -93,12 +93,15 @@ public interface Validator extends Predicate<String> {
      */
     static Validator isBirthDateValid() throws IllegalArgumentException {
         return input -> {
-            List<String> birthDate = Arrays.stream(input.split("-")).toList();
-            int day = Integer.parseInt(birthDate.get(2));
-            int month = Integer.parseInt(birthDate.get(1));
-            if (month <= 0 || month > 12) throw new IllegalArgumentException("Invalid month: " + month);
-            if (day <= 0 || day > 30) throw new IllegalArgumentException("Invalid day: " + day);
-
+            try {
+                List<String> birthDate = Arrays.stream(input.split("-")).toList();
+                int day = Integer.parseInt(birthDate.get(2));
+                int month = Integer.parseInt(birthDate.get(1));
+                if (month <= 0 || month > 12) throw new IllegalArgumentException("Invalid month: " + month);
+                if (day <= 0 || day > 30) throw new IllegalArgumentException("Invalid day: " + day);
+            } catch (RuntimeException ignored) {
+                return false;
+            }
             return Pattern.compile("^\\d{4}-\\d{1,2}-\\d{1,2}$").matcher(input).matches();
         };
     }
