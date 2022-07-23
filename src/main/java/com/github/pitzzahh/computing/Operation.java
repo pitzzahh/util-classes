@@ -34,8 +34,12 @@ public interface Operation {
       * Choose this if you want to use modulo.
       */
      int MODULO = 5;
-
+     /**
+      * Choose this if you want to perform hypotenuse calculation.
+      */
      int HYPOTENUSE_CALCULATION = 6;
-
+     /**
+      * Choose this if you want to analyze the quadrant of two points.
+      */
      int ANALYZE_QUADRANT = 7;
 }
