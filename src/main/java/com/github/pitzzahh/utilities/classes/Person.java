@@ -71,7 +71,7 @@ public class Person {
      * @return {@code Integer}, the calculated age based on the current year.
      */
     public Integer getAge() {
-        return this.age != null ? Period.between(birthDate, LocalDate.now()).getYears() : 0;
+        return this.birthDate != null ? Period.between(this.getBirthDate(), LocalDate.now()).getYears() : 0;
     }
 
     /**
