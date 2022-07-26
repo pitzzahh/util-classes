@@ -64,6 +64,7 @@ public final class Calculator <T extends Number, R extends Number, S extends Num
     /**
      * Gets the result of the calculation/s.
      * @return {@code Number} the calculated number.
+     * @throws IllegalAccessException if called when using {@link Calculator#ANALYZE_QUADRANT}
      */
     public Number getCalculation() throws IllegalAccessException {
         if (isQuadrant) throw new IllegalAccessException("redundant call to getCalculation(), if op is ANALYZE_QUADRANT, no need to call getCalculation()");
@@ -158,6 +159,7 @@ public final class Calculator <T extends Number, R extends Number, S extends Num
      * Method that sets all numbers to be calculated.
      * @param firstNumber the first number.
      * @param secondNumber the second number.
+     * @param thirdNumber the third number.
      */
     public void setNumbers(T firstNumber, R secondNumber, S thirdNumber) {
         this.a = firstNumber;
