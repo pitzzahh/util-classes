@@ -101,7 +101,6 @@ public interface Validator extends Predicate<String> {
      * <p>(\d{1}|0[\d]|[1-2]\d|[1-3][0-1])      day: between 1-31</p>
      * @return a {@code Validator} object.
      */
-    // TODO: fix bug [year is valid when year is: [ 1 or 2]0[0 or 1 or 2]any single digit ]
     static Validator isBirthDateValid() {
         return input -> Pattern.compile("^(1[8|9][5-9]\\d|20[0-2]\\d|19[\\d]\\d|)-([1-9]{1}|0[1-9]|1[0-2])-(\\d{1}|0[\\d]|[1-2]\\d|[1-3][0-1])$").matcher(input).matches();
     }
