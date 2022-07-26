@@ -2,8 +2,6 @@ package com.github.pitzzahh.computing;
 
 import java.util.Arrays;
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import com.github.pitzzahh.utilities.classes.enums.Quadrant;
 import static com.github.pitzzahh.utilities.classes.enums.Quadrant.*;
 

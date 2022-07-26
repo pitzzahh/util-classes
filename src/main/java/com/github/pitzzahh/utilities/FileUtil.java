@@ -3,8 +3,6 @@ package com.github.pitzzahh.utilities;
 import java.io.*;
 import java.util.List;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 /**
  * Class used to some file operations.
