@@ -264,7 +264,7 @@ class ValidatorTest {
     }
 
     @Test
-    void shouldPassIfBirthDateIsInValidBecauseYearIsInvalid() {
+    void shouldPassIfBirthDateIsInValidBecauseYearIsOnlyThreeCharacters() {
         // given
         var year = "123";
         var month = "8";
@@ -275,38 +275,41 @@ class ValidatorTest {
         assertFalse(result);
     }
 
+    // TODO: fix bug
     @Test
-    void shouldPassIfBirthDateIsInValidBecauseMonthIsInvalidAndThrowsIllegalArgumentException() {
+    void shouldPassIfBirthDateIsInValidBecauseYearIsInvalid() {
+        // given
+        var year = "1010";
+        var month = "8";
+        var day = "24";
+        // when
+        var result = Validator.isBirthDateValid().test(year + "-" + month + "-" + day);
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    void shouldPassIfBirthDateIsInValidBecauseMonthIsInvalid() {
         // given
         var year = "2002";
         var month = "0";
         var day = "24";
-        assertThrows(IllegalArgumentException.class, new Executable() {
-            @Override
-            public void execute() throws IllegalArgumentException {
-                // when
-                var result = Validator.isBirthDateValid().test(year + "-" + month + "-" + day);
-                // then
-                assertFalse(result);
-            }
-        });
+        // when
+        var result = Validator.isBirthDateValid().test(year + "-" + month + "-" + day);
+        // then
+        assertFalse(result);
     }
 
     @Test
-    void shouldPassIfBirthDateIsInValidBecauseDayIsInvalidAndThrowsIllegalArgumentException() {
+    void shouldPassIfBirthDateIsInValidBecauseDayIsInvalid() {
         // given
         var year = "2002";
         var month = "8";
         var day = "32";
-        assertThrows(IllegalArgumentException.class, new Executable() {
-            @Override
-            public void execute() throws IllegalArgumentException {
-                // when
-                var result = Validator.isBirthDateValid().test(year + "-" + month + "-" + day);
-                // then
-                assertFalse(result);
-            }
-        });
+        // when
+        var result = Validator.isBirthDateValid().test(year + "-" + month + "-" + day);
+        // then
+        assertFalse(result);
     }
 
     @Test
