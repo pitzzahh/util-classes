@@ -96,14 +96,14 @@ public interface Validator extends Predicate<String> {
      * <p>example: 2002-08-24  or  2002-8-24  or  2002-1-1  or  2002-01-1  or  2002-01-1</p>
      * <p>Valid range of birthday: 1850 <-> 2029</p>
      * <p>Pattern:</p>
-     * <p>(1[8|9][5-9]\d|[1-2]0[0-2]\d)        year: between 1850-2029</p>
-     * <p>([1-9]{1}|0[1-9]|1[0-2])             month: between 1-12</p>
-     * <p>(\d{1}|0[\d]|[1-2]\d|[1-3][0-1])     day: between 1-31</p>
+     * <p>(1[8|9][5-9]\d|20[0-2]\d|19[\d]\d|)   year: between 1850-2029</p>
+     * <p>([1-9]{1}|0[1-9]|1[0-2]|)             month: between 1-12</p>
+     * <p>(\d{1}|0[\d]|[1-2]\d|[1-3][0-1])      day: between 1-31</p>
      * @return a {@code Validator} object.
      */
     // TODO: fix bug [year is valid when year is: [ 1 or 2]0[0 or 1 or 2]any single digit ]
     static Validator isBirthDateValid() {
-        return input -> Pattern.compile("^(1[8|9][5-9]\\d|20[0-2]\\d|19[\\d]\\d|)-([1-9]{1}|0[1-9]|1[0-2]|)-(\\d{1}|0[\\d]|[1-2]\\d|[1-3][0-1])$").matcher(input).matches();
+        return input -> Pattern.compile("^(1[8|9][5-9]\\d|20[0-2]\\d|19[\\d]\\d|)-([1-9]{1}|0[1-9]|1[0-2])-(\\d{1}|0[\\d]|[1-2]\\d|[1-3][0-1])$").matcher(input).matches();
     }
 
     /**
