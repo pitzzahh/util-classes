@@ -4,18 +4,14 @@ import java.io.*;
 import java.util.*;
 import javax.crypto.*;
 import java.security.*;
+import java.util.stream.IntStream;
 import java.nio.charset.StandardCharsets;
-import javax.crypto.spec.GCMParameterSpec;
-import com.github.pitzzahh.computing.Operation;
-import com.github.pitzzahh.computing.Calculator;
-import static com.github.pitzzahh.utilities.classes.TextColors.*;
 
 /**
  * <p>The {@code SecurityUtil} class contains methods that encrypts and decrypts
  * in values of text files.</p>
  */
 public final class SecurityUtil {
-    private static final byte KEY = 5;
 
     /**
      * Cannot instantiate this class
@@ -24,90 +20,26 @@ public final class SecurityUtil {
     }
 
     /**
-     * Encrypts a text.
-     * @param text the text to encrypt.
-     * @throws IllegalArgumentException if a text is empty.
+     * encode the {@code byte[] data} to a String.
+     * @param data the {@code byte[] data} to be encoded.
+     * @return the encoded String.
+     * @throws IllegalArgumentException if the data to be encrypted is empty.
      */
-    public static String encrypt(String text) throws IllegalArgumentException {
-        if (text.isEmpty()) throw new IllegalArgumentException("Text to be encrypted cannot be empty");
-        var array = text.toCharArray();
-        var list = new ArrayList<>(array.length);
-        for (char bit : array) {
-            bit += (KEY + (-10) + 4);
-            list.add(bit);
-        }
-        return Utility.convertToString(list);
+    public static String encrypt(String data) throws IllegalArgumentException {
+        if (data.trim().isEmpty()) throw new IllegalArgumentException("Text to be encrypted cannot be empty");
+        return Base64.getEncoder().encodeToString(data.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
-     * Decrypts a text.
-     * @param text the encrypted username file.
-     * @return the decrypted username.
+     * Decodes the {@code String data} to a decoded {@code String}
+     * @param data the encrypted {@code String} to be decrypted.
+     * @return the decoded String.
+     * @throws IllegalArgumentException if the encrypted data is empty.
      */
-    public static String decrypt(String text) {
-        if (text.isEmpty()) throw new IllegalArgumentException("Text to be decrypted cannot be empty");
-        var array = text.toCharArray();
-        var list = new ArrayList<>(array.length);
-        for (char bit : array) {
-            bit -= (KEY + (-10) + 4);
-            list.add(bit);
-        }
-        return Utility.convertToString(list);
-    }
-
-    /**
-     * Utility class {@code OLD_AES} advance encryption standard that encrypts a message and decrypts the message
-     */
-    public static final class OLD_AES {
-
-        private static SecretKey key; // contained the key
-        private static Cipher encryptionCipher;
-        private static final int T_LEN = 128;
-        private static final int KEY_SIZE = 128;
-
-        /**
-         * Cannot instantiate this class
-         */
-        private OLD_AES() {}
-
-        /**
-         * Initialize the whole program.
-         * @throws Exception if something went wrong.
-         */
-        public static void init() throws Exception {
-            KeyGenerator generator = KeyGenerator.getInstance("AES");
-            generator.init(KEY_SIZE);
-            key = generator.generateKey();
-        }
-
-        /**
-         * Encrypts the message passed in.
-         * @param message the message {@code String} to be encrypted.
-         * @return the encrypted {@code String};
-         * @throws Exception if anything went wrong.
-         */
-        public static String encrypt(String message) throws Exception {
-            byte[] messageInBytes = message.getBytes();
-            encryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
-            encryptionCipher.init(Cipher.ENCRYPT_MODE, key);
-            byte[] encryptedBytes = encryptionCipher.doFinal(messageInBytes);
-            return encode(encryptedBytes);
-        }
-
-        /**
-         * Decrypts the encrypted message passed in.
-         * @param encryptedMessage the encrypted {@code String} to be decrypted.
-         * @return the decrypted bytes;
-         * @throws Exception if anything went wrong.
-         */
-        public static String decrypt(String encryptedMessage) throws Exception{
-            byte[] messageInBytes = decode(encryptedMessage);
-            Cipher decryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
-            GCMParameterSpec spec = new GCMParameterSpec(T_LEN, encryptionCipher.getIV());
-            decryptionCipher.init(Cipher.DECRYPT_MODE, key, spec);
-            byte[] decryptedBytes = decryptionCipher.doFinal(messageInBytes);
-            return new String(decryptedBytes);
-        }
+    public static String decrypt(String data) throws IllegalArgumentException {
+        if (data.trim().isEmpty()) throw new IllegalArgumentException("Text to be decrypted cannot be empty");
+        var b = Base64.getDecoder().decode(data);
+        return IntStream.range(0, b.length).map(i -> b[i]).mapToObj(Character::toString).reduce("", String::concat);
     }
 
     /**
