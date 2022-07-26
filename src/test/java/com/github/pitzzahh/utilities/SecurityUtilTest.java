@@ -1,17 +1,17 @@
 package com.github.pitzzahh.utilities;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SecurityUtilTest {
 
     @Test
-    void encrypt() {
+    void shouldDecrypt() {
         var text = "200263444";
         var encrypted = SecurityUtil.encrypt(text);
-        System.out.println("encrypted = " + encrypted);
         var decryped = SecurityUtil.decrypt(encrypted);
-        System.out.println("decryped = " + decryped);
+        assertEquals("200263444", decryped);
     }
 
 }
