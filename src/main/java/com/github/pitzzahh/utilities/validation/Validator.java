@@ -1,9 +1,7 @@
 package com.github.pitzzahh.utilities.validation;
 
-import java.util.List;
 import java.util.Arrays;
 import java.util.regex.Pattern;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import com.github.pitzzahh.utilities.classes.enums.Gender;
 
@@ -52,6 +50,14 @@ public interface Validator extends Predicate<String> {
     }
 
     /**
+     * Cheks if an input is a {@code String}, uppercased or lowecased, or both.
+     * @return a {@code Validator} object.
+     */
+    static Validator isString() {
+        return input -> Pattern.compile("^[A-z]+$").matcher(input).find();
+    }
+
+    /**
      * Checks if an input is yes, Uppercase Y or Lowercase y.
      * @return a {@code Validator} object.
      */
@@ -80,30 +86,24 @@ public interface Validator extends Predicate<String> {
      * @return a {@code Validator} object.
      */
     static Validator isDecimalNumber() {
-        return input -> Pattern.compile("^\\d+\\.\\d+$").matcher(input).find();
+        return input -> Pattern.compile("^(\\d+\\.\\d+|\\.\\d+|0\\.\\d+)$").matcher(input).find();
     }
 
     /**
      * Checks if an input is a valid birthdate.
      * <p>Valid birthdate: </p>
      * <p>YYYY-MM-dd</p>
-     * <p>example: 2002-08-24  or  20002-8-24  or  2000-1-1  or  20002-01-1</p>
-     * @throws IllegalArgumentException if a month or day is invalid.
+     * <p>example: 2002-08-24  or  2002-8-24  or  2002-1-1  or  2002-01-1  or  2002-01-1</p>
+     * <p>Valid range of birthday: 1850 <-> 2029</p>
+     * <p>Pattern:</p>
+     * <p>(1[8|9][5-9]\d|[1-2]0[0-2]\d)        year: between 1850-2029</p>
+     * <p>([1-9]{1}|0[1-9]|1[0-2])             month: between 1-12</p>
+     * <p>(\d{1}|0[\d]|[1-2]\d|[1-3][0-1])     day: between 1-31</p>
      * @return a {@code Validator} object.
      */
-    static Validator isBirthDateValid() throws IllegalArgumentException {
-        return input -> {
-            try {
-                List<String> birthDate = Arrays.stream(input.split("-")).toList();
-                int day = Integer.parseInt(birthDate.get(2));
-                int month = Integer.parseInt(birthDate.get(1));
-                if (month <= 0 || month > 12) throw new IllegalArgumentException("Invalid month: " + month);
-                if (day <= 0 || day > 30) throw new IllegalArgumentException("Invalid day: " + day);
-            } catch (RuntimeException ignored) {
-                return false;
-            }
-            return Pattern.compile("^\\d{4}-\\d{1,2}-\\d{1,2}$").matcher(input).matches();
-        };
+    // TODO: fix bug [year is valid when year is: [ 1 or 2]0[0 or 1 or 2]any single digit ]
+    static Validator isBirthDateValid() {
+        return input -> Pattern.compile("^(1[8|9][5-9]\\d|[1-2]0[0-2]\\d)-([1-9]{1}|0[1-9]|1[0-2])-(\\d{1}|0[\\d]|[1-2]\\d|[1-3][0-1])$").matcher(input).matches();
     }
 
     /**
@@ -120,21 +120,4 @@ public interface Validator extends Predicate<String> {
         return input -> Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,}$").matcher(input).matches();
     }
 
-    /**
-     * Test to validation if both are valid.
-     * @param otherValidation the other {@code Validator} object.
-     * @return {@code validation.InputValidation} object.
-     */
-    default Validator and(Validator otherValidation) {
-        return s -> this.test(s) == (true) ? otherValidation.test(s) : this.test(s);
-    }
-
-    /**
-     * Test to validation if either one of them are valid.
-     * @param otherValidation the other {@code Validator} object.
-     * @return {@code validation.InputValidation} object.
-     */
-    default Validator or(Validator otherValidation) {
-        return s -> this.test(s) == (false) ? otherValidation.test(s) : this.test(s);
-    }
 }
