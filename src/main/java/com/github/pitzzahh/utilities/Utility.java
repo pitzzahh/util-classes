@@ -63,7 +63,11 @@ public final class Utility {
         return strings.toArray(new String[s.length()]);
     }
 
-
+    /**
+     * Converts a {@code String} to a {@code List<Character>}
+     * @param s the {@code String} to be converted.
+     * @return a {@code List<Character>}
+     */
     public static List<Character> convertToListOfCharacters(String s) {
         List<Character> characters = new ArrayList<>(s.length());
         characters.forEach(e -> characters.add(s.charAt(e)));

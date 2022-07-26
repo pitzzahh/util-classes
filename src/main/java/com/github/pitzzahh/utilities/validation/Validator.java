@@ -94,7 +94,7 @@ public interface Validator extends Predicate<String> {
      * <p>Valid birthdate: </p>
      * <p>YYYY-MM-dd</p>
      * <p>example: 2002-08-24  or  2002-8-24  or  2002-1-1  or  2002-01-1  or  2002-01-1</p>
-     * <p>Valid range of birthday: 1850 <-> 2029</p>
+     * <p>Valid range of birthday: 1850 - 2029</p>
      * <p>Pattern:</p>
      * <p>(1[8|9][5-9]\d|20[0-2]\d|19[\d]\d|)   year: between 1850-2029</p>
      * <p>([1-9]{1}|0[1-9]|1[0-2]|)             month: between 1-12</p>
