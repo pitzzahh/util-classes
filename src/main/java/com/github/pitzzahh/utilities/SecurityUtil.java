@@ -21,13 +21,14 @@ public final class SecurityUtil {
 
     /**
      * encode the {@code byte[] data} to a String.
-     * @param data the {@code byte[] data} to be encoded.
+     * @param data the {@code String} to be encoded.
      * @return the encoded String.
      * @throws IllegalArgumentException if the data to be encrypted is empty.
      */
     public static String encrypt(String data) throws IllegalArgumentException {
         if (data.trim().isEmpty()) throw new IllegalArgumentException("Text to be encrypted cannot be empty");
-        return Base64.getEncoder().encodeToString(data.getBytes(StandardCharsets.UTF_8));
+        var b = Base64.getEncoder().encode(data.getBytes(StandardCharsets.UTF_8));
+        return IntStream.range(0, b.length).map(i -> b[i]).mapToObj(Character::toString).reduce("", String::concat);
     }
 
     /**
