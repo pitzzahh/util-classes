@@ -24,7 +24,7 @@ public final class Utility {
      * @return {@code true} if all elements are the same in the {@code Object[]} array.
      * @see Object
      */
-    public static boolean areAllTheSame(Object[] array) {
+    public static <T> boolean areAllTheSame(T[] array) {
         return IntStream.range(0, array.length).allMatch(e -> array[e].hashCode() == array[0].hashCode());
     }
 
