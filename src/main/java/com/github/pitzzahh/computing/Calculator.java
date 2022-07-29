@@ -141,6 +141,7 @@ public final class Calculator <T extends Number, R extends Number, S extends Num
             case 4 -> "SUBTRACT";
             case 5 -> "MODULO";
             case 6 -> "HYPOTENUSE_CALCULATION";
+            case 7 -> "ANALYZE_QUADRANT";
             default -> throw new IllegalArgumentException("Invalid Operation type " + operation);
         };
     }
