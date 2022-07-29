@@ -275,7 +275,6 @@ class ValidatorTest {
         assertFalse(result);
     }
 
-    // TODO: fix bug
     @Test
     void shouldPassIfBirthDateIsInValidBecauseYearIsInvalid() {
         // given
