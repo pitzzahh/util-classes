@@ -44,7 +44,7 @@ public final class SecurityUtil {
     }
 
     /**
-     * Utility class {@code RSA} Rivest-Shamir-Adleman (RSA) encryption algorithm that encrypts a message and decrypts the message
+     * Util class {@code RSA} Rivest-Shamir-Adleman (RSA) encryption algorithm that encrypts a message and decrypts the message
      */
     public static final class RSA {
         private static PrivateKey privateKey;
@@ -97,7 +97,7 @@ public final class SecurityUtil {
     }
 
     /**
-     * Utility class {@code AES} advance encryption standard that encrypts a message and decrypts the message.
+     * Util class {@code AES} advance encryption standard that encrypts a message and decrypts the message.
      */
     public static final class AES {
 

@@ -6,7 +6,7 @@ import com.github.pitzzahh.utilities.classes.enums.Quadrant;
 import static com.github.pitzzahh.utilities.classes.enums.Quadrant.*;
 
 /**
- * Utility Calculator class used for basic arithmetic operations.
+ * Util Calculator class used for basic arithmetic operations.
  * @see Operation list of available arithmetic operation.
  * @param <T> the first number(any type of number)
  * @param <R> the second number(any type of number)
