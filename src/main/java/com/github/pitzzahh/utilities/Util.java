@@ -22,6 +22,7 @@ public final class Util {
     /**
      * Method that checks if the elements in the array are all the same.
      * @param array the {@code Object[]} array to be checked if all elements are the same.
+     * @param <T> the type that the array.
      * @return {@code true} if all elements are the same in the {@code T[]} array.
      * @see T
      */
@@ -33,6 +34,7 @@ public final class Util {
      * Method that checks if the elements in the array are all the same.
      * @param array the {@code Object[]} array to be checked if all elements are the same.
      * @param target the target value that the array every element should be.
+     * @param <T> the type that the array.
      * @return {@code true} if all elements are the same in the {@code T[]} array.
      * @see T
      */
@@ -43,6 +45,7 @@ public final class Util {
     /**
      * Method that checks if the elements in the list are all the same.
      * @param list the {@code List<T>} list to be checked if all elements are the same.
+     * @param <T> the type that the list.
      * @return {@code true} if all elements are the same in the {@code List<T>} array.
      * @see T
      */
@@ -54,6 +57,7 @@ public final class Util {
      * Method that checks if the elements in the list are all the same.
      * @param list the {@code List<T>} list to be checked if all elements are the same.
      * @param target the target value that checks if all the elements in the list are equal to the target value.
+     * @param <T> the type that the list.
      * @return {@code true} if all elements are the same in the {@code List<T>} array.
      * @see T
      */
