@@ -6,26 +6,59 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.stream.IntStream;
 import java.util.stream.Collectors;
+import java.util.function.Supplier;
 import java.util.function.Predicate;
 
 /**
- * Utility class for working with numbers and arrays.
+ * Util class for working with numbers and arrays.
  */
-public final class Utility {
+public final class Util {
 
     /**
      * Cannot instantiate this class.
      */
-    private Utility() {}
+    private Util() {}
 
     /**
      * Method that checks if the elements in the array are all the same.
      * @param array the {@code Object[]} array to be checked if all elements are the same.
-     * @return {@code true} if all elements are the same in the {@code Object[]} array.
-     * @see Object
+     * @return {@code true} if all elements are the same in the {@code T[]} array.
+     * @see T
      */
     public static <T> boolean areAllTheSame(T[] array) {
         return IntStream.range(0, array.length).allMatch(e -> array[e].hashCode() == array[0].hashCode());
+    }
+
+    /**
+     * Method that checks if the elements in the array are all the same.
+     * @param array the {@code Object[]} array to be checked if all elements are the same.
+     * @param target the target value that the array every element should be.
+     * @return {@code true} if all elements are the same in the {@code T[]} array.
+     * @see T
+     */
+    public static <T> boolean areAllTheSame(T[] array, Supplier<T> target) {
+        return IntStream.range(0, array.length).allMatch(i -> target.get().hashCode() == array[i].hashCode());
+    }
+
+    /**
+     * Method that checks if the elements in the list are all the same.
+     * @param list the {@code List<T>} list to be checked if all elements are the same.
+     * @return {@code true} if all elements are the same in the {@code List<T>} array.
+     * @see T
+     */
+    public static <T> boolean areAllTheSame(List<T> list) {
+        return IntStream.range(0, list.size()).allMatch(i -> list.get(0).hashCode() == list.get(i).hashCode());
+    }
+
+    /**
+     * Method that checks if the elements in the list are all the same.
+     * @param list the {@code List<T>} list to be checked if all elements are the same.
+     * @param target the target value that checks if all the elements in the list are equal to the target value.
+     * @return {@code true} if all elements are the same in the {@code List<T>} array.
+     * @see T
+     */
+    public static <T> boolean areAllTheSame(List<T> list, Supplier<T> target) {
+        return IntStream.range(0, list.size()).allMatch(i -> target.get().hashCode() == list.get(i).hashCode());
     }
 
     /**
