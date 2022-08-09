@@ -17,7 +17,7 @@ public final class Print {
     /**
      * Terminates the current line by writing the line separator string
      */
-    public static <T> void println() {
+    public static void println() {
         System.out.println();
     }
 
