@@ -3,7 +3,7 @@ package com.github.pitzzahh.utilities;
 /**
  * Class used to shorten printing functions.
  */
-public final class Print<T> {
+public final class Print {
 
     /**
      * Prints any Object and then terminate the line.
@@ -12,6 +12,13 @@ public final class Print<T> {
      */
     public static <T> void println(T object) {
         System.out.println(object);
+    }
+
+    /**
+     * Terminates the current line by writing the line separator string
+     */
+    public static <T> void println() {
+        System.out.println();
     }
 
     /**
