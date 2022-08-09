@@ -3,7 +3,6 @@ package com.github.pitzzahh.computing.algorithms.sorting.quickSort;
 import java.util.Arrays;
 
 import com.github.pitzzahh.computing.algorithms.sorting.QuickSort;
-import com.github.pitzzahh.utilities.Utility;
 import org.junit.jupiter.api.Test;
 
 class QuickSortTest {
