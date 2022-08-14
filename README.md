@@ -10,7 +10,7 @@
 
 ### Add Maven Dependency
 
-![maven-central]: https://img.shields.io/maven-central/v/io.github.pitzzahh/util-classes?color=blue
+![maven-central](https://img.shields.io/maven-central/v/io.github.pitzzahh/util-classes?color=blue)
 
 If you use Maven, add the following configuration to your project's `pom.xml` <br>
 
