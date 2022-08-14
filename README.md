@@ -12,7 +12,8 @@
 
 [maven-central]: https://img.shields.io/maven-central/v/io.github.pitzzahh/util-classes?color=blue
 
-If you use Maven, add the following configuration to your project's `pom.xml`
+If you use Maven, add the following configuration to your project's `pom.xml` <br>
+
 Be sure to replace the **VERSION** key below with the one of the versions shown above
 
 ```maven
