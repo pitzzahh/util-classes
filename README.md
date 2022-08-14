@@ -6,7 +6,6 @@
 ![Forks](https://img.shields.io/github/forks/pitzzahh/util-classes)
 ![Stars](https://img.shields.io/github/stars/pitzzahh/util-classes)
 ![License](https://img.shields.io/github/license/pitzzahh/util-classes)
-![Stable Release](https://img.shields.io/badge/version-1.0.5-blue)
 
 ### Add Maven Dependency
 
