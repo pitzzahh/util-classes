@@ -21,6 +21,7 @@ public final class FileUtil {
      * Text file will not be overriden when new contents is written, new contents will be written below the current content.
      * @param whatToWrite the {@code String} to be written on the file.
      * @param fileToWrite the file to be written.
+     * @param writeToBottom if the string to write would be writter at the bottom line of the text file.
      * @throws IOException if the file does not exist.
      */
     public static void writeToATextFile(String whatToWrite, File fileToWrite, boolean writeToBottom) throws IOException {
