@@ -6,11 +6,14 @@
 ![Forks](https://img.shields.io/github/forks/pitzzahh/util-classes)
 ![Stars](https://img.shields.io/github/stars/pitzzahh/util-classes)
 ![License](https://img.shields.io/github/license/pitzzahh/util-classes)
-![Stable Release](https://img.shields.io/badge/version-1.0.5-blue)
 
 ### Add Maven Dependency
 
-If you use Maven, add the following configuration to your project's `pom.xml`
+![maven-central](https://img.shields.io/maven-central/v/io.github.pitzzahh/util-classes?color=blue)
+
+If you use Maven, add the following configuration to your project's `pom.xml` <br>
+
+Be sure to replace the **VERSION** key below with the one of the versions shown above
 
 ```maven
 <dependencies>
@@ -19,7 +22,7 @@ If you use Maven, add the following configuration to your project's `pom.xml`
     <dependency>
         <groupId>io.github.pitzzahh</groupId>
         <artifactId>util-classes</artifactId>
-        <version>1.0.5</version>
+        <version>VERSION</version>
     </dependency>
     <!-- other dependencies are there -->
 
