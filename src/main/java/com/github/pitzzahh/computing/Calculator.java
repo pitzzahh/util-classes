@@ -83,11 +83,11 @@ public final class Calculator <T extends Number, R extends Number, S extends Num
         var a = new BigDecimal(this.a.toString());
         var b = new BigDecimal(this.b.toString());
         switch (op) {
-            case MULTIPLY -> this.result = this.result.add(a.multiply(b));
-            case DIVIDE -> this.result = this.result.add(a.divide(b));
-            case ADD -> this.result = this.result.add(a.add(b));
-            case SUBTRACT -> this.result = this.result.add(a.subtract(b));
-            case HYPOTENUSE_CALCULATION -> this.result = this.result.add(getHypotenuse());
+            case MULTIPLY -> this.result = a.multiply(b);
+            case DIVIDE -> this.result = a.divide(b);
+            case ADD -> this.result = a.add(b);
+            case SUBTRACT -> this.result = a.subtract(b);
+            case HYPOTENUSE_CALCULATION -> this.result = getHypotenuse();
             case ANALYZE_QUADRANT -> {
                 isQuadrant = true;
                 result = BigDecimal.valueOf(whichQuadrant(this.a, this.b).ordinal());
