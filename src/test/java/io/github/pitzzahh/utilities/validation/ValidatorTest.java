@@ -1,9 +1,8 @@
 package io.github.pitzzahh.utilities.validation;
 
 import io.github.pitzzahh.utilities.classes.enums.Gender;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
 
