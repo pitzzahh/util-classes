@@ -50,7 +50,7 @@ public interface Validator extends Predicate<String> {
     }
 
     /**
-     * Cheks if an input is a {@code String}, uppercased or lowecased, or both.
+     * Checks if an input is a {@code String}, uppercase or lowercase, or both.
      * @return a {@code Validator} object.
      */
     static Validator isString() {
@@ -102,7 +102,7 @@ public interface Validator extends Predicate<String> {
      * @return a {@code Validator} object.
      */
     static Validator isBirthDateValid() {
-        return input -> Pattern.compile("^(1[8|9][5-9]\\d|20[0-2]\\d|19[\\d]\\d|)-([1-9]{1}|0[1-9]|1[0-2])-(\\d{1}|0[\\d]|[1-2]\\d|[1-3][0-1])$").matcher(input).matches();
+        return input -> Pattern.compile("^(1[8|9][5-9]\\d|20[0-2]\\d|19\\d\\d|)-([1-9]|0[1-9]|1[0-2])-(\\d|0\\d|[1-2]\\d|[1-3][0-1])$").matcher(input).matches();
     }
 
     /**
