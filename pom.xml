@@ -6,7 +6,7 @@
 
     <groupId>io.github.pitzzahh</groupId>
     <artifactId>util-classes</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 
     <packaging>jar</packaging>
 
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.8.2</version>
+            <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -98,7 +98,7 @@
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <url>https://www.opensource.org/licenses/mit-license.php</url>
         </license>
     </licenses>
 
@@ -114,7 +114,7 @@
     <scm>
         <connection>scm:git:git://github.com/pitzzahh/util-classes.git</connection>
         <developerConnection>scm:git:ssh://github.com:pitzzahh/util-classes.git</developerConnection>
-        <url>http://github.com/pitzzahh/util-classes</url>
+        <url>https://github.com/pitzzahh/util-classes</url>
     </scm>
 
     <distributionManagement>
