@@ -29,3 +29,5 @@ Be sure to replace the **VERSION** key below with the one of the versions shown 
 </dependencies>
 ```
 
+----
+### Tests for this repository can be found here: [util-classes-tests](https://github.com/pitzzahh/util-classes-tests)
