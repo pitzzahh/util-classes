@@ -177,14 +177,21 @@ public final class DynamicArray<T> implements Serializable {
         );
     }
 
-    // Internal implementation that checks if the dynamic array contains different types.
+    /**
+     * Internal implementation that checks if the dynamic array contains different types.
+     * @throws IllegalStateException if the data types in the dynamic array are not all the same.
+     */
     private void checkTypes() throws IllegalStateException {
         var differentTypes = Arrays.stream(this.balloon)
                 .anyMatch(e -> !e.getClass().equals(this.balloon[0].getClass())); // mutability, for removal or change.
         if (differentTypes) throw new IllegalStateException("Cannot sort different types in a dynamic array");
     }
 
-    // Internal implementation of getting the index of an element in the dynamic array.
+    /**
+     * Internal implementation of getting the index of an element in the dynamic array.
+     * @param element the element to search for the index.
+     * @return the index of the element in the dynamic array. If index is not present, returns -1.
+     */
     private int getIndex(T element) {
         return range(0, size())
                 .filter(i -> this.balloon[i] != null)
@@ -193,7 +200,11 @@ public final class DynamicArray<T> implements Serializable {
                 .orElse(-1);
     }
 
-    // Internal implementation of adding element in the dynamic array.
+    /**
+     * Internal implementation of adding element in the dynamic array.
+     * @param element the element to be added.
+     * @return {@code true} if the element index is same as the index where it should be.
+     */
     private boolean add(T element) {
         requireNonNull(element, "Argument cannot be null");
         var size = getCurrentSize.get();
@@ -202,7 +213,10 @@ public final class DynamicArray<T> implements Serializable {
         return size == indexOf(element);
     }
 
-    // Internal implementation that trims the dynamic array and grow the length by 10.
+    /**
+     * Internal implementation that trims the dynamic array and grow the length by 10.
+     * @return {@code true} if the dynamic array has been trimmed and grown.
+     */
     private boolean trimAndGrow() {
         var size = getCurrentSize.get();
         removeNulls();
@@ -211,27 +225,38 @@ public final class DynamicArray<T> implements Serializable {
         return size() == size;
     }
 
-    // Internal implementation that removes null from the dynamic array.
+    /**
+     * Internal implementation that removes null from the dynamic array.
+     */
     private void removeNulls() {
         this.balloon = this.stream()
                 .filter(Objects::nonNull)
                 .toArray();
     }
 
-    // Internal utility method, checks if index is out of bound.
+    /**
+     * Internal utility method, checks if index is out of bound.
+     * @param index the index to be checked.
+     */
     private void checkBounds(int index) {
         if (isOutOfBounds.apply(index)) throw new IndexOutOfBoundsException("Index out of bounds: " + index);
     }
 
-    // Internal implementation that checks filters non-null objects and count them.
+    /**
+     * Internal implementation that checks filters non-null objects and count them.
+     */
     private final Supplier<Integer> getCurrentSize = () -> (int) this.stream()
             .filter(Objects::nonNull)
             .count();
 
-    // Internal implementation that checks if the dynamic array is full.
+    /**
+     * Internal implementation that checks if the dynamic array is full.
+     */
     private final Predicate<Integer> isFull = currentElements -> currentElements >= size();
 
-    // Internal implementation that checks if the index is out of bounds.
+    /**
+     * Internal implementation that checks if the index is out of bounds.
+     */
     private final Function<Integer, Boolean> isOutOfBounds = index -> index > getCurrentSize.get() || index < 0;
 
     @Override
