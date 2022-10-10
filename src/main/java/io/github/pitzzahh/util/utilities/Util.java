@@ -1,13 +1,16 @@
 package io.github.pitzzahh.util.utilities;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.stream.IntStream;
 import java.util.stream.Collectors;
 import java.util.function.Supplier;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
+import static java.util.Arrays.stream;
+import static java.util.stream.IntStream.range;
 
 /**
  * Util class for working with numbers and arrays.
@@ -27,7 +30,7 @@ public final class Util {
      * @see T
      */
     public static <T> boolean areAllTheSame(T[] array) {
-        return IntStream.range(0, array.length).allMatch(e -> array[e].hashCode() == array[0].hashCode());
+        return range(0, array.length).allMatch(e -> array[e].hashCode() == array[0].hashCode());
     }
 
     /**
@@ -39,7 +42,8 @@ public final class Util {
      * @see T
      */
     public static <T> boolean areAllTheSame(T[] array, Supplier<T> target) {
-        return IntStream.range(0, array.length).allMatch(i -> target.get().hashCode() == array[i].hashCode());
+        return stream(array).allMatch(e -> e.hashCode() == target.get().hashCode());
+        //return IntStream.range(0, array.length).allMatch(i -> target.get().hashCode() == array[i].hashCode());
     }
 
     /**
@@ -50,7 +54,7 @@ public final class Util {
      * @see T
      */
     public static <T> boolean areAllTheSame(List<T> list) {
-        return IntStream.range(0, list.size()).allMatch(i -> list.get(0).hashCode() == list.get(i).hashCode());
+        return range(0, list.size()).allMatch(i -> list.get(0).hashCode() == list.get(i).hashCode());
     }
 
     /**
@@ -62,7 +66,7 @@ public final class Util {
      * @see T
      */
     public static <T> boolean areAllTheSame(List<T> list, Supplier<T> target) {
-        return IntStream.range(0, list.size()).allMatch(i -> target.get().hashCode() == list.get(i).hashCode());
+        return list.stream().allMatch(e -> e.equals(target));
     }
 
     /**
@@ -73,8 +77,8 @@ public final class Util {
      */
     public static String convertToString(List<?> list) {
         return list.stream()
-                   .map(String::valueOf)
-                   .collect(Collectors.joining());
+                .map(String::valueOf)
+                .collect(Collectors.joining());
     }
 
     /**
@@ -86,7 +90,7 @@ public final class Util {
      * @see Collection
      */
     public static <T extends Number> Number[] convertToArray(Collection<T> collection) {
-        return collection.toArray(new Number[collection.size()]);
+        return collection.toArray(new Number[0]);
     }
 
     /**
@@ -95,9 +99,10 @@ public final class Util {
      * @return a {@code String[]}
      */
     public static String[] convertToArray(String s) {
-        List<String> strings = new ArrayList<>(s.length());
-        strings.forEach(e -> strings.add(s));
-        return strings.toArray(new String[s.length()]);
+        return Stream.of(s)
+                .iterator()
+                .next()
+                .split("");
     }
 
     /**
@@ -105,8 +110,9 @@ public final class Util {
      * @param s the {@code String} to be converted.
      * @return a {@code List<Character>}
      */
+    @Deprecated(forRemoval = true)
     public static List<Character> convertToListOfCharacters(String s) {
-        List<Character> characters = new ArrayList<>(s.length());
+        ArrayList<Character> characters = new ArrayList<>(s.length());
         characters.forEach(e -> characters.add(s.charAt(e)));
         return characters;
     }
@@ -142,8 +148,7 @@ public final class Util {
      * @see Number
      */
     public static <T extends Number> boolean isPresent(T[] arr, T whatToFind) {
-        return IntStream.range(0, arr.length)
-                .anyMatch(i -> arr[i].hashCode() == whatToFind.hashCode());
+        return Arrays.asList(arr).contains(whatToFind);
     }
 
     /**
