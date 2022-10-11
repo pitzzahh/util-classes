@@ -1,19 +1,19 @@
 package io.github.pitzzahh.util.utilities;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-import java.math.BigDecimal;
-import java.util.Collection;
+import static java.util.Arrays.stream;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.function.Supplier;
-import java.util.function.Predicate;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import static java.util.Arrays.stream;
-import static java.util.stream.IntStream.range;
+import java.util.Collection;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * Util class for working with numbers and arrays.
+ * Util class for working with numbers and arrays. This class mainly uses streams and lambdas.
+ * @see Stream
  */
 public final class Util {
 
@@ -29,8 +29,8 @@ public final class Util {
      * @return {@code true} if all elements are the same in the {@code T[]} array.
      * @see T
      */
-    public static <T> boolean areAllTheSame(T[] array) {
-        return range(0, array.length).allMatch(e -> array[e].hashCode() == array[0].hashCode());
+    public static <T> boolean similar(T[] array) {
+        return stream(array).distinct().count() == 1;
     }
 
     /**
@@ -41,9 +41,8 @@ public final class Util {
      * @return {@code true} if all elements are the same in the {@code T[]} array.
      * @see T
      */
-    public static <T> boolean areAllTheSame(T[] array, Supplier<T> target) {
-        return stream(array).allMatch(e -> e.hashCode() == target.get().hashCode());
-        //return IntStream.range(0, array.length).allMatch(i -> target.get().hashCode() == array[i].hashCode());
+    public static <T> boolean similar(T[] array, Supplier<T> target) {
+        return stream(array).allMatch(e -> e.equals(target.get()));
     }
 
     /**
@@ -53,8 +52,8 @@ public final class Util {
      * @return {@code true} if all elements are the same in the {@code List<T>} array.
      * @see T
      */
-    public static <T> boolean areAllTheSame(List<T> list) {
-        return range(0, list.size()).allMatch(i -> list.get(0).hashCode() == list.get(i).hashCode());
+    public static <T> boolean similar(List<T> list) {
+        return list.stream().distinct().count() == 1;
     }
 
     /**
@@ -65,17 +64,17 @@ public final class Util {
      * @return {@code true} if all elements are the same in the {@code List<T>} array.
      * @see T
      */
-    public static <T> boolean areAllTheSame(List<T> list, Supplier<T> target) {
-        return list.stream().allMatch(e -> e.equals(target));
+    public static <T> boolean similar(List<T> list, Supplier<T> target) {
+        return list.stream().allMatch(e -> e.equals(target.get()));
     }
 
     /**
-     * Prints the {@code List} of {@code Integers} as a sorted {@code Integer} representation
-     * @param list the {@code List<Integers>} of {@code Integers}.
-     * @return the {@code String} representation of the (sorted) list without the brackets
+     * Prints the {@code List} of {@code T} as a {@code String} representation
+     * @param list the {@code List<T>} to be converted to a String
+     * @return the {@code String} representation of the list without the brackets
      * @see List
      */
-    public static String convertToString(List<?> list) {
+    public static String getString(List<?> list) {
         return list.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining());
@@ -89,7 +88,7 @@ public final class Util {
      * @see Number
      * @see Collection
      */
-    public static <T extends Number> Number[] convertToArray(Collection<T> collection) {
+    public static <T extends Number> Number[] toArray(Collection<T> collection) {
         return collection.toArray(new Number[0]);
     }
 
@@ -98,7 +97,7 @@ public final class Util {
      * @param s the {@code String}
      * @return a {@code String[]}
      */
-    public static String[] convertToArray(String s) {
+    public static String[] toArray(String s) {
         return Stream.of(s)
                 .iterator()
                 .next()
@@ -110,11 +109,10 @@ public final class Util {
      * @param s the {@code String} to be converted.
      * @return a {@code List<Character>}
      */
-    @Deprecated(forRemoval = true)
-    public static List<Character> convertToListOfCharacters(String s) {
-        ArrayList<Character> characters = new ArrayList<>(s.length());
-        characters.forEach(e -> characters.add(s.charAt(e)));
-        return characters;
+    public static List<Character> getAsListOfCharacters(String s) {
+        return IntStream.range(0, s.length())
+                .mapToObj(s::charAt)
+                .collect(Collectors.toList());
     }
 
     /**
