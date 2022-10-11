@@ -39,7 +39,8 @@ public final class Print {
      * @param <T> the type of the {@code Object}.
      */
     @SafeVarargs
+    @SuppressWarnings("ConfusingArgumentToVarargsMethod")
     public static <T> void printf(String format, T...args) {
-        System.out.printf(format, (Object) args);
+        System.out.printf(format, args);
     }
 }
