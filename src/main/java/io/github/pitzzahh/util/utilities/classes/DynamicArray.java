@@ -22,29 +22,12 @@ public final class DynamicArray<T> implements Serializable {
      * The array where the elements are stored.
      * Called balloon because balloon expands as you add air to it.
      */
-    transient Object[] balloon;
+    transient Object[] balloon = {};
 
     /**
      * placeholder for any insert modification in the dynamic array.
      */
     transient int modificationCount;
-
-    /**
-     * No args dynamic array. Sets the dynamic array size to default size of 10.
-     */
-    public DynamicArray() {
-        this.balloon = new Object[] {};
-    }
-
-    /**
-     * Creates a {@code DynamicArray} object with an initial size
-     * @param initialSize the initial size of the array.
-     */
-    public DynamicArray(int initialSize) {
-        if (initialSize > 0) this.balloon = new Object[initialSize];
-        else if (initialSize == 0) this.balloon = new Object[]{};
-        else throw new IllegalArgumentException("Illegal Capacity: " + initialSize);
-    }
 
     /**
      * Insert an element in the dynamic array.
