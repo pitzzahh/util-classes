@@ -69,7 +69,7 @@ public final class Util {
     }
 
     /**
-     * Prints the {@code List} of {@code T} as a {@code String} representation
+     * Prints the {@code List} of unknown type {@code ?} as a {@code String} representation
      * @param list the {@code List<T>} to be converted to a String
      * @return the {@code String} representation of the list without the brackets
      * @see List
