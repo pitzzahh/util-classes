@@ -1,24 +1,30 @@
 package io.github.pitzzahh.util.utilities;
 
+import java.io.PrintStream;
+
 /**
  * Class used to shorten printing functions.
  */
 public final class Print {
 
     /**
+     * PrintStream field to be used.
+     */
+    private static final PrintStream PRINT_STREAM = System.out;
+    /**
      * Prints any Object and then terminate the line.
      * @param object the thing to print.
      * @param <T> the type of the {@code Object}.
      */
     public static <T> void println(T object) {
-        System.out.println(object);
+        PRINT_STREAM.println(object);
     }
 
     /**
      * Terminates the current line by writing the line separator string
      */
     public static void println() {
-        System.out.println();
+        PRINT_STREAM.println();
     }
 
     /**
@@ -27,7 +33,7 @@ public final class Print {
      * @param <T> the type of the {@code Object}.
      */
     public static <T> void print(T object) {
-        System.out.print(object);
+        PRINT_STREAM.print(object);
     }
 
     /**
@@ -39,7 +45,8 @@ public final class Print {
      * @param <T> the type of the {@code Object}.
      */
     @SafeVarargs
+    @SuppressWarnings("ConfusingArgumentToVarargsMethod")
     public static <T> void printf(String format, T...args) {
-        System.out.printf(format, (Object) args);
+        PRINT_STREAM.printf(format, args);
     }
 }

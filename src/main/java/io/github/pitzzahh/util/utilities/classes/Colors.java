@@ -3,7 +3,7 @@ package io.github.pitzzahh.util.utilities.classes;
 /**
  * Class used for coloring texts.
  */
-public class TextColors {
+public class Colors {
     /**
      * Resets the text color.
      */
