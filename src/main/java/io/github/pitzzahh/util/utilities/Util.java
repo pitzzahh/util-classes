@@ -139,6 +139,19 @@ public final class Util {
 
     /**
      * Method that searches an array, returns true if the value is present, otherwise false.
+     * @param collection the collection that extends the {@code Number} class.
+     * @param whatToFind the number to find in the array.
+     * @return {@code true} if {@code whatToFind} is present in the array.
+     * @param <T> the type that the {@code collection} and {@code whatToFind}
+     * @see Number
+     * @see Collection
+     */
+    public static <T extends Number> boolean isPresent(Collection<T> collection, T whatToFind) {
+        return collection.contains(whatToFind);
+    }
+
+    /**
+     * Method that searches an array, returns true if the value is present, otherwise false.
      * @param arr the array that extends the {@code Number} class.
      * @param whatToFind the number to find in the array.
      * @return {@code true} if {@code whatToFind} is present in the array.
