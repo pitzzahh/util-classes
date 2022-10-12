@@ -6,7 +6,22 @@
 
     <groupId>io.github.pitzzahh</groupId>
     <artifactId>util-classes</artifactId>
-    <version>1.0.11</version>
+    <version>1.0.11-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.0</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>junit-jupiter</artifactId>
+                    <groupId>org.junit.jupiter</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
 
     <packaging>jar</packaging>
 
