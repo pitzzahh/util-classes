@@ -11,12 +11,55 @@ import io.github.pitzzahh.util.utilities.classes.enums.Gender;
  */
 public class Person {
 
+    private int constructorCounter = 1;
     private String firstName;
     private String lastName;
     private Integer age;
     private Gender gender;
     private String address;
     private LocalDate birthDate;
+
+    /**
+     * Constructor for making a {@code Person} object.
+     * There is no need to provide the age argument because it is automatically calculated.
+     * @param firstName the first name of a person.
+     * @param lastName the last name of a person.
+     */
+    public Person(String firstName, String lastName) {
+        this.constructorCounter = 2;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    /**
+     * Constructor for making a {@code Person} object.
+     * There is no need to provide the age argument because it is automatically calculated.
+     * @param firstName the first name of a person.
+     * @param lastName the last name of a person.
+     * @param gender the gender of a person using {@code Gender} enum.
+     * @see Gender
+     */
+    public Person(String firstName, String lastName, Gender gender) {
+        this.constructorCounter = 3;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+    }
+
+    /**
+     * Constructor for making a {@code Person} object.
+     * There is no need to provide the age argument because it is automatically calculated.
+     * @param firstName the first name of a person.
+     * @param lastName the last name of a person.
+     * @param gender the gender of a person using {@code Gender} enum.
+     * @see Gender
+     */
+    public Person(String firstName, String lastName, LocalDate birthDate) {
+        this.constructorCounter = 4;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+    }
 
     /**
      * Constructor for making a {@code Person} object.
@@ -30,6 +73,7 @@ public class Person {
      * @see LocalDate
      */
     public Person(String firstName, String lastName, Gender gender, String address, LocalDate birthDate) {
+        this.constructorCounter = 5;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -147,7 +191,13 @@ public class Person {
      * @return {@code String} representation of the current {@code Person} object.
      */
     public String toString() {
-        return "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", age=" + this.getAge() + ", gender=" + this.getGender() + ", address=" + this.getAddress() + ", birthDate=" + this.getBirthDate() + ")";
+        var str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", age=" + this.getAge() + ", gender=" + this.getGender() + ", address=" + this.getAddress() + ", birthDate=" + this.getBirthDate() + ")";
+        switch (this.constructorCounter) {
+            case 2 -> str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ")";
+            case 3 -> str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", gender=" + this.getGender() + ")";
+            case 4 -> str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", age=" + this.getAge() + ", birthDate=" + this.getBirthDate() + ")";
+        }
+        return str;
     }
 
     /**
@@ -224,15 +274,25 @@ public class Person {
          * @return a {@code Person} object.
          */
         public Person build() {
-            return new Person(firstName, lastName, gender, address, birthDate);
+            final var used = whichIsUsed();
+            if (used == 2) return new Person(firstName, lastName);
+            else if (used == 3) return new Person(firstName, lastName, gender);
+            else if (used == 4) return new Person(firstName, lastName, birthDate);
+            else return new Person(firstName, lastName, gender, address, birthDate);
         }
 
-        /**
-         * Prints the {@code Person} object as a {@code String} representation.
-         * @return {@code String} representation of the current {@code Person} object.
-         */
-        public String toString() {
-            return "Person.PersonBuilder(firstName=" + this.firstName + ", lastName=" + this.lastName + ", age=" + this.age + ", gender=" + this.gender + ", address=" + this.address + ", birthDate=" + this.birthDate + ")";
+        private int whichIsUsed() {
+            var doesFirstNameHasValue = firstName != null;
+            var doesLastNameHasValue = lastName != null;
+            var doesGenderHasValue = gender != null;
+            var doesAddressHasValue = address != null;
+            var doesBirthdateHasValue = birthDate != null;
+
+            if (doesFirstNameHasValue & doesLastNameHasValue & doesGenderHasValue & doesAddressHasValue & doesBirthdateHasValue) return 5;
+            else if (doesFirstNameHasValue & doesLastNameHasValue & doesGenderHasValue & (!doesAddressHasValue)) return 3;
+            else if (doesFirstNameHasValue & doesLastNameHasValue & doesBirthdateHasValue & (!doesGenderHasValue)) return 4;
+            else if (doesFirstNameHasValue & doesLastNameHasValue) return 2;
+            else return 5;
         }
     }
 }
