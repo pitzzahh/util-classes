@@ -1,5 +1,6 @@
 package io.github.pitzzahh.util.utilities.classes;
 
+import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.IntStream.range;
 import java.util.stream.StreamSupport;
@@ -16,7 +17,7 @@ import java.util.*;
  * Class that functions same as an array but the size increases.
  * @param <T> the type of the dynamic array.
  */
-public final class DynamicArray<T> implements Serializable {
+public class DynamicArray<T> implements Serializable {
 
     /**
      * The array where the elements are stored.
@@ -66,15 +67,18 @@ public final class DynamicArray<T> implements Serializable {
 
     /**
      * Removes an element in the dynamic array and returns it.
+     * If the element is not found, returns -1.
      * @param element the element to be removed.
      * @return {@code T} the removed element.
+     * @throws IllegalArgumentException if the element to be removed and get is not in the dynamic array.
      */
     @SuppressWarnings("unchecked")
-    public T removeAndGet(T element) {
+    public T removeAndGet(T element) throws IllegalArgumentException {
         requireNonNull(element, "Argument cannot be null");
         final var index = indexOf(element);
         var toBeRemoved = (T) new Object();
         if (index != -1) toBeRemoved = get(index);
+        else throw new IllegalArgumentException(format("%s is not in the dynamic array", element));
         this.balloon[index] = null;
         trimAndGrow();
         return toBeRemoved;
