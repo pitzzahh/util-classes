@@ -2,7 +2,6 @@ package io.github.pitzzahh.util.utilities.classes;
 
 import java.time.Period;
 import java.time.LocalDate;
-
 import io.github.pitzzahh.util.utilities.classes.enums.Gender;
 
 /**
@@ -14,7 +13,7 @@ public class Person {
     private int constructorCounter = 1;
     private String firstName;
     private String lastName;
-    private Integer age;
+    transient Integer age;
     private Gender gender;
     private String address;
     private LocalDate birthDate;
