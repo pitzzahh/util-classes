@@ -1,8 +1,8 @@
 package io.github.pitzzahh.util.utilities.classes;
 
-import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.IntStream.range;
+import static java.lang.String.format;
 import java.util.stream.StreamSupport;
 import java.util.function.Predicate;
 import java.util.function.Function;
@@ -10,14 +10,13 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import static java.util.Arrays.*;
 import java.util.stream.Stream;
-import java.io.Serializable;
 import java.util.*;
 
 /**
  * Class that functions same as an array but the size increases.
  * @param <T> the type of the dynamic array.
  */
-public class DynamicArray<T> implements Serializable {
+public class DynamicArray<T> {
 
     /**
      * The array where the elements are stored.
