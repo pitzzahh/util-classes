@@ -6,5 +6,6 @@ module util.classes {
     exports io.github.pitzzahh.util.computing.algorithms.sorting;
     exports io.github.pitzzahh.util.utilities;
     exports io.github.pitzzahh.util.utilities.classes;
+    exports io.github.pitzzahh.util.utilities.classes.enums;
     exports io.github.pitzzahh.util.utilities.validation;
 }
