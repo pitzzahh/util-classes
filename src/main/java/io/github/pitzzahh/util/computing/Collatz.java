@@ -34,6 +34,12 @@ import io.github.pitzzahh.util.utilities.validation.Validator;
  */
 public final class Collatz {
 
+    /**
+     * The default constructor.
+     */
+    public Collatz() {
+    }
+
     private static int number;
 
     /**

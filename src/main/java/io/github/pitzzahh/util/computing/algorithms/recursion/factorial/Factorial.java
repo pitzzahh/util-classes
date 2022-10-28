@@ -32,6 +32,12 @@ import java.text.NumberFormat;
  */
 public final class Factorial {
 
+    /**
+     * The default constructor.
+     */
+    public Factorial() {
+    }
+
     private byte number;
 
     private long factorial(long number) {

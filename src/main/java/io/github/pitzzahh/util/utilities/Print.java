@@ -33,6 +33,12 @@ import java.io.PrintStream;
 public final class Print {
 
     /**
+     * The default print stream.
+     */
+    public Print() {
+    }
+
+    /**
      * PrintStream field to be used.
      */
     private static final PrintStream PRINT_STREAM = System.out;

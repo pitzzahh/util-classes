@@ -75,8 +75,9 @@ public class Person {
      * There is no need to provide the age argument because it is automatically calculated.
      * @param firstName the first name of a person.
      * @param lastName the last name of a person.
-     * @param gender the gender of a person using {@code Gender} enum.
+     * @param birthDate the birth date of a person.
      * @see Gender
+     * @see LocalDate
      */
     public Person(String firstName, String lastName, LocalDate birthDate) {
         this.constructorCounter = 4;

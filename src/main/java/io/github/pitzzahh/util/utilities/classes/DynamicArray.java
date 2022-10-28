@@ -44,6 +44,12 @@ import java.util.*;
 public class DynamicArray<T> {
 
     /**
+     * The default constructor.
+     */
+    public DynamicArray() {
+    }
+
+    /**
      * The array where the elements are stored.
      * Called balloon because balloon expands as you add air to it.
      */
