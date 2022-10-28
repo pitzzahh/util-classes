@@ -30,6 +30,7 @@ import java.util.stream.IntStream;
 
 /**
  * Class used to sum a sequence of numbers.
+ * @param <T> the type of the number.
  */
 
 public final class SumOfAllNumbers <T extends Number> {
