@@ -33,6 +33,12 @@ import java.util.stream.IntStream;
 public final class LinearSearch implements SearchingAlgorithm {
 
     /**
+     * Default constructor.
+     */
+    public LinearSearch() {
+    }
+
+    /**
      * Method that searches an array, returns the position of that number in the array.
      * @param arr the array that extends the {@code Number} class.
      * @param whatToFind the number to find in the array.

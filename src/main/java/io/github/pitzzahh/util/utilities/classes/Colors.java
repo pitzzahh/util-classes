@@ -29,6 +29,13 @@ package io.github.pitzzahh.util.utilities.classes;
  * Class used for coloring texts.
  */
 public class Colors {
+
+    /**
+     * The default constructor.
+     */
+    public Colors() {
+    }
+
     /**
      * Resets the text color.
      */

@@ -33,6 +33,12 @@ import java.text.NumberFormat;
  */
 public final class Fibonacci {
 
+    /**
+     * The fibonacci number.
+     */
+    public Fibonacci() {
+    }
+
     private int number;
     private static final int GET_AT_NTH = 1;
     private static final int GET_UNTIL_N = 2;
