@@ -108,13 +108,13 @@ public final class Util {
     /**
      * Converts a {@code Collection} of numbers to a {@code Number[]}.
      * @param collection the collection to be converted.
-     * @return a {@code Number[]}.
+     * @return the {@code T[]} representation of the collection.
      * @param <T> the data type / the {@code Collection} that extends the {@code Number} class.
-     * @see Number
      * @see Collection
      */
-    public static <T extends Number> Number[] toArray(Collection<T> collection) {
-        return collection.toArray(new Number[0]);
+    @SuppressWarnings("unchecked")
+    public static <T> T[] toArray(Collection<T> collection) {
+        return collection.toArray((T[]) new Object[collection.size()]);
     }
 
     /**
@@ -164,26 +164,27 @@ public final class Util {
 
     /**
      * Method that searches an array, returns true if the value is present, otherwise false.
-     * @param collection the collection that extends the {@code Number} class.
-     * @param whatToFind the number to find in the array.
+     * @param collection the collection of type {@link T}.
+     * @param whatToFind the value to find in the array.
      * @return {@code true} if {@code whatToFind} is present in the array.
      * @param <T> the type that the {@code collection} and {@code whatToFind}
-     * @see Number
      * @see Collection
+     * @see T
      */
-    public static <T extends Number> boolean isPresent(Collection<T> collection, T whatToFind) {
+    public static <T> boolean isPresent(Collection<T> collection, T whatToFind) {
         return collection.contains(whatToFind);
     }
 
     /**
      * Method that searches an array, returns true if the value is present, otherwise false.
-     * @param arr the array that extends the {@code Number} class.
-     * @param whatToFind the number to find in the array.
+     * @param arr the array of type {@link T} class.
+     * @param whatToFind the value to find in the array.
      * @return {@code true} if {@code whatToFind} is present in the array.
      * @param <T> the type that the {@code arr} and {@code whatToFind}
-     * @see Number
+     * @see Arrays
+     * @see T
      */
-    public static <T extends Number> boolean isPresent(T[] arr, T whatToFind) {
+    public static <T> boolean isPresent(T[] arr, T whatToFind) {
         return Arrays.asList(arr).contains(whatToFind);
     }
 
