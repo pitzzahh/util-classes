@@ -6,7 +6,16 @@
 
     <groupId>io.github.pitzzahh</groupId>
     <artifactId>util-classes</artifactId>
-    <version>1.0.14</version>
+    <version>1.0.15</version>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>1</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -22,15 +31,6 @@
             </exclusions>
         </dependency>
     </dependencies>
-
-    <packaging>jar</packaging>
-
-    <properties>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
 
     <build>
 
