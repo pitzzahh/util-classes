@@ -217,10 +217,12 @@ public class Person {
      */
     public String toString() {
         var str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", age=" + this.getAge() + ", gender=" + this.getGender() + ", address=" + this.getAddress() + ", birthDate=" + this.getBirthDate() + ")";
-        switch (this.constructorCounter) {
-            case 2 -> str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ")";
-            case 3 -> str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", gender=" + this.getGender() + ")";
-            case 4 -> str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", age=" + this.getAge() + ", birthDate=" + this.getBirthDate() + ")";
+        if (this.constructorCounter == 2) {
+            str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ")";
+        } else if (this.constructorCounter == 3) {
+            str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", gender=" + this.getGender() + ")";
+        } else if (this.constructorCounter == 4) {
+            str = "Person(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", age=" + this.getAge() + ", birthDate=" + this.getBirthDate() + ")";
         }
         return str;
     }

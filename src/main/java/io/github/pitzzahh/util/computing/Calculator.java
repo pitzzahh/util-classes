@@ -97,12 +97,17 @@ public class Calculator implements ICalculator {
             this.secondNumber = secondNumber;
             this.operation = operation;
         }
-        switch (Objects.requireNonNull(this.operation)) {
-            case MULTIPLICATION -> result = valueOf(this.firstNumber.longValue()).multiply(valueOf(this.secondNumber.longValue()));
-            case DIVISION -> result = valueOf(this.firstNumber.longValue()).divide(valueOf(this.secondNumber.longValue()), MathContext.DECIMAL64);
-            case ADDITION -> result = valueOf(this.firstNumber.longValue()).add(valueOf(this.secondNumber.longValue()));
-            case SUBTRACTION -> result = valueOf(this.firstNumber.longValue()).subtract(valueOf(this.secondNumber.longValue()));
-            case MODULO -> result = valueOf(this.firstNumber.longValue()).remainder(valueOf(this.secondNumber.longValue()), MathContext.DECIMAL64);
+        Operation requireNonNull = Objects.requireNonNull(this.operation);
+        if (requireNonNull == Operation.MULTIPLICATION) {
+            result = valueOf(this.firstNumber.longValue()).multiply(valueOf(this.secondNumber.longValue()));
+        } else if (requireNonNull == Operation.DIVISION) {
+            result = valueOf(this.firstNumber.longValue()).divide(valueOf(this.secondNumber.longValue()), MathContext.DECIMAL64);
+        } else if (requireNonNull == Operation.ADDITION) {
+            result = valueOf(this.firstNumber.longValue()).add(valueOf(this.secondNumber.longValue()));
+        } else if (requireNonNull == Operation.SUBTRACTION) {
+            result = valueOf(this.firstNumber.longValue()).subtract(valueOf(this.secondNumber.longValue()));
+        } else if (requireNonNull == Operation.MODULO) {
+            result = valueOf(this.firstNumber.longValue()).remainder(valueOf(this.secondNumber.longValue()), MathContext.DECIMAL64);
         }
         return result;
     }
